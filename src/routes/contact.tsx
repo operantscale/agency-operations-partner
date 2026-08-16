@@ -107,7 +107,7 @@ function ContactPage() {
               <h1 className="mt-6 text-4xl leading-[1.05] font-medium sm:text-5xl">
                 Start With a Conversation.
               </h1>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+              <p className="mt-6 max-w-md text-[1.0625rem] leading-[1.7] text-muted-foreground">
                 Tell us a little about your agency and the operational challenge you're looking to
                 understand. We'll use the conversation to learn how your team works and determine
                 whether there is a meaningful opportunity for improvement.
@@ -237,7 +237,7 @@ function ContactPage() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="mt-8 inline-flex h-12 w-full items-center justify-center gap-3 bg-primary px-6 text-[0.72rem] font-medium tracking-[0.11em] text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60 sm:w-auto"
+                    className="mt-8 inline-flex h-14 w-full items-center justify-center gap-3 bg-primary px-8 text-[0.78rem] font-medium tracking-[0.11em] text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60 sm:w-auto"
                   >
                     {status === "loading" ? "Sending…" : "Request an operational discovery"}
                     {status !== "loading" && <ArrowRight className="size-4" />}

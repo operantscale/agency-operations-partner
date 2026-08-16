@@ -23,7 +23,7 @@ export const discoverySchema = z.object({
 export type DiscoveryInput = z.infer<typeof discoverySchema>;
 
 export const submitDiscoveryRequest = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => discoverySchema.parse(data))
+  .validator((data: unknown) => discoverySchema.parse(data))
   .handler(async ({ data, context }) => {
     // Extract client IP from headers (works with most hosting platforms)
     const clientIp =

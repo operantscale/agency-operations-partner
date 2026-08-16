@@ -1,11 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
 import { discoverySchema, submitDiscoveryRequest } from "@/lib/discovery.functions";
+
+// Declare reCAPTCHA global type
+declare global {
+  interface Window {
+    grecaptcha?: {
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -27,6 +36,13 @@ export const Route = createFileRoute("/contact")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
+    scripts: [
+      {
+        src: "https://www.google.com/recaptcha/api.js",
+        async: true,
+        defer: true,
+      },
+    ],
   }),
   component: ContactPage,
 });
@@ -53,6 +69,19 @@ function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [formError, setFormError] = useState("");
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
+
+  // Wait for reCAPTCHA to load
+  useEffect(() => {
+    const checkRecaptcha = () => {
+      if (window.grecaptcha) {
+        setRecaptchaReady(true);
+      } else {
+        setTimeout(checkRecaptcha, 100);
+      }
+    };
+    checkRecaptcha();
+  }, []);
 
   const set = (name: string, value: string) => {
     setValues((v) => ({ ...v, [name]: value }));
@@ -63,6 +92,21 @@ function ContactPage() {
     event.preventDefault();
     setFormError("");
 
+    const recaptchaKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+
+    // Get reCAPTCHA token if available
+    let recaptchaToken: string | undefined;
+    if (recaptchaReady && recaptchaKey && window.grecaptcha) {
+      try {
+        recaptchaToken = await window.grecaptcha.execute(recaptchaKey, {
+          action: "submit_discovery_request",
+        });
+      } catch (error) {
+        console.warn("reCAPTCHA token generation failed:", error);
+        // Continue without token - server will handle gracefully
+      }
+    }
+
     const parsed = discoverySchema.safeParse({
       fullName: values["fullName"] ?? "",
       workEmail: values["workEmail"] ?? "",
@@ -71,6 +115,7 @@ function ContactPage() {
       agencyWebsite: values["agencyWebsite"] ?? "",
       primaryChallenge: values["primaryChallenge"] ?? "",
       additionalContext: values["additionalContext"] ?? "",
+      recaptchaToken: recaptchaToken,
     });
 
     if (!parsed.success) {
@@ -88,10 +133,11 @@ function ContactPage() {
     try {
       await submit({ data: parsed.data });
       setStatus("success");
-    } catch {
+    } catch (err) {
       setStatus("error");
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
       setFormError(
-        "We couldn't submit your request. Please try again, or email wajeeh@operantscale.com directly.",
+        errorMessage || "We couldn't submit your request. Please try again, or email support directly.",
       );
     }
   };

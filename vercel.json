@@ -1,0 +1,42 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "outputDirectory": "dist",
+  "framework": "other",
+  "serverless": {
+    "memory": 1024,
+    "maxDuration": 30
+  },
+  "env": {
+    "SUPABASE_URL": {
+      "description": "Supabase project URL"
+    },
+    "SUPABASE_PUBLISHABLE_KEY": {
+      "description": "Supabase public (publishable) key"
+    },
+    "SUPABASE_PROJECT_ID": {
+      "description": "Supabase project ID"
+    },
+    "RESEND_API_KEY": {
+      "description": "Resend API key for email sending"
+    },
+    "SMTP_FROM_EMAIL": {
+      "description": "Email address to send from (must be verified in Resend)"
+    },
+    "ADMIN_EMAIL": {
+      "description": "Admin email address to receive form submissions"
+    },
+    "RECAPTCHA_SECRET_KEY": {
+      "description": "Google reCAPTCHA v3 secret key for server-side verification"
+    }
+  },
+  "envPrefix": "VITE_",
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/"
+    }
+  ],
+  "crons": []
+}

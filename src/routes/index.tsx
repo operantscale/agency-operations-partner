@@ -49,6 +49,10 @@ const FAQS = [
     a: "That depends on the agency's existing technology stack. Systems and workflows are evaluated before recommending an approach.",
   },
   {
+    q: "How much does an automation project cost?",
+    a: "Every agency's workflows and technology environment are different, so we scope projects around the operational opportunity rather than selling a fixed automation package. Pricing is discussed after understanding the workflow and requirements.",
+  },
+  {
     q: "How do we get started?",
     a: "Start with an operational discovery conversation. It's a working session, not a sales call.",
   },
@@ -225,10 +229,10 @@ function HomePage() {
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Operational intelligence · Independent P&amp;C agencies</p>
-                <h1 className="mt-6 max-w-2xl text-[2.5rem] leading-[1.05] font-medium tracking-[-0.026em] sm:text-[3.25rem] lg:text-[3.75rem]">
+                <h1 className="mt-6 max-w-2xl text-[2.6rem] leading-[1.04] font-medium tracking-[-0.028em] sm:text-[3.4rem] lg:text-[4rem]">
                   AI-Powered Operational Systems for Independent P&amp;C Insurance Agencies
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-[1.65] text-muted-foreground">
+                <p className="mt-6 max-w-xl text-[1.1875rem] leading-[1.62] text-muted-foreground">
                   We reduce the repetitive administrative work inside your agency, improve the
                   workflows between your existing systems, and create capacity for your team to
                   serve clients better and grow sustainably. AI is the mechanism—operational
@@ -238,27 +242,27 @@ function HomePage() {
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link
                     to="/contact"
-                    className="inline-flex h-14 items-center justify-center gap-3 bg-primary px-8 text-[0.78rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_12px_30px_-18px_var(--color-primary)] transition-colors hover:bg-primary/90"
+                    className="inline-flex h-16 items-center justify-center gap-3 whitespace-nowrap bg-primary px-10 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
                   </Link>
                   <Link
                     to="/"
                     hash="approach"
-                    className="inline-flex h-14 items-center justify-center border border-foreground/25 px-8 text-[0.78rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
+                    className="inline-flex h-16 items-center justify-center whitespace-nowrap border border-foreground/25 px-9 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
                   >
                     See how we work
                   </Link>
                 </div>
 
-                <p className="mt-8 max-w-md border-l border-accent pl-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-8 max-w-md border-l-2 border-accent pl-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
                   Built for established independent P&amp;C agencies with growing operational
                   complexity.
                 </p>
               </Reveal>
 
               <Reveal delay={0.15}>
-                <SystemVisual className="w-full" />
+                <SystemVisual className="w-full max-w-xl lg:max-w-none" />
               </Reveal>
             </div>
           </div>
@@ -266,14 +270,14 @@ function HomePage() {
 
         {/* OPERATIONAL REALITY */}
         <section className="border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Operational reality</p>
-                <h2 className="mt-5 max-w-md text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Your Agency May Already Have the Right Tools.
                 </h2>
-                <div className="mt-6 max-w-lg space-y-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <div className="mt-6 max-w-lg space-y-5 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   <p>
                     Most established agencies already run an AMS, a CRM, email, communication
                     platforms, quoting tools and client portals. The technology is usually not the
@@ -301,14 +305,14 @@ function HomePage() {
 
         {/* THE WORK BEHIND THE WORK */}
         <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow">Where the workload accumulates</p>
-                <h2 className="mt-5 text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   The Work Behind the Work
                 </h2>
-                <p className="mt-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Potential opportunities may exist across the areas below. These are operational
                   investigation areas—not assumptions about how your agency runs.
                 </p>
@@ -323,7 +327,7 @@ function HomePage() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="text-xl font-medium">{area.title}</h3>
-                    <p className="text-[0.95rem] leading-[1.7] text-muted-foreground">
+                    <p className="text-[1rem] leading-[1.7] text-muted-foreground">
                       {area.body}
                     </p>
                   </div>
@@ -335,14 +339,14 @@ function HomePage() {
 
         {/* CAPABILITIES */}
         <section id="capabilities" className="scroll-mt-16 border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow">What OperantScale does</p>
-                <h2 className="mt-5 text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   We Design Systems Around How Your Agency Actually Works.
                 </h2>
-                <p className="mt-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Four operational capability groups. We don't start with a pre-built automation and
                   force it into your agency—we first understand the workflow, identify where
                   capacity may be lost, and determine whether automation is actually the right
@@ -359,16 +363,16 @@ function HomePage() {
                       <span className="font-mono text-[0.72rem] tracking-[0.18em] text-accent">
                         {g.n}
                       </span>
-                      <h3 className="text-xl font-medium">{g.title}</h3>
+                      <h3 className="text-[1.375rem] font-medium">{g.title}</h3>
                     </div>
-                    <p className="mt-4 max-w-md text-[0.95rem] leading-[1.7] text-muted-foreground">
+                    <p className="mt-4 max-w-md text-[1rem] leading-[1.7] text-muted-foreground">
                       {g.body}
                     </p>
                     <ul className="mt-6 grid gap-x-8 sm:grid-cols-2">
                       {g.items.map((item) => (
                         <li
                           key={item}
-                          className="border-t border-border py-3 text-[0.95rem] text-foreground"
+                          className="border-t border-border py-3.5 text-[1rem] text-foreground"
                         >
                           {item}
                         </li>
@@ -387,12 +391,14 @@ function HomePage() {
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Who OperantScale is built for</p>
-                <h2 className="mt-5 max-w-lg text-[2rem] leading-[1.1] font-medium sm:text-[2.5rem]">
+                <h2 className="mt-4 max-w-lg text-[2.25rem] leading-[1.08] font-medium sm:text-[2.75rem]">
                   Built for Established Independent P&amp;C Agencies.
                 </h2>
-                <p className="mt-5 max-w-lg text-[1.0625rem] leading-[1.7] text-muted-foreground">
-                  OperantScale is designed for agencies with established teams, existing technology
-                  and growing operational complexity.
+                <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
+                  Built for established independent P&amp;C agencies with growing operational
+                  complexity — established teams, existing technology and multiple workflows running
+                  at once. There is no employee-count requirement; fit is about operational
+                  complexity, not size.
                 </p>
               </Reveal>
 
@@ -408,7 +414,7 @@ function HomePage() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="border-t border-border py-4 text-[0.95rem] text-foreground"
+                      className="border-t border-border py-4 text-[1rem] text-foreground"
                     >
                       {item}
                     </li>
@@ -421,14 +427,14 @@ function HomePage() {
 
         {/* EXISTING TECHNOLOGY — dark moment */}
         <section className="bg-ink text-ink-foreground">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow text-ink-muted">Existing technology</p>
-                <h2 className="mt-5 max-w-lg text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-lg text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Built Around Your Existing Technology
                 </h2>
-                <div className="mt-6 max-w-lg space-y-5 text-[1.0625rem] leading-[1.7] text-ink-muted">
+                <div className="mt-6 max-w-lg space-y-5 text-[1.125rem] leading-[1.7] text-ink-muted">
                   <p className="text-ink-foreground">
                     We aren't here to replace the systems your agency already relies on.
                   </p>
@@ -452,14 +458,14 @@ function HomePage() {
 
         {/* APPROACH / METHODOLOGY */}
         <section id="approach" className="scroll-mt-16 border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-3xl">
                 <p className="eyebrow">Approach</p>
-                <h2 className="mt-5 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Understand the Workflow. Then Build the System.
                 </h2>
-                <p className="mt-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   We don't start with a pre-built automation. We start by understanding how the work
                   actually moves through your agency—then design only what earns its place.
                 </p>
@@ -476,7 +482,7 @@ function HomePage() {
                       </span>
                       <h3 className="mt-6 text-xl font-medium">{stage.title}</h3>
                     </div>
-                    <p className="mt-6 text-[0.95rem] leading-[1.65] text-muted-foreground">
+                    <p className="mt-6 text-[1rem] leading-[1.65] text-muted-foreground">
                       {stage.body}
                     </p>
                   </li>
@@ -488,14 +494,14 @@ function HomePage() {
 
         {/* OUTCOMES */}
         <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Outcomes</p>
-                <h2 className="mt-5 max-w-md text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Create More Capacity From the Team and Systems You Already Have.
                 </h2>
-                <p className="mt-5 max-w-sm text-[0.95rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 max-w-sm text-[1rem] leading-[1.7] text-muted-foreground">
                   Results depend on the agency, its systems and the scope of work. The following are
                   the kinds of improvement a well-designed operational system is intended to create.
                 </p>
@@ -506,7 +512,7 @@ function HomePage() {
                   {OUTCOMES.map((o) => (
                     <div key={o.title} className="border-t border-border py-6">
                       <dt className="text-lg font-medium">{o.title}</dt>
-                      <dd className="mt-2 text-[0.95rem] leading-[1.7] text-muted-foreground">
+                      <dd className="mt-2 text-[1rem] leading-[1.7] text-muted-foreground">
                         {o.body}
                       </dd>
                     </div>
@@ -519,14 +525,14 @@ function HomePage() {
 
         {/* RESPONSIBLE AUTOMATION */}
         <section className="border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Responsible automation</p>
-                <h2 className="mt-5 max-w-md text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Built With Operational Responsibility.
                 </h2>
-                <p className="mt-5 max-w-lg text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Insurance agencies work with sensitive client and business information. Automation
                   should improve operations without compromising control.
                 </p>
@@ -537,7 +543,7 @@ function HomePage() {
                   {PRINCIPLES.map((p, i) => (
                     <li
                       key={p}
-                      className="flex items-baseline gap-6 border-b border-border py-4 text-[0.95rem] text-foreground"
+                      className="flex items-baseline gap-6 border-b border-border py-4 text-[1rem] text-foreground"
                     >
                       <span className="font-mono text-[0.68rem] tracking-[0.18em] text-accent">
                         {String(i + 1).padStart(2, "0")}
@@ -558,10 +564,10 @@ function HomePage() {
 
         {/* WHY OPERANTSCALE */}
         <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <p className="eyebrow">Why OperantScale</p>
-              <h2 className="mt-5 max-w-xl text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+              <h2 className="mt-4 max-w-xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                 Built for Operations. Not Just Automation.
               </h2>
             </Reveal>
@@ -584,7 +590,7 @@ function HomePage() {
                 <Reveal key={p.t} delay={i * 0.08}>
                   <div className="border-t-2 border-foreground pt-6">
                     <h3 className="eyebrow text-foreground">{p.t}</h3>
-                    <p className="mt-4 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                    <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                       {p.b}
                     </p>
                   </div>
@@ -593,7 +599,7 @@ function HomePage() {
             </div>
 
             <Reveal delay={0.1}>
-              <p className="mt-16 max-w-3xl border-l-2 border-accent pl-6 text-[1.75rem] leading-[1.2] font-medium tracking-[-0.02em] sm:text-[2.5rem]">
+              <p className="mt-16 max-w-3xl border-l-2 border-accent pl-6 text-[1.75rem] leading-[1.2] font-medium tracking-[-0.02em] sm:text-[2.75rem]">
                 Don't automate for the sake of automation.
               </p>
             </Reveal>
@@ -602,11 +608,11 @@ function HomePage() {
 
         {/* FAQ */}
         <section id="faq" className="scroll-mt-16 border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">FAQ</p>
-                <h2 className="mt-5 text-[2rem] leading-[1.1] font-medium sm:text-[2.5rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[2.75rem]">
                   Questions we're usually asked first
                 </h2>
               </Reveal>
@@ -615,10 +621,10 @@ function HomePage() {
                 <Accordion type="single" collapsible className="w-full">
                   {FAQS.map((f, i) => (
                     <AccordionItem key={f.q} value={`item-${i}`} className="border-border">
-                      <AccordionTrigger className="py-6 text-left text-lg font-medium hover:no-underline">
+                      <AccordionTrigger className="py-6 text-left text-[1.125rem] font-medium hover:no-underline">
                         {f.q}
                       </AccordionTrigger>
-                      <AccordionContent className="max-w-2xl pb-6 text-[0.95rem] leading-[1.7] text-muted-foreground">
+                      <AccordionContent className="max-w-2xl pb-7 text-[1.0625rem] leading-[1.75] text-muted-foreground">
                         {f.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -631,15 +637,15 @@ function HomePage() {
 
         {/* FINAL CTA */}
         <section className="bg-ink text-ink-foreground">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
                 <div>
                   <p className="eyebrow text-ink-muted">Next step</p>
-                  <h2 className="mt-5 max-w-2xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
+                  <h2 className="mt-4 max-w-2xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                     Let's Find Where Your Agency Is Losing Capacity.
                   </h2>
-                  <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-ink-muted">
+                  <p className="mt-6 max-w-xl text-[1.125rem] leading-[1.7] text-ink-muted">
                     We'll review how your team, systems and workflows currently operate and identify
                     areas where unnecessary manual work may be limiting capacity.
                   </p>
@@ -648,7 +654,7 @@ function HomePage() {
                 <div className="flex flex-col gap-4 lg:items-end">
                   <Link
                     to="/contact"
-                    className="inline-flex h-14 items-center justify-center gap-3 bg-ink-foreground px-8 text-[0.78rem] font-medium tracking-[0.11em] text-ink uppercase transition-opacity hover:opacity-90"
+                    className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-nowrap bg-ink-foreground px-10 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
                   </Link>
@@ -668,7 +674,7 @@ function HomePage() {
                       {s.n}
                     </span>
                     <h3 className="mt-5 text-lg font-medium text-ink-foreground">{s.t}</h3>
-                    <p className="mt-3 text-[0.95rem] leading-[1.65] text-ink-muted">{s.b}</p>
+                    <p className="mt-3 text-[1rem] leading-[1.65] text-ink-muted">{s.b}</p>
                   </li>
                 </Reveal>
               ))}

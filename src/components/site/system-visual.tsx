@@ -6,41 +6,44 @@ import { motion, useReducedMotion } from "motion/react";
  * left-to-right or top-down progression. No decoration for its own sake.
  */
 
-/** Hero: People / Processes / Systems -> Workflow layer -> AI -> Capacity. */
+/** Hero: existing systems -> workflow layer -> AI + automation -> team capacity. */
 export function SystemVisual({ className }: { className?: string }) {
   const reduced = useReducedMotion();
 
-  const columns = [
-    { x: 62, label: "Inputs" },
-    { x: 196, label: "Workflow" },
-    { x: 330, label: "Systems" },
-    { x: 462, label: "AI layer" },
-    { x: 580, label: "Capacity" },
+  const sysY = [56, 104, 152, 200];
+  const SYS_X = 74;
+  const FLOW_X = 258;
+  const AI_X = 420;
+  const CAP_X = 566;
+
+  const stages = [
+    { x: 40, label: "Systems" },
+    { x: FLOW_X, label: "Workflow layer" },
+    { x: AI_X, label: "AI + automation" },
+    { x: 632, label: "Capacity" },
   ];
 
-  const rows = [72, 148, 224];
-
-  const paths = [
-    "M62 72 C 124 72, 134 148, 196 148",
-    "M62 148 C 124 148, 134 148, 196 148",
-    "M62 224 C 124 224, 134 148, 196 148",
-    "M196 148 C 258 148, 268 72, 330 72",
-    "M196 148 C 258 148, 268 224, 330 224",
-    "M330 72 C 392 72, 402 148, 462 148",
-    "M330 224 C 392 224, 402 148, 462 148",
-    "M462 148 C 520 148, 530 148, 580 148",
+  const feed = sysY.map((y) => `M${SYS_X + 13} ${y} C ${SYS_X + 90} ${y}, ${FLOW_X - 90} 128, ${FLOW_X - 16} 128`);
+  const mid = [
+    `M${FLOW_X + 16} 128 C ${FLOW_X + 70} 128, ${AI_X - 70} 96, ${AI_X - 14} 96`,
+    `M${FLOW_X + 16} 128 C ${FLOW_X + 70} 128, ${AI_X - 70} 160, ${AI_X - 14} 160`,
   ];
+  const out = [
+    `M${AI_X + 14} 96 C ${AI_X + 60} 96, ${CAP_X - 60} 128, ${CAP_X - 14} 128`,
+    `M${AI_X + 14} 160 C ${AI_X + 60} 160, ${CAP_X - 60} 128, ${CAP_X - 14} 128`,
+  ];
+  const paths = [...feed, ...mid, ...out];
 
   return (
     <svg
-      viewBox="0 0 640 300"
+      viewBox="0 0 640 280"
       className={className}
       role="img"
-      aria-label="Diagram: agency inputs move through workflows and existing systems into an AI-assisted layer that returns team capacity."
+      aria-label="Diagram: existing agency systems feed a workflow layer, where AI and automation are applied selectively, returning capacity to the team."
     >
       <g stroke="var(--color-line)" strokeWidth="1">
-        <line x1="0" y1="24" x2="640" y2="24" />
-        <line x1="0" y1="272" x2="640" y2="272" />
+        <line x1="0" y1="20" x2="640" y2="20" />
+        <line x1="0" y1="248" x2="640" y2="248" />
       </g>
 
       {paths.map((d, i) => (
@@ -48,21 +51,21 @@ export function SystemVisual({ className }: { className?: string }) {
           <path d={d} fill="none" stroke="var(--color-line)" strokeWidth="1" />
           {!reduced && (
             <motion.circle
-              r="2.6"
+              r="2.4"
               fill="var(--color-accent)"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 1, 1, 0] }}
               transition={{
                 duration: 5,
-                delay: i * 0.5,
+                delay: i * 0.45,
                 repeat: Infinity,
-                repeatDelay: 1.4,
+                repeatDelay: 1.2,
                 ease: "linear",
               }}
             >
               <animateMotion
                 dur="5s"
-                begin={`${i * 0.5}s`}
+                begin={`${i * 0.45}s`}
                 repeatCount="indefinite"
                 path={d}
                 keyPoints="0;1"
@@ -73,48 +76,99 @@ export function SystemVisual({ className }: { className?: string }) {
         </g>
       ))}
 
-      {columns.map((col, ci) => (
-        <g key={col.label}>
-          {(ci === 0 ? rows : ci === 2 ? [72, 224] : [148]).map((y) => (
-            <g key={`${col.label}-${y}`}>
-              <rect
-                x={col.x - 11}
-                y={y - 11}
-                width="22"
-                height="22"
-                fill="var(--color-background)"
-                stroke={ci >= 3 ? "var(--color-accent)" : "var(--color-foreground)"}
-                strokeWidth="1"
-              />
-              {ci === 3 && <circle cx={col.x} cy={y} r="3.4" fill="var(--color-accent)" />}
-              {ci === 4 && (
-                <rect
-                  x={col.x - 4}
-                  y={y - 4}
-                  width="8"
-                  height="8"
-                  fill="var(--color-accent)"
-                  opacity="0.5"
-                />
-              )}
-            </g>
-          ))}
-          <text
-            x={col.x}
-            y="262"
-            textAnchor="middle"
-            fill="var(--color-muted-foreground)"
-            fontSize="10"
-            letterSpacing="1.5"
-            fontFamily="var(--font-mono)"
-          >
-            {col.label.toUpperCase()}
-          </text>
+      {/* existing systems */}
+      {sysY.map((y) => (
+        <rect
+          key={y}
+          x={SYS_X - 13}
+          y={y - 9}
+          width="26"
+          height="18"
+          fill="var(--color-background)"
+          stroke="var(--color-foreground)"
+          strokeWidth="1"
+        />
+      ))}
+
+      {/* workflow layer */}
+      <rect
+        x={FLOW_X - 16}
+        y="72"
+        width="32"
+        height="112"
+        fill="var(--color-background)"
+        stroke="var(--color-foreground)"
+        strokeWidth="1"
+      />
+      {[92, 128, 164].map((y) => (
+        <line
+          key={y}
+          x1={FLOW_X - 16}
+          y1={y}
+          x2={FLOW_X + 16}
+          y2={y}
+          stroke="var(--color-line)"
+          strokeWidth="1"
+        />
+      ))}
+
+      {/* AI + automation */}
+      {[96, 160].map((y) => (
+        <g key={y}>
+          <rect
+            x={AI_X - 14}
+            y={y - 14}
+            width="28"
+            height="28"
+            fill="var(--color-background)"
+            stroke="var(--color-accent)"
+            strokeWidth="1"
+          />
+          <circle cx={AI_X} cy={y} r="3.6" fill="var(--color-accent)" />
         </g>
+      ))}
+
+      {/* team capacity */}
+      <rect
+        x={CAP_X - 14}
+        y="114"
+        width="28"
+        height="28"
+        fill="color-mix(in oklab, var(--color-accent) 12%, transparent)"
+        stroke="var(--color-accent)"
+        strokeWidth="1"
+      />
+      {[0, 1, 2].map((i) => (
+        <line
+          key={i}
+          x1={CAP_X + 26}
+          y1={116 + i * 12}
+          x2={CAP_X + 26 + (i === 1 ? 40 : 26)}
+          y2={116 + i * 12}
+          stroke="var(--color-accent)"
+          strokeWidth="1"
+          opacity={i === 1 ? 0.8 : 0.4}
+        />
+      ))}
+
+      {stages.map((s, i) => (
+        <text
+          key={s.label}
+          x={s.x}
+          y="238"
+          textAnchor={i === 0 ? "start" : i === stages.length - 1 ? "end" : "middle"}
+          fill="var(--color-muted-foreground)"
+          fontSize="10"
+          letterSpacing="1.2"
+          fontFamily="var(--font-mono)"
+        >
+          {s.label.toUpperCase()}
+        </text>
       ))}
     </svg>
   );
 }
+
 
 /** Operational reality: systems -> people and manual handoffs -> friction -> opportunity. */
 export function HandoffVisual({ className }: { className?: string }) {

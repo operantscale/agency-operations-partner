@@ -38,8 +38,10 @@
   --color-ink-foreground: var(--ink-foreground);
   --color-ink-muted: var(--ink-muted);
   --color-ink-border: var(--ink-border);
+  --color-ink-accent: var(--ink-accent);
   --color-surface: var(--surface);
   --color-line: var(--line);
+
 }
 
 :root {

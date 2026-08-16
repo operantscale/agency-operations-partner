@@ -188,7 +188,7 @@ export function StackVisual({ className }: { className?: string }) {
           <div className="mx-auto h-7 w-px bg-ink-border" aria-hidden="true" />
           <div
             className={`flex flex-col gap-1 border px-5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 ${
-              row.accent ? "border-accent bg-accent/10" : "border-ink-border"
+              row.accent ? "border-ink-accent bg-ink-accent/10" : "border-ink-border"
             }`}
           >
             <span className="text-sm font-medium text-ink-foreground">{row.label}</span>

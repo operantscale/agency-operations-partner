@@ -664,7 +664,7 @@ function HomePage() {
               {NEXT_STEPS.map((s, i) => (
                 <Reveal key={s.n} delay={i * 0.07} className="bg-ink">
                   <li className="h-full p-7">
-                    <span className="font-mono text-[0.72rem] tracking-[0.18em] text-accent">
+                    <span className="font-mono text-[0.72rem] tracking-[0.18em] text-ink-accent">
                       {s.n}
                     </span>
                     <h3 className="mt-5 text-lg font-medium text-ink-foreground">{s.t}</h3>

@@ -270,10 +270,10 @@ function HomePage() {
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Operational reality</p>
-                <h2 className="mt-5 max-w-md text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Your Agency May Already Have the Right Tools.
                 </h2>
-                <div className="mt-6 max-w-lg space-y-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <div className="mt-6 max-w-lg space-y-5 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   <p>
                     Most established agencies already run an AMS, a CRM, email, communication
                     platforms, quoting tools and client portals. The technology is usually not the
@@ -305,10 +305,10 @@ function HomePage() {
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow">Where the workload accumulates</p>
-                <h2 className="mt-5 text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   The Work Behind the Work
                 </h2>
-                <p className="mt-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Potential opportunities may exist across the areas below. These are operational
                   investigation areas—not assumptions about how your agency runs.
                 </p>
@@ -323,7 +323,7 @@ function HomePage() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="text-xl font-medium">{area.title}</h3>
-                    <p className="text-[0.95rem] leading-[1.7] text-muted-foreground">
+                    <p className="text-[1rem] leading-[1.7] text-muted-foreground">
                       {area.body}
                     </p>
                   </div>
@@ -339,10 +339,10 @@ function HomePage() {
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow">What OperantScale does</p>
-                <h2 className="mt-5 text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   We Design Systems Around How Your Agency Actually Works.
                 </h2>
-                <p className="mt-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Four operational capability groups. We don't start with a pre-built automation and
                   force it into your agency—we first understand the workflow, identify where
                   capacity may be lost, and determine whether automation is actually the right
@@ -361,14 +361,14 @@ function HomePage() {
                       </span>
                       <h3 className="text-xl font-medium">{g.title}</h3>
                     </div>
-                    <p className="mt-4 max-w-md text-[0.95rem] leading-[1.7] text-muted-foreground">
+                    <p className="mt-4 max-w-md text-[1rem] leading-[1.7] text-muted-foreground">
                       {g.body}
                     </p>
                     <ul className="mt-6 grid gap-x-8 sm:grid-cols-2">
                       {g.items.map((item) => (
                         <li
                           key={item}
-                          className="border-t border-border py-3 text-[0.95rem] text-foreground"
+                          className="border-t border-border py-3 text-[1rem] text-foreground"
                         >
                           {item}
                         </li>
@@ -387,10 +387,10 @@ function HomePage() {
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Who OperantScale is built for</p>
-                <h2 className="mt-5 max-w-lg text-[2rem] leading-[1.1] font-medium sm:text-[2.5rem]">
+                <h2 className="mt-4 max-w-lg text-[2.25rem] leading-[1.08] font-medium sm:text-[2.75rem]">
                   Built for Established Independent P&amp;C Agencies.
                 </h2>
-                <p className="mt-5 max-w-lg text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
                   OperantScale is designed for agencies with established teams, existing technology
                   and growing operational complexity.
                 </p>
@@ -408,7 +408,7 @@ function HomePage() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="border-t border-border py-4 text-[0.95rem] text-foreground"
+                      className="border-t border-border py-4 text-[1rem] text-foreground"
                     >
                       {item}
                     </li>
@@ -425,10 +425,10 @@ function HomePage() {
             <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow text-ink-muted">Existing technology</p>
-                <h2 className="mt-5 max-w-lg text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-lg text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Built Around Your Existing Technology
                 </h2>
-                <div className="mt-6 max-w-lg space-y-5 text-[1.0625rem] leading-[1.7] text-ink-muted">
+                <div className="mt-6 max-w-lg space-y-5 text-[1.125rem] leading-[1.7] text-ink-muted">
                   <p className="text-ink-foreground">
                     We aren't here to replace the systems your agency already relies on.
                   </p>
@@ -456,10 +456,10 @@ function HomePage() {
             <Reveal>
               <div className="max-w-3xl">
                 <p className="eyebrow">Approach</p>
-                <h2 className="mt-5 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Understand the Workflow. Then Build the System.
                 </h2>
-                <p className="mt-5 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   We don't start with a pre-built automation. We start by understanding how the work
                   actually moves through your agency—then design only what earns its place.
                 </p>
@@ -476,7 +476,7 @@ function HomePage() {
                       </span>
                       <h3 className="mt-6 text-xl font-medium">{stage.title}</h3>
                     </div>
-                    <p className="mt-6 text-[0.95rem] leading-[1.65] text-muted-foreground">
+                    <p className="mt-6 text-[1rem] leading-[1.65] text-muted-foreground">
                       {stage.body}
                     </p>
                   </li>
@@ -492,10 +492,10 @@ function HomePage() {
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Outcomes</p>
-                <h2 className="mt-5 max-w-md text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Create More Capacity From the Team and Systems You Already Have.
                 </h2>
-                <p className="mt-5 max-w-sm text-[0.95rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 max-w-sm text-[1rem] leading-[1.7] text-muted-foreground">
                   Results depend on the agency, its systems and the scope of work. The following are
                   the kinds of improvement a well-designed operational system is intended to create.
                 </p>
@@ -506,7 +506,7 @@ function HomePage() {
                   {OUTCOMES.map((o) => (
                     <div key={o.title} className="border-t border-border py-6">
                       <dt className="text-lg font-medium">{o.title}</dt>
-                      <dd className="mt-2 text-[0.95rem] leading-[1.7] text-muted-foreground">
+                      <dd className="mt-2 text-[1rem] leading-[1.7] text-muted-foreground">
                         {o.body}
                       </dd>
                     </div>
@@ -523,10 +523,10 @@ function HomePage() {
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Responsible automation</p>
-                <h2 className="mt-5 max-w-md text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+                <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                   Built With Operational Responsibility.
                 </h2>
-                <p className="mt-5 max-w-lg text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Insurance agencies work with sensitive client and business information. Automation
                   should improve operations without compromising control.
                 </p>
@@ -537,7 +537,7 @@ function HomePage() {
                   {PRINCIPLES.map((p, i) => (
                     <li
                       key={p}
-                      className="flex items-baseline gap-6 border-b border-border py-4 text-[0.95rem] text-foreground"
+                      className="flex items-baseline gap-6 border-b border-border py-4 text-[1rem] text-foreground"
                     >
                       <span className="font-mono text-[0.68rem] tracking-[0.18em] text-accent">
                         {String(i + 1).padStart(2, "0")}
@@ -561,7 +561,7 @@ function HomePage() {
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
             <Reveal>
               <p className="eyebrow">Why OperantScale</p>
-              <h2 className="mt-5 max-w-xl text-[2rem] leading-[1.1] font-medium sm:text-[2.75rem]">
+              <h2 className="mt-4 max-w-xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                 Built for Operations. Not Just Automation.
               </h2>
             </Reveal>
@@ -584,7 +584,7 @@ function HomePage() {
                 <Reveal key={p.t} delay={i * 0.08}>
                   <div className="border-t-2 border-foreground pt-6">
                     <h3 className="eyebrow text-foreground">{p.t}</h3>
-                    <p className="mt-4 text-[1.0625rem] leading-[1.7] text-muted-foreground">
+                    <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                       {p.b}
                     </p>
                   </div>
@@ -593,7 +593,7 @@ function HomePage() {
             </div>
 
             <Reveal delay={0.1}>
-              <p className="mt-16 max-w-3xl border-l-2 border-accent pl-6 text-[1.75rem] leading-[1.2] font-medium tracking-[-0.02em] sm:text-[2.5rem]">
+              <p className="mt-16 max-w-3xl border-l-2 border-accent pl-6 text-[1.75rem] leading-[1.2] font-medium tracking-[-0.02em] sm:text-[2.75rem]">
                 Don't automate for the sake of automation.
               </p>
             </Reveal>
@@ -606,7 +606,7 @@ function HomePage() {
             <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">FAQ</p>
-                <h2 className="mt-5 text-[2rem] leading-[1.1] font-medium sm:text-[2.5rem]">
+                <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[2.75rem]">
                   Questions we're usually asked first
                 </h2>
               </Reveal>
@@ -618,7 +618,7 @@ function HomePage() {
                       <AccordionTrigger className="py-6 text-left text-lg font-medium hover:no-underline">
                         {f.q}
                       </AccordionTrigger>
-                      <AccordionContent className="max-w-2xl pb-6 text-[0.95rem] leading-[1.7] text-muted-foreground">
+                      <AccordionContent className="max-w-2xl pb-6 text-[1rem] leading-[1.7] text-muted-foreground">
                         {f.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -636,10 +636,10 @@ function HomePage() {
               <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
                 <div>
                   <p className="eyebrow text-ink-muted">Next step</p>
-                  <h2 className="mt-5 max-w-2xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
+                  <h2 className="mt-4 max-w-2xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
                     Let's Find Where Your Agency Is Losing Capacity.
                   </h2>
-                  <p className="mt-6 max-w-xl text-[1.0625rem] leading-[1.7] text-ink-muted">
+                  <p className="mt-6 max-w-xl text-[1.125rem] leading-[1.7] text-ink-muted">
                     We'll review how your team, systems and workflows currently operate and identify
                     areas where unnecessary manual work may be limiting capacity.
                   </p>
@@ -668,7 +668,7 @@ function HomePage() {
                       {s.n}
                     </span>
                     <h3 className="mt-5 text-lg font-medium text-ink-foreground">{s.t}</h3>
-                    <p className="mt-3 text-[0.95rem] leading-[1.65] text-ink-muted">{s.b}</p>
+                    <p className="mt-3 text-[1rem] leading-[1.65] text-ink-muted">{s.b}</p>
                   </li>
                 </Reveal>
               ))}

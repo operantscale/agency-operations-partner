@@ -59,10 +59,11 @@ export function SiteHeader() {
           </Link>
           <Link
             to="/contact"
-            className="border border-primary bg-primary px-4 py-2 text-[0.72rem] font-medium tracking-[0.11em] text-primary-foreground uppercase transition-colors hover:bg-primary/90"
+            className="border border-primary bg-primary px-5 py-2.5 text-[0.74rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_10px_24px_-16px_var(--color-primary)] transition-colors hover:bg-primary/90"
           >
             Start a conversation
           </Link>
+
         </nav>
 
         <button

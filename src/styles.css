@@ -38,8 +38,10 @@
   --color-ink-foreground: var(--ink-foreground);
   --color-ink-muted: var(--ink-muted);
   --color-ink-border: var(--ink-border);
+  --color-ink-accent: var(--ink-accent);
   --color-surface: var(--surface);
   --color-line: var(--line);
+
 }
 
 :root {
@@ -81,9 +83,11 @@
   /* dark section tokens (navy surfaces used deliberately) */
   --ink: oklch(0.185 0.026 261);
   --ink-foreground: oklch(0.965 0.005 85);
-  --ink-muted: oklch(0.71 0.017 259);
+  --ink-muted: oklch(0.74 0.017 259);
   --ink-border: oklch(0.32 0.026 261);
+  --ink-accent: oklch(0.74 0.105 245);
 }
+
 
 @layer base {
   * {

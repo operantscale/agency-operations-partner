@@ -49,6 +49,10 @@ const FAQS = [
     a: "That depends on the agency's existing technology stack. Systems and workflows are evaluated before recommending an approach.",
   },
   {
+    q: "How much does an automation project cost?",
+    a: "Every agency's workflows and technology environment are different, so we scope projects around the operational opportunity rather than selling a fixed automation package. Pricing is discussed after understanding the workflow and requirements.",
+  },
+  {
     q: "How do we get started?",
     a: "Start with an operational discovery conversation. It's a working session, not a sales call.",
   },
@@ -225,10 +229,10 @@ function HomePage() {
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Operational intelligence · Independent P&amp;C agencies</p>
-                <h1 className="mt-6 max-w-2xl text-[2.5rem] leading-[1.05] font-medium tracking-[-0.026em] sm:text-[3.25rem] lg:text-[3.75rem]">
+                <h1 className="mt-6 max-w-2xl text-[2.6rem] leading-[1.04] font-medium tracking-[-0.028em] sm:text-[3.4rem] lg:text-[4rem]">
                   AI-Powered Operational Systems for Independent P&amp;C Insurance Agencies
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-[1.65] text-muted-foreground">
+                <p className="mt-6 max-w-xl text-[1.1875rem] leading-[1.62] text-muted-foreground">
                   We reduce the repetitive administrative work inside your agency, improve the
                   workflows between your existing systems, and create capacity for your team to
                   serve clients better and grow sustainably. AI is the mechanism—operational
@@ -238,20 +242,20 @@ function HomePage() {
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link
                     to="/contact"
-                    className="inline-flex h-14 items-center justify-center gap-3 bg-primary px-8 text-[0.78rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_12px_30px_-18px_var(--color-primary)] transition-colors hover:bg-primary/90"
+                    className="inline-flex h-16 items-center justify-center gap-3 bg-primary px-10 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
                   </Link>
                   <Link
                     to="/"
                     hash="approach"
-                    className="inline-flex h-14 items-center justify-center border border-foreground/25 px-8 text-[0.78rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
+                    className="inline-flex h-16 items-center justify-center border border-foreground/25 px-9 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
                   >
                     See how we work
                   </Link>
                 </div>
 
-                <p className="mt-8 max-w-md border-l border-accent pl-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-8 max-w-md border-l-2 border-accent pl-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
                   Built for established independent P&amp;C agencies with growing operational
                   complexity.
                 </p>
@@ -266,7 +270,7 @@ function HomePage() {
 
         {/* OPERATIONAL REALITY */}
         <section className="border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Operational reality</p>
@@ -301,7 +305,7 @@ function HomePage() {
 
         {/* THE WORK BEHIND THE WORK */}
         <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow">Where the workload accumulates</p>
@@ -335,7 +339,7 @@ function HomePage() {
 
         {/* CAPABILITIES */}
         <section id="capabilities" className="scroll-mt-16 border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-2xl">
                 <p className="eyebrow">What OperantScale does</p>
@@ -359,7 +363,7 @@ function HomePage() {
                       <span className="font-mono text-[0.72rem] tracking-[0.18em] text-accent">
                         {g.n}
                       </span>
-                      <h3 className="text-xl font-medium">{g.title}</h3>
+                      <h3 className="text-[1.375rem] font-medium">{g.title}</h3>
                     </div>
                     <p className="mt-4 max-w-md text-[1rem] leading-[1.7] text-muted-foreground">
                       {g.body}
@@ -368,7 +372,7 @@ function HomePage() {
                       {g.items.map((item) => (
                         <li
                           key={item}
-                          className="border-t border-border py-3 text-[1rem] text-foreground"
+                          className="border-t border-border py-3.5 text-[1rem] text-foreground"
                         >
                           {item}
                         </li>
@@ -391,8 +395,10 @@ function HomePage() {
                   Built for Established Independent P&amp;C Agencies.
                 </h2>
                 <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
-                  OperantScale is designed for agencies with established teams, existing technology
-                  and growing operational complexity.
+                  Built for established independent P&amp;C agencies with growing operational
+                  complexity — established teams, existing technology and multiple workflows running
+                  at once. There is no employee-count requirement; fit is about operational
+                  complexity, not size.
                 </p>
               </Reveal>
 
@@ -421,7 +427,7 @@ function HomePage() {
 
         {/* EXISTING TECHNOLOGY — dark moment */}
         <section className="bg-ink text-ink-foreground">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow text-ink-muted">Existing technology</p>
@@ -452,7 +458,7 @@ function HomePage() {
 
         {/* APPROACH / METHODOLOGY */}
         <section id="approach" className="scroll-mt-16 border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-3xl">
                 <p className="eyebrow">Approach</p>
@@ -488,7 +494,7 @@ function HomePage() {
 
         {/* OUTCOMES */}
         <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Outcomes</p>
@@ -519,7 +525,7 @@ function HomePage() {
 
         {/* RESPONSIBLE AUTOMATION */}
         <section className="border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">Responsible automation</p>
@@ -558,7 +564,7 @@ function HomePage() {
 
         {/* WHY OPERANTSCALE */}
         <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <p className="eyebrow">Why OperantScale</p>
               <h2 className="mt-4 max-w-xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
@@ -602,7 +608,7 @@ function HomePage() {
 
         {/* FAQ */}
         <section id="faq" className="scroll-mt-16 border-t border-border">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-20">
               <Reveal>
                 <p className="eyebrow">FAQ</p>
@@ -615,10 +621,10 @@ function HomePage() {
                 <Accordion type="single" collapsible className="w-full">
                   {FAQS.map((f, i) => (
                     <AccordionItem key={f.q} value={`item-${i}`} className="border-border">
-                      <AccordionTrigger className="py-6 text-left text-lg font-medium hover:no-underline">
+                      <AccordionTrigger className="py-6 text-left text-[1.125rem] font-medium hover:no-underline">
                         {f.q}
                       </AccordionTrigger>
-                      <AccordionContent className="max-w-2xl pb-6 text-[1rem] leading-[1.7] text-muted-foreground">
+                      <AccordionContent className="max-w-2xl pb-7 text-[1.0625rem] leading-[1.75] text-muted-foreground">
                         {f.a}
                       </AccordionContent>
                     </AccordionItem>
@@ -631,7 +637,7 @@ function HomePage() {
 
         {/* FINAL CTA */}
         <section className="bg-ink text-ink-foreground">
-          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
                 <div>
@@ -648,7 +654,7 @@ function HomePage() {
                 <div className="flex flex-col gap-4 lg:items-end">
                   <Link
                     to="/contact"
-                    className="inline-flex h-14 items-center justify-center gap-3 bg-ink-foreground px-8 text-[0.78rem] font-medium tracking-[0.11em] text-ink uppercase transition-opacity hover:opacity-90"
+                    className="inline-flex h-16 w-full items-center justify-center gap-3 bg-ink-foreground px-10 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
                   </Link>

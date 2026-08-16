@@ -17,10 +17,10 @@ export function SystemVisual({ className }: { className?: string }) {
   const CAP_X = 566;
 
   const stages = [
-    { x: SYS_X, label: "Existing systems" },
+    { x: 40, label: "Systems" },
     { x: FLOW_X, label: "Workflow layer" },
     { x: AI_X, label: "AI + automation" },
-    { x: CAP_X, label: "Team capacity" },
+    { x: 632, label: "Capacity" },
   ];
 
   const feed = sysY.map((y) => `M${SYS_X + 13} ${y} C ${SYS_X + 90} ${y}, ${FLOW_X - 90} 128, ${FLOW_X - 16} 128`);
@@ -158,8 +158,8 @@ export function SystemVisual({ className }: { className?: string }) {
           y="238"
           textAnchor={i === 0 ? "start" : i === stages.length - 1 ? "end" : "middle"}
           fill="var(--color-muted-foreground)"
-          fontSize="10.5"
-          letterSpacing="1.4"
+          fontSize="10"
+          letterSpacing="1.2"
           fontFamily="var(--font-mono)"
         >
           {s.label.toUpperCase()}

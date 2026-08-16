@@ -242,14 +242,14 @@ function HomePage() {
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link
                     to="/contact"
-                    className="inline-flex h-16 items-center justify-center gap-3 bg-primary px-10 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90"
+                    className="inline-flex h-16 items-center justify-center gap-3 whitespace-nowrap bg-primary px-10 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
                   </Link>
                   <Link
                     to="/"
                     hash="approach"
-                    className="inline-flex h-16 items-center justify-center border border-foreground/25 px-9 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
+                    className="inline-flex h-16 items-center justify-center whitespace-nowrap border border-foreground/25 px-9 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
                   >
                     See how we work
                   </Link>
@@ -262,7 +262,7 @@ function HomePage() {
               </Reveal>
 
               <Reveal delay={0.15}>
-                <SystemVisual className="w-full" />
+                <SystemVisual className="w-full max-w-xl lg:max-w-none" />
               </Reveal>
             </div>
           </div>
@@ -654,7 +654,7 @@ function HomePage() {
                 <div className="flex flex-col gap-4 lg:items-end">
                   <Link
                     to="/contact"
-                    className="inline-flex h-16 w-full items-center justify-center gap-3 bg-ink-foreground px-10 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto"
+                    className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-nowrap bg-ink-foreground px-10 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
                   </Link>

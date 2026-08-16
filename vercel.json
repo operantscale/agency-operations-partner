@@ -4,10 +4,6 @@
   "installCommand": "npm install",
   "outputDirectory": "dist",
   "framework": "other",
-  "serverless": {
-    "memory": 1024,
-    "maxDuration": 30
-  },
   "env": {
     "SUPABASE_URL": {
       "description": "Supabase project URL"

@@ -64,13 +64,13 @@ function ContactPage() {
     setFormError("");
 
     const parsed = discoverySchema.safeParse({
-      fullName: values.fullName ?? "",
-      workEmail: values.workEmail ?? "",
-      agencyName: values.agencyName ?? "",
-      role: values.role ?? "",
-      agencyWebsite: values.agencyWebsite ?? "",
-      primaryChallenge: values.primaryChallenge ?? "",
-      additionalContext: values.additionalContext ?? "",
+      fullName: values["fullName"] ?? "",
+      workEmail: values["workEmail"] ?? "",
+      agencyName: values["agencyName"] ?? "",
+      role: values["role"] ?? "",
+      agencyWebsite: values["agencyWebsite"] ?? "",
+      primaryChallenge: values["primaryChallenge"] ?? "",
+      additionalContext: values["additionalContext"] ?? "",
     });
 
     if (!parsed.success) {
@@ -197,17 +197,17 @@ function ContactPage() {
                         id="primaryChallenge"
                         name="primaryChallenge"
                         rows={4}
-                        value={values.primaryChallenge ?? ""}
+                        value={values["primaryChallenge"] ?? ""}
                         onChange={(e) => set("primaryChallenge", e.target.value)}
-                        aria-invalid={Boolean(errors.primaryChallenge)}
+                        aria-invalid={Boolean(errors["primaryChallenge"])}
                         aria-describedby={
-                          errors.primaryChallenge ? "primaryChallenge-error" : undefined
+                          errors["primaryChallenge"] ? "primaryChallenge-error" : undefined
                         }
                         className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring"
                       />
-                      {errors.primaryChallenge && (
+                      {errors["primaryChallenge"] && (
                         <p id="primaryChallenge-error" className="mt-2 text-xs text-destructive">
-                          {errors.primaryChallenge}
+                          {errors["primaryChallenge"]}
                         </p>
                       )}
                     </div>
@@ -221,7 +221,7 @@ function ContactPage() {
                         id="additionalContext"
                         name="additionalContext"
                         rows={3}
-                        value={values.additionalContext ?? ""}
+                        value={values["additionalContext"] ?? ""}
                         onChange={(e) => set("additionalContext", e.target.value)}
                         className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring"
                       />

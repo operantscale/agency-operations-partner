@@ -27,7 +27,6 @@
       "description": "Google reCAPTCHA v3 secret key for server-side verification"
     }
   },
-  "envPrefix": "VITE_",
   "rewrites": [
     {
       "source": "/:path*",

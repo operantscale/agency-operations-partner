@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      discovery_requests: {
+        Row: {
+          additional_context: string | null
+          agency_name: string
+          agency_website: string | null
+          created_at: string
+          full_name: string
+          id: string
+          primary_challenge: string
+          role: string | null
+          work_email: string
+        }
+        Insert: {
+          additional_context?: string | null
+          agency_name: string
+          agency_website?: string | null
+          created_at?: string
+          full_name: string
+          id?: string
+          primary_challenge: string
+          role?: string | null
+          work_email: string
+        }
+        Update: {
+          additional_context?: string | null
+          agency_name?: string
+          agency_website?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          primary_challenge?: string
+          role?: string | null
+          work_email?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

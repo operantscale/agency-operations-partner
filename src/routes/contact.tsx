@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
 import { discoverySchema, submitDiscoveryRequest } from "@/lib/discovery.functions";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -66,6 +67,13 @@ function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [formError, setFormError] = useState("");
+  const formStarted = useRef(false);
+
+  const trackFormStart = () => {
+    if (formStarted.current) return;
+    formStarted.current = true;
+    trackEvent("form_start", { form_name: "operational_discovery" });
+  };
 
   const set = (name: string, value: string) => {
     setValues((v) => ({ ...v, [name]: value }));
@@ -99,6 +107,7 @@ function ContactPage() {
       return;
     }
 
+    trackEvent("form_submit", { form_name: "operational_discovery" });
     setStatus("loading");
 
     try {
@@ -111,6 +120,10 @@ function ContactPage() {
         throw new Error(SUBMISSION_ERROR_MESSAGE);
       }
 
+      if (result.emailDeliverySucceeded) {
+        // Primary GA4 conversion/key-event candidate. Configure it as a key event in GA4.
+        trackEvent("form_success", { form_name: "operational_discovery" });
+      }
       setStatus("success");
     } catch (err) {
       setStatus("error");
@@ -143,6 +156,7 @@ function ContactPage() {
                   <dd className="mt-2">
                     <a
                       href="mailto:sabeeh@operantscale.com"
+                      onClick={() => trackEvent("email_click", { location: "contact_page" })}
                       className="text-foreground underline-offset-4 hover:underline"
                     >
                       sabeeh@operantscale.com
@@ -187,6 +201,7 @@ function ContactPage() {
               ) : (
                 <form
                   onSubmit={onSubmit}
+                  onFocusCapture={trackFormStart}
                   noValidate
                   className="border border-border bg-card p-6 sm:p-10"
                 >

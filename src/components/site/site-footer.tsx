@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./logo";
+import { trackEvent } from "@/lib/analytics";
 
 export function SiteFooter() {
   return (
@@ -37,6 +38,7 @@ export function SiteFooter() {
             <span className="eyebrow">Contact</span>
             <a
               href="mailto:sabeeh@operantscale.com"
+              onClick={() => trackEvent("email_click", { location: "footer" })}
               className="text-muted-foreground hover:text-foreground"
             >
               sabeeh@operantscale.com

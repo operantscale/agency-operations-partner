@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./logo";
+import { trackEvent } from "@/lib/analytics";
 
 const NAV = [
   { label: "Capabilities", hash: "capabilities" },
@@ -59,6 +60,9 @@ export function SiteHeader() {
           </Link>
           <Link
             to="/contact"
+            onClick={() =>
+              trackEvent("cta_click", { cta_name: "start_conversation", location: "header" })
+            }
             className="border border-primary bg-primary px-5 py-2.5 text-[0.74rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_10px_24px_-16px_var(--color-primary)] transition-colors hover:bg-primary/90"
           >
             Start a conversation
@@ -92,7 +96,13 @@ export function SiteHeader() {
             ))}
             <Link
               to="/contact"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                trackEvent("cta_click", {
+                  cta_name: "start_conversation",
+                  location: "mobile_menu",
+                });
+              }}
               className="border-b border-border py-4 text-lg text-foreground"
             >
               Contact

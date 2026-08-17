@@ -31,7 +31,7 @@ export const discoverySchema = z.object({
 });
 
 export type DiscoveryInput = z.infer<typeof discoverySchema>;
-export type DiscoverySubmissionResult = { ok: true };
+export type DiscoverySubmissionResult = { ok: true; emailDeliverySucceeded: boolean };
 
 function getRequiredEnv(name: string): string {
   const value = process.env[name]?.trim();
@@ -122,7 +122,12 @@ export const submitDiscoveryRequest = createServerFn({ method: "POST" })
       if (!userEmailResult.success)
         console.error("Prospect confirmation failed after saving request:", userEmailResult.error);
 
-      return { ok: true } satisfies DiscoverySubmissionResult;
+      return {
+        ok: true,
+        // This anonymous status lets the client count a completed conversion
+        // without ever sending lead data to Google Analytics.
+        emailDeliverySucceeded: adminEmailResult.success && userEmailResult.success,
+      } satisfies DiscoverySubmissionResult;
     } catch (error) {
       console.error("Discovery submission failed:", error);
       if (error instanceof Error) throw error;

@@ -4,14 +4,14 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-
-const GOOGLE_ANALYTICS_ID = "G-HLKG9LVVNN";
+import { GOOGLE_ANALYTICS_ID, trackEvent, trackPageView } from "@/lib/analytics";
 
 function NotFoundComponent() {
   return (
@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GOOGLE_ANALYTICS_ID}');`,
+gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false });`,
       },
       {
         type: "application/ld+json",
@@ -148,8 +148,33 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AnalyticsTracker />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
+}
+
+function AnalyticsTracker() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  useEffect(() => {
+    const trackedPageView = trackPageView(pathname);
+    if (trackedPageView && pathname === "/contact") trackEvent("contact_page_view");
+  }, [pathname]);
+
+  useEffect(() => {
+    const trackLinkedInClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const link = target.closest<HTMLAnchorElement>('a[href*="linkedin.com"]');
+      if (link) trackEvent("linkedin_click", { location: "external_link" });
+    };
+
+    document.addEventListener("click", trackLinkedInClick);
+    return () => document.removeEventListener("click", trackLinkedInClick);
+  }, []);
+
+  return null;
 }

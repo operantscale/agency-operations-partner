@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
 import { SystemVisual, HandoffVisual, StackVisual } from "@/components/site/system-visual";
+import { trackEvent } from "@/lib/analytics";
 
 const TITLE = "OperantScale | AI-Powered Operational Systems for P&C Insurance Agencies";
 const DESCRIPTION =
@@ -253,6 +254,12 @@ function HomePage() {
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link
                     to="/contact"
+                    onClick={() =>
+                      trackEvent("cta_click", {
+                        cta_name: "book_operational_discovery",
+                        location: "hero",
+                      })
+                    }
                     className="inline-flex h-16 items-center justify-center gap-3 whitespace-nowrap bg-primary px-10 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />
@@ -260,6 +267,9 @@ function HomePage() {
                   <Link
                     to="/"
                     hash="approach"
+                    onClick={() =>
+                      trackEvent("cta_click", { cta_name: "see_how_we_work", location: "hero" })
+                    }
                     className="inline-flex h-16 items-center justify-center whitespace-nowrap border border-foreground/25 px-9 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
                   >
                     See how we work
@@ -663,6 +673,12 @@ function HomePage() {
                 <div className="flex flex-col gap-4 lg:items-end">
                   <Link
                     to="/contact"
+                    onClick={() =>
+                      trackEvent("cta_click", {
+                        cta_name: "book_operational_discovery",
+                        location: "final_cta",
+                      })
+                    }
                     className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-nowrap bg-ink-foreground px-10 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto"
                   >
                     Book an operational discovery <ArrowRight className="size-4" />

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -66,6 +67,7 @@ function TermsPage() {
                 Questions about these terms can be sent to{" "}
                 <a
                   href="mailto:sabeeh@operantscale.com"
+                  onClick={() => trackEvent("email_click", { location: "terms_page" })}
                   className="text-foreground underline-offset-4 hover:underline"
                 >
                   sabeeh@operantscale.com

@@ -66,10 +66,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://operantscale.com/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://operantscale.com/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -79,7 +79,7 @@ export const Route = createFileRoute("/")({
           name: "OperantScale",
           description: DESCRIPTION,
           url: "https://operantscale.com",
-          email: "wajeeh@operantscale.com",
+          email: "sabeeh@operantscale.com",
           areaServed: "US",
           serviceType:
             "Insurance agency workflow automation, operational systems and AI-assisted process design",
@@ -178,13 +178,24 @@ const CAPABILITY_GROUPS = [
 const STAGES = [
   { n: "01", title: "Understand", body: "Learn how the agency actually operates, day to day." },
   { n: "02", title: "Map", body: "Identify workflows, bottlenecks, handoffs and repetitive work." },
-  { n: "03", title: "Design", body: "Determine where AI and automation can create practical value." },
-  { n: "04", title: "Implement", body: "Build and integrate the system into the existing workflow." },
+  {
+    n: "03",
+    title: "Design",
+    body: "Determine where AI and automation can create practical value.",
+  },
+  {
+    n: "04",
+    title: "Implement",
+    body: "Build and integrate the system into the existing workflow.",
+  },
   { n: "05", title: "Optimize", body: "Monitor, refine and improve the system over time." },
 ];
 
 const OUTCOMES = [
-  { title: "Less repetitive work", body: "Designed to reduce the manual steps that recur every day." },
+  {
+    title: "Less repetitive work",
+    body: "Designed to reduce the manual steps that recur every day.",
+  },
   { title: "Faster workflows", body: "Intended to shorten the path from inquiry to resolution." },
   { title: "Better visibility", body: "Clearer sight of where work sits and what is waiting." },
   { title: "More team capacity", body: "Time returned to producers and service staff." },
@@ -327,9 +338,7 @@ function HomePage() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="text-xl font-medium">{area.title}</h3>
-                    <p className="text-[1rem] leading-[1.7] text-muted-foreground">
-                      {area.body}
-                    </p>
+                    <p className="text-[1rem] leading-[1.7] text-muted-foreground">{area.body}</p>
                   </div>
                 </Reveal>
               ))}

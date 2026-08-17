@@ -39,6 +39,20 @@ function getRequiredEnv(name: string): string {
   return value;
 }
 
+function loadLocalEnvironment(): void {
+  // Nitro can execute a server function in a worker whose process environment
+  // was created before Vite loaded `.env`. Load it again for local development;
+  // deployed environments continue to use their platform-provided variables.
+  if (process.env["NODE_ENV"] === "production") return;
+
+  try {
+    process.loadEnvFile();
+  } catch {
+    // A local `.env` file is optional for source control and CI. The required
+    // variable check below provides the actionable error when it is absent.
+  }
+}
+
 async function insertDiscoveryRequest(data: DiscoveryInput): Promise<void> {
   const supabaseUrl = getRequiredEnv("SUPABASE_URL");
   const serviceRoleKey = getRequiredEnv("SUPABASE_SERVICE_ROLE_KEY");
@@ -81,6 +95,7 @@ export const submitDiscoveryRequest = createServerFn({ method: "POST" })
   .validator(discoverySchema)
   .handler(async ({ data }) => {
     try {
+      loadLocalEnvironment();
       getRequiredEnv("SUPABASE_URL");
       getRequiredEnv("SUPABASE_SERVICE_ROLE_KEY");
       getRequiredEnv("RESEND_API_KEY");

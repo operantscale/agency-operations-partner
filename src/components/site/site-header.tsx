@@ -63,7 +63,6 @@ export function SiteHeader() {
           >
             Start a conversation
           </Link>
-
         </nav>
 
         <button

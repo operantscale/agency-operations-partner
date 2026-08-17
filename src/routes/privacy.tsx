@@ -17,9 +17,9 @@ export const Route = createFileRoute("/privacy")({
         content: "How OperantScale handles information submitted through its website.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/privacy" },
+      { property: "og:url", content: "https://operantscale.com/privacy" },
     ],
-    links: [{ rel: "canonical", href: "/privacy" }],
+    links: [{ rel: "canonical", href: "https://operantscale.com/privacy" }],
   }),
   component: PrivacyPage,
 });
@@ -68,10 +68,10 @@ function PrivacyPage() {
                 You may request access to, correction of, or deletion of information you submitted
                 by writing to{" "}
                 <a
-                  href="mailto:wajeeh@operantscale.com"
+                  href="mailto:sabeeh@operantscale.com"
                   className="text-foreground underline-offset-4 hover:underline"
                 >
-                  wajeeh@operantscale.com
+                  sabeeh@operantscale.com
                 </a>
                 .
               </p>

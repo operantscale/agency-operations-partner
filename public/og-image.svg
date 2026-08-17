@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">OperantScale</title>
+  <desc id="desc">AI-Powered Operational Systems for Independent P and C Insurance Agencies</desc>
+  <rect width="1200" height="630" fill="#111a2c"/>
+  <g fill="none" stroke="#617da7" stroke-opacity=".34">
+    <path d="M0 112H1200M0 518H1200"/>
+    <path d="M720 0V630M960 0V630"/>
+  </g>
+  <g transform="translate(96 84)" fill="none" stroke="#8eb3f7" stroke-width="3">
+    <rect width="44" height="44"/>
+    <path d="M10 31L21 14H35"/>
+    <circle cx="21" cy="14" r="4" fill="#8eb3f7"/>
+  </g>
+  <text x="154" y="117" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600" letter-spacing="-1">Operant<tspan font-weight="400" opacity=".72">Scale</tspan></text>
+  <text x="96" y="284" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="600" letter-spacing="-2.4">AI-Powered Operational Systems</text>
+  <text x="96" y="364" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="600" letter-spacing="-2.4">for Independent P&amp;C Insurance Agencies</text>
+  <path d="M96 433H308" stroke="#8eb3f7" stroke-width="4"/>
+  <text x="96" y="492" fill="#b9c1cf" font-family="Arial, Helvetica, sans-serif" font-size="25" letter-spacing=".2">Practical systems designed around the way your agency works.</text>
+</svg>

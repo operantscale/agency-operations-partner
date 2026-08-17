@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
 /**
@@ -9,6 +10,11 @@ import { motion, useReducedMotion } from "motion/react";
 /** Hero: existing systems -> workflow layer -> AI + automation -> team capacity. */
 export function SystemVisual({ className }: { className?: string }) {
   const reduced = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const sysY = [56, 104, 152, 200];
   const SYS_X = 74;
@@ -23,7 +29,9 @@ export function SystemVisual({ className }: { className?: string }) {
     { x: 632, label: "Capacity" },
   ];
 
-  const feed = sysY.map((y) => `M${SYS_X + 13} ${y} C ${SYS_X + 90} ${y}, ${FLOW_X - 90} 128, ${FLOW_X - 16} 128`);
+  const feed = sysY.map(
+    (y) => `M${SYS_X + 13} ${y} C ${SYS_X + 90} ${y}, ${FLOW_X - 90} 128, ${FLOW_X - 16} 128`,
+  );
   const mid = [
     `M${FLOW_X + 16} 128 C ${FLOW_X + 70} 128, ${AI_X - 70} 96, ${AI_X - 14} 96`,
     `M${FLOW_X + 16} 128 C ${FLOW_X + 70} 128, ${AI_X - 70} 160, ${AI_X - 14} 160`,
@@ -49,7 +57,7 @@ export function SystemVisual({ className }: { className?: string }) {
       {paths.map((d, i) => (
         <g key={d}>
           <path d={d} fill="none" stroke="var(--color-line)" strokeWidth="1" />
-          {!reduced && (
+          {mounted && !reduced && (
             <motion.circle
               r="2.4"
               fill="var(--color-accent)"
@@ -169,7 +177,6 @@ export function SystemVisual({ className }: { className?: string }) {
   );
 }
 
-
 /** Operational reality: systems -> people and manual handoffs -> friction -> opportunity. */
 export function HandoffVisual({ className }: { className?: string }) {
   const systems = ["AMS", "CRM", "Email", "Communication", "Quoting", "Internal workflows"];
@@ -184,10 +191,7 @@ export function HandoffVisual({ className }: { className?: string }) {
     <div className={className}>
       <div className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3">
         {systems.map((s) => (
-          <div
-            key={s}
-            className="bg-background px-4 py-5 text-sm text-foreground"
-          >
+          <div key={s} className="bg-background px-4 py-5 text-sm text-foreground">
             {s}
           </div>
         ))}
@@ -201,9 +205,7 @@ export function HandoffVisual({ className }: { className?: string }) {
               f.accent ? "border-accent bg-accent/5" : "border-border bg-surface"
             }`}
           >
-            <span
-              className={`text-sm font-medium ${f.accent ? "text-accent" : "text-foreground"}`}
-            >
+            <span className={`text-sm font-medium ${f.accent ? "text-accent" : "text-foreground"}`}>
               {f.label}
             </span>
             <span className="font-mono text-[0.68rem] tracking-[0.14em] text-muted-foreground uppercase">

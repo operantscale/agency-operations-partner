@@ -15,7 +15,11 @@ export function SiteFooter() {
 
           <nav aria-label="Footer" className="flex flex-col gap-3 text-sm">
             <span className="eyebrow">Site</span>
-            <Link to="/" hash="capabilities" className="text-muted-foreground hover:text-foreground">
+            <Link
+              to="/"
+              hash="capabilities"
+              className="text-muted-foreground hover:text-foreground"
+            >
               Capabilities
             </Link>
             <Link to="/" hash="approach" className="text-muted-foreground hover:text-foreground">
@@ -32,10 +36,10 @@ export function SiteFooter() {
           <div className="flex flex-col gap-3 text-sm">
             <span className="eyebrow">Contact</span>
             <a
-              href="mailto:wajeeh@operantscale.com"
+              href="mailto:sabeeh@operantscale.com"
               className="text-muted-foreground hover:text-foreground"
             >
-              wajeeh@operantscale.com
+              sabeeh@operantscale.com
             </a>
             <a
               href="https://operantscale.com"

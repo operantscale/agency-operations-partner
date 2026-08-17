@@ -23,10 +23,10 @@ export const Route = createFileRoute("/contact")({
           "Request an operational discovery conversation with OperantScale, a specialist in operational systems for independent P&C insurance agencies.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: "https://operantscale.com/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://operantscale.com/contact" }],
   }),
   component: ContactPage,
 });
@@ -142,10 +142,10 @@ function ContactPage() {
                   <dt className="eyebrow">Email</dt>
                   <dd className="mt-2">
                     <a
-                      href="mailto:wajeeh@operantscale.com"
+                      href="mailto:sabeeh@operantscale.com"
                       className="text-foreground underline-offset-4 hover:underline"
                     >
-                      wajeeh@operantscale.com
+                      sabeeh@operantscale.com
                     </a>
                   </dd>
                 </div>
@@ -160,7 +160,11 @@ function ContactPage() {
 
             <Reveal delay={0.1}>
               {status === "success" ? (
-                <div className="border border-border bg-card p-8 sm:p-12">
+                <div
+                  className="border border-border bg-card p-8 sm:p-12"
+                  role="status"
+                  aria-live="polite"
+                >
                   <span className="inline-flex size-9 items-center justify-center border border-accent text-accent">
                     <Check className="size-4" />
                   </span>
@@ -168,7 +172,7 @@ function ContactPage() {
                     Thank you. Your request has been received.
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    We'll review what you shared and reply from wajeeh@operantscale.com within two
+                    We'll review what you shared and reply from sabeeh@operantscale.com within two
                     business days to schedule a short operational discovery conversation. That first
                     call is a working session, not a sales call: we'll walk through how your team
                     operates today and where repetitive work may be accumulating.
@@ -207,10 +211,14 @@ function ContactPage() {
                           onChange={(e) => set(field.name, e.target.value)}
                           aria-invalid={Boolean(errors[field.name])}
                           aria-describedby={errors[field.name] ? `${field.name}-error` : undefined}
-                          className="mt-2 h-11 w-full border border-input bg-background px-3 text-sm text-foreground transition-colors outline-none focus:border-ring"
+                          className="mt-2 h-11 w-full border border-input bg-background px-3 text-sm text-foreground transition-colors outline-none focus:border-ring focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2"
                         />
                         {errors[field.name] && (
-                          <p id={`${field.name}-error`} className="mt-2 text-xs text-destructive">
+                          <p
+                            id={`${field.name}-error`}
+                            role="alert"
+                            className="mt-2 text-xs text-destructive"
+                          >
                             {errors[field.name]}
                           </p>
                         )}
@@ -231,10 +239,14 @@ function ContactPage() {
                         aria-describedby={
                           errors["primaryChallenge"] ? "primaryChallenge-error" : undefined
                         }
-                        className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring"
+                        className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2"
                       />
                       {errors["primaryChallenge"] && (
-                        <p id="primaryChallenge-error" className="mt-2 text-xs text-destructive">
+                        <p
+                          id="primaryChallenge-error"
+                          role="alert"
+                          className="mt-2 text-xs text-destructive"
+                        >
                           {errors["primaryChallenge"]}
                         </p>
                       )}
@@ -251,7 +263,7 @@ function ContactPage() {
                         rows={3}
                         value={values["additionalContext"] ?? ""}
                         onChange={(e) => set("additionalContext", e.target.value)}
-                        className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring"
+                        className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2"
                       />
                     </div>
                   </div>

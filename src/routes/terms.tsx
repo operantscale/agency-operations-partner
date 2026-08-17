@@ -16,9 +16,9 @@ export const Route = createFileRoute("/terms")({
         content: "Terms governing use of the OperantScale website.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/terms" },
+      { property: "og:url", content: "https://operantscale.com/terms" },
     ],
-    links: [{ rel: "canonical", href: "/terms" }],
+    links: [{ rel: "canonical", href: "https://operantscale.com/terms" }],
   }),
   component: TermsPage,
 });
@@ -65,10 +65,10 @@ function TermsPage() {
               <p className="mt-3">
                 Questions about these terms can be sent to{" "}
                 <a
-                  href="mailto:wajeeh@operantscale.com"
+                  href="mailto:sabeeh@operantscale.com"
                   className="text-foreground underline-offset-4 hover:underline"
                 >
-                  wajeeh@operantscale.com
+                  sabeeh@operantscale.com
                 </a>
                 .
               </p>

@@ -26,7 +26,7 @@ export interface EmailResult {
 /* -------------------------------------------------------------------------- */
 
 function getResend(): Resend | null {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env["RESEND_API_KEY"];
 
   if (!apiKey || !apiKey.trim()) {
     console.error("RESEND_API_KEY is not configured.");
@@ -37,11 +37,11 @@ function getResend(): Resend | null {
 }
 
 function getAdminEmail(): string {
-  return process.env.ADMIN_EMAIL?.trim() || "wajeeh@operantscale.com";
+  return "sabeeh@operantscale.com";
 }
 
 function getFromEmail(): string {
-  return process.env.RESEND_FROM_EMAIL?.trim() || "noreply@operantscale.com";
+  return process.env["RESEND_FROM_EMAIL"]?.trim() || "noreply@operantscale.com";
 }
 
 /* -------------------------------------------------------------------------- */
@@ -446,5 +446,5 @@ function escapeHtml(text: string): string {
     "'": "&#039;",
   };
 
-  return text.replace(/[&<>"']/g, (character) => map[character]);
+  return text.replace(/[&<>"']/g, (character) => map[character] ?? character);
 }

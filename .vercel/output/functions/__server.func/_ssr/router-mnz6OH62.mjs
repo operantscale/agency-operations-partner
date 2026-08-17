@@ -1,12 +1,21 @@
-import { r as __toESM } from "../_runtime.mjs";
+import { i as __toESM } from "../_runtime.mjs";
 import { c as require_react, s as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { c as HeadContent, d as Outlet, f as lazyRouteComponent, g as useRouter, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
-import { r as __exportAll } from "./server-CplBqpah.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-I5TLBfZI.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-mnz6OH62.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
+var __defProp = Object.defineProperty;
+var __exportAll = (all, no_symbols) => {
+	let target = {};
+	for (var name in all) __defProp(target, name, {
+		get: all[name],
+		enumerable: true
+	});
+	if (!no_symbols) __defProp(target, Symbol.toStringTag, { value: "Module" });
+	return target;
+};
 var styles_default = "/assets/styles-JSqxkYYK.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
@@ -217,7 +226,7 @@ var FAQS = [
 		a: "Start with an operational discovery conversation. It's a working session, not a sales call."
 	}
 ];
-var $$splitComponentImporter$3 = () => import("./routes-CFjiH0yD.mjs");
+var $$splitComponentImporter$3 = () => import("./routes-DbUsmITi.mjs");
 var TITLE = "OperantScale | AI-Powered Operational Systems for P&C Insurance Agencies";
 var DESCRIPTION = "OperantScale helps independent P&C insurance agencies reduce repetitive administrative work, improve workflows and create team capacity through practical AI-powered operational systems.";
 var Route$3 = createFileRoute("/")({
@@ -287,7 +296,7 @@ var Route$3 = createFileRoute("/")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./contact-DUcQEZvh.mjs");
+var $$splitComponentImporter$2 = () => import("./contact-C5pMzM7y.mjs");
 var Route$2 = createFileRoute("/contact")({
 	head: () => ({
 		meta: [

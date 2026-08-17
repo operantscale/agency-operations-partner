@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-DZEHFQf_.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-IcVk7tL9.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "C:/Users/Zbook/Desktop/OS Website/agency-operations-partner/src/routes/__root.tsx",
@@ -8,40 +8,40 @@ var tsrStartManifest = () => ({ routes: {
 			"/privacy",
 			"/terms"
 		],
-		preloads: ["/assets/index-CwDjSAmq.js"],
+		preloads: ["/assets/index-CPWj9o-D.js"],
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-CwDjSAmq.js"
+			src: "/assets/index-CPWj9o-D.js"
 		} }]
 	},
 	"/": {
 		filePath: "C:/Users/Zbook/Desktop/OS Website/agency-operations-partner/src/routes/index.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/routes-DroS4-3t.js",
-			"/assets/site-footer-GAhjSHcE.js",
-			"/assets/reveal-BfhvGMya.js"
+			"/assets/routes-DBVQWby-.js",
+			"/assets/site-footer-DpVNrt9y.js",
+			"/assets/reveal-DiyxgNsU.js"
 		]
 	},
 	"/contact": {
 		filePath: "C:/Users/Zbook/Desktop/OS Website/agency-operations-partner/src/routes/contact.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/contact-sERZXyKH.js",
-			"/assets/site-footer-GAhjSHcE.js",
-			"/assets/reveal-BfhvGMya.js"
+			"/assets/contact-BixnUtiU.js",
+			"/assets/site-footer-DpVNrt9y.js",
+			"/assets/reveal-DiyxgNsU.js"
 		]
 	},
 	"/privacy": {
 		filePath: "C:/Users/Zbook/Desktop/OS Website/agency-operations-partner/src/routes/privacy.tsx",
 		children: void 0,
-		preloads: ["/assets/privacy-B9GVMY5W.js", "/assets/site-footer-GAhjSHcE.js"]
+		preloads: ["/assets/privacy-HDQyxS3h.js", "/assets/site-footer-DpVNrt9y.js"]
 	},
 	"/terms": {
 		filePath: "C:/Users/Zbook/Desktop/OS Website/agency-operations-partner/src/routes/terms.tsx",
 		children: void 0,
-		preloads: ["/assets/terms-BoRcJE0f.js", "/assets/site-footer-GAhjSHcE.js"]
+		preloads: ["/assets/terms-Dr6avA-d.js", "/assets/site-footer-DpVNrt9y.js"]
 	}
 } });
 //#endregion

@@ -8,6 +8,7 @@ import { AsyncLocalStorage } from "node:async_hooks";
 //#region node_modules/.nitro/vite/services/ssr/index.js
 var ssr_exports = /* @__PURE__ */ __exportAll({
 	default: () => server_default,
+	i: () => getRequestHeader,
 	n: () => TSS_SERVER_FUNCTION,
 	r: () => getServerFnById,
 	t: () => createServerFn
@@ -73,6 +74,12 @@ function getH3Event() {
 	if (!event) throw new Error(`No StartEvent found in AsyncLocalStorage. Make sure you are using the function within the server runtime.`);
 	return event.h3Event;
 }
+function getRequestHeaders() {
+	return getH3Event().req.headers;
+}
+function getRequestHeader(name) {
+	return getRequestHeaders().get(name) || void 0;
+}
 function getResponse() {
 	return getH3Event().res;
 }
@@ -87,7 +94,7 @@ var HEADERS = { TSS_SHELL: "X-TSS_SHELL" };
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-IcVk7tL9.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-CkwPAiJz.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -108,7 +115,7 @@ async function getStartManifest(matchedRoutes) {
 }
 var manifest = { "d617a46fdf585928d24717a1a82d4f39df931f582c18829da984df70c8f99096": {
 	functionName: "submitDiscoveryRequest_createServerFn_handler",
-	importer: () => import("./discovery.functions-DmlJ3bLZ.mjs")
+	importer: () => import("./discovery.functions-DHmk21v2.mjs")
 } };
 async function getServerFnById(id, access) {
 	const serverFnInfo = manifest[id];
@@ -1377,7 +1384,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-mnz6OH62.mjs").then((n) => n.t),
+		import("./router-Cl-sHU3b.mjs").then((n) => n.t),
 		import("./start-5Z2QO8AU.mjs"),
 		import("./empty-plugin-adapters-D9UWiqvJ.mjs")
 	]);
@@ -1756,4 +1763,4 @@ async function handleServerRoutes({ getRouter, request, url, executeRouter, cont
 }
 var server_default = { fetch: createStartHandler(defaultStreamHandler) };
 //#endregion
-export { server_default as default, ssr_exports as i, TSS_SERVER_FUNCTION as n, getServerFnById as r, createServerFn as t };
+export { ssr_exports as a, server_default as default, getRequestHeader as i, TSS_SERVER_FUNCTION as n, getServerFnById as r, createServerFn as t };

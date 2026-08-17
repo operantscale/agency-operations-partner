@@ -1,20 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
 import { discoverySchema, submitDiscoveryRequest } from "@/lib/discovery.functions";
-
-// Declare reCAPTCHA global type
-declare global {
-  interface Window {
-    grecaptcha?: {
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
-    };
-  }
-}
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -36,13 +27,6 @@ export const Route = createFileRoute("/contact")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
-    scripts: [
-      {
-        src: "https://www.google.com/recaptcha/api.js",
-        async: true,
-        defer: true,
-      },
-    ],
   }),
   component: ContactPage,
 });
@@ -57,11 +41,24 @@ const FIELDS = [
     required: true,
     autoComplete: "organization",
   },
-  { name: "role", label: "Role", type: "text", required: false, autoComplete: "organization-title" },
-  { name: "agencyWebsite", label: "Agency website", type: "text", required: false, autoComplete: "url" },
+  {
+    name: "role",
+    label: "Role",
+    type: "text",
+    required: false,
+    autoComplete: "organization-title",
+  },
+  {
+    name: "agencyWebsite",
+    label: "Agency website",
+    type: "text",
+    required: false,
+    autoComplete: "url",
+  },
 ] as const;
 
 type FormState = Record<string, string>;
+const SUBMISSION_ERROR_MESSAGE = "We couldn't submit your request right now. Please try again.";
 
 function ContactPage() {
   const submit = useServerFn(submitDiscoveryRequest);
@@ -69,43 +66,17 @@ function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [formError, setFormError] = useState("");
-  const [recaptchaReady, setRecaptchaReady] = useState(false);
-
-  // Wait for reCAPTCHA to load
-  useEffect(() => {
-    const checkRecaptcha = () => {
-      if (window.grecaptcha) {
-        setRecaptchaReady(true);
-      } else {
-        setTimeout(checkRecaptcha, 100);
-      }
-    };
-    checkRecaptcha();
-  }, []);
 
   const set = (name: string, value: string) => {
     setValues((v) => ({ ...v, [name]: value }));
-    if (errors[name]) setErrors((e) => ({ ...e, [name]: "" }));
+    if (errors[name]) {
+      setErrors((e) => ({ ...e, [name]: "" }));
+    }
   };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormError("");
-
-    const recaptchaKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
-
-    // Get reCAPTCHA token if available
-    let recaptchaToken: string | undefined;
-    if (recaptchaReady && recaptchaKey && window.grecaptcha) {
-      try {
-        recaptchaToken = await window.grecaptcha.execute(recaptchaKey, {
-          action: "submit_discovery_request",
-        });
-      } catch (error) {
-        console.warn("reCAPTCHA token generation failed:", error);
-        // Continue without token - server will handle gracefully
-      }
-    }
 
     const parsed = discoverySchema.safeParse({
       fullName: values["fullName"] ?? "",
@@ -115,7 +86,6 @@ function ContactPage() {
       agencyWebsite: values["agencyWebsite"] ?? "",
       primaryChallenge: values["primaryChallenge"] ?? "",
       additionalContext: values["additionalContext"] ?? "",
-      recaptchaToken: recaptchaToken,
     });
 
     if (!parsed.success) {
@@ -130,15 +100,21 @@ function ContactPage() {
     }
 
     setStatus("loading");
+
     try {
-      await submit({ data: parsed.data });
+      const result = await submit({ data: parsed.data });
+      const ok = !!result && ((result as any).ok === true || (result as any).success === true);
+
+      if (!ok) {
+        throw new Error(SUBMISSION_ERROR_MESSAGE);
+      }
+
       setStatus("success");
     } catch (err) {
       setStatus("error");
-      const errorMessage = err instanceof Error ? err.message : "Unknown error";
-      setFormError(
-        errorMessage || "We couldn't submit your request. Please try again, or email support directly.",
-      );
+      console.error("Discovery request submission failed", err);
+      const message = err instanceof Error ? err.message : SUBMISSION_ERROR_MESSAGE;
+      setFormError(message || SUBMISSION_ERROR_MESSAGE);
     }
   };
 
@@ -275,7 +251,10 @@ function ContactPage() {
                   </div>
 
                   {formError && (
-                    <p role="alert" className="mt-6 border border-destructive/40 px-4 py-3 text-sm text-destructive">
+                    <p
+                      role="alert"
+                      className="mt-6 border border-destructive/40 px-4 py-3 text-sm text-destructive"
+                    >
                       {formError}
                     </p>
                   )}

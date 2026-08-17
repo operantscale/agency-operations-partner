@@ -3,7 +3,7 @@ import { c as require_react, s as require_jsx_runtime } from "../_libs/@radix-ui
 import { c as HeadContent, d as Outlet, f as lazyRouteComponent, g as useRouter, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { t as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-mnz6OH62.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-Cl-sHU3b.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var __defProp = Object.defineProperty;
@@ -226,7 +226,7 @@ var FAQS = [
 		a: "Start with an operational discovery conversation. It's a working session, not a sales call."
 	}
 ];
-var $$splitComponentImporter$3 = () => import("./routes-DbUsmITi.mjs");
+var $$splitComponentImporter$3 = () => import("./routes-VEJlKGch.mjs");
 var TITLE = "OperantScale | AI-Powered Operational Systems for P&C Insurance Agencies";
 var DESCRIPTION = "OperantScale helps independent P&C insurance agencies reduce repetitive administrative work, improve workflows and create team capacity through practical AI-powered operational systems.";
 var Route$3 = createFileRoute("/")({
@@ -296,7 +296,7 @@ var Route$3 = createFileRoute("/")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./contact-C5pMzM7y.mjs");
+var $$splitComponentImporter$2 = () => import("./contact-DVdC47tt.mjs");
 var Route$2 = createFileRoute("/contact")({
 	head: () => ({
 		meta: [
@@ -329,11 +329,6 @@ var Route$2 = createFileRoute("/contact")({
 		links: [{
 			rel: "canonical",
 			href: "/contact"
-		}],
-		scripts: [{
-			src: "https://www.google.com/recaptcha/api.js",
-			async: true,
-			defer: true
 		}]
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")

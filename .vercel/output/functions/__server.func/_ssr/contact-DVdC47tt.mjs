@@ -4,9 +4,9 @@ import { E as isRedirect, g as useRouter, h as Link } from "../_libs/@tanstack/r
 import { n as TSS_SERVER_FUNCTION, r as getServerFnById, t as createServerFn } from "./ssr.mjs";
 import { a as ArrowRight, i as Check } from "../_libs/lucide-react.mjs";
 import { n as SiteHeader, t as SiteFooter } from "./site-footer-DKpIWgTm.mjs";
-import { t as Reveal } from "./reveal-C3PsGeY_.mjs";
+import { t as Reveal } from "./reveal-B9DF2tSw.mjs";
 import { n as objectType, r as stringType, t as literalType } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/contact-C5pMzM7y.js
+//#region node_modules/.nitro/vite/services/ssr/assets/contact-DVdC47tt.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function useServerFn(serverFn) {
@@ -38,16 +38,23 @@ var createSsrRpc = (functionId) => {
 	});
 };
 var discoverySchema = objectType({
-	fullName: stringType().trim().min(2, "Please enter your full name").max(100),
-	workEmail: stringType().trim().email("Please enter a valid work email").max(255),
-	agencyName: stringType().trim().min(2, "Please enter your agency name").max(150),
-	role: stringType().trim().max(100).optional().or(literalType("")),
-	agencyWebsite: stringType().trim().max(200).optional().or(literalType("")),
+	fullName: stringType().trim().min(2, "Please enter your full name").max(100, "Name is too long"),
+	workEmail: stringType().trim().email("Please enter a valid work email").max(255, "Email is too long"),
+	agencyName: stringType().trim().min(2, "Please enter your agency name").max(150, "Agency name is too long"),
+	role: stringType().trim().max(100, "Role is too long").optional().or(literalType("")),
+	agencyWebsite: stringType().trim().max(200, "Website URL is too long").optional().or(literalType("")),
 	primaryChallenge: stringType().trim().min(10, "A sentence or two is enough").max(1e3, "Please keep this under 1000 characters"),
-	additionalContext: stringType().trim().max(2e3).optional().or(literalType("")),
-	recaptchaToken: stringType().optional()
+	additionalContext: stringType().trim().max(2e3, "Additional context is too long").optional().or(literalType(""))
 });
-var submitDiscoveryRequest = createServerFn({ method: "POST" }).validator((data) => discoverySchema.parse(data)).handler(createSsrRpc("d617a46fdf585928d24717a1a82d4f39df931f582c18829da984df70c8f99096"));
+/**
+* Uses Supabase's REST API directly instead of @supabase/supabase-js.
+*
+* This intentionally avoids importing the Supabase functions-js dependency
+* that was causing the production:
+*
+* ERR_MODULE_NOT_FOUND: Cannot find package 'tslib'
+*/
+var submitDiscoveryRequest = createServerFn({ method: "POST" }).validator(discoverySchema).handler(createSsrRpc("d617a46fdf585928d24717a1a82d4f39df931f582c18829da984df70c8f99096"));
 var FIELDS = [
 	{
 		name: "fullName",
@@ -85,20 +92,13 @@ var FIELDS = [
 		autoComplete: "url"
 	}
 ];
+var SUBMISSION_ERROR_MESSAGE = "We couldn't submit your request right now. Please try again.";
 function ContactPage() {
 	const submit = useServerFn(submitDiscoveryRequest);
 	const [values, setValues] = (0, import_react.useState)({});
 	const [errors, setErrors] = (0, import_react.useState)({});
 	const [status, setStatus] = (0, import_react.useState)("idle");
 	const [formError, setFormError] = (0, import_react.useState)("");
-	const [recaptchaReady, setRecaptchaReady] = (0, import_react.useState)(false);
-	(0, import_react.useEffect)(() => {
-		const checkRecaptcha = () => {
-			if (window.grecaptcha) setRecaptchaReady(true);
-			else setTimeout(checkRecaptcha, 100);
-		};
-		checkRecaptcha();
-	}, []);
 	const set = (name, value) => {
 		setValues((v) => ({
 			...v,
@@ -112,7 +112,6 @@ function ContactPage() {
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		setFormError("");
-		let recaptchaToken;
 		const parsed = discoverySchema.safeParse({
 			fullName: values["fullName"] ?? "",
 			workEmail: values["workEmail"] ?? "",
@@ -120,8 +119,7 @@ function ContactPage() {
 			role: values["role"] ?? "",
 			agencyWebsite: values["agencyWebsite"] ?? "",
 			primaryChallenge: values["primaryChallenge"] ?? "",
-			additionalContext: values["additionalContext"] ?? "",
-			recaptchaToken
+			additionalContext: values["additionalContext"] ?? ""
 		});
 		if (!parsed.success) {
 			const next = {};
@@ -135,12 +133,14 @@ function ContactPage() {
 		}
 		setStatus("loading");
 		try {
-			await submit({ data: parsed.data });
+			const result = await submit({ data: parsed.data });
+			if (!(!!result && (result.ok === true || result.success === true))) throw new Error(SUBMISSION_ERROR_MESSAGE);
 			setStatus("success");
 		} catch (err) {
 			setStatus("error");
-			const errorMessage = err instanceof Error ? err.message : "Unknown error";
-			setFormError(errorMessage || "We couldn't submit your request. Please try again, or email support directly.");
+			console.error("Discovery request submission failed", err);
+			const message = err instanceof Error ? err.message : SUBMISSION_ERROR_MESSAGE;
+			setFormError(message || SUBMISSION_ERROR_MESSAGE);
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {

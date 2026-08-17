@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 export function Reveal({
   children,
@@ -11,12 +11,19 @@ export function Reveal({
   className?: string;
 }) {
   const reduced = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (reduced) return <div className={className}>{children}</div>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (reduced || !mounted) {
+    return <div className={className ?? undefined}>{children}</div>;
+  }
 
   return (
     <motion.div
-      className={className}
+      className={className ?? undefined}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

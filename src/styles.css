@@ -87,7 +87,10 @@
 }
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
     border-color: var(--color-border);
   }
 
@@ -101,6 +104,15 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-synthesis-weight: none;
+    min-width: 0;
+  }
+
+  img,
+  svg,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 
   h1,

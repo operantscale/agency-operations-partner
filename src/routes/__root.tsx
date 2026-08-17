@@ -9,9 +9,19 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import appCss from "../styles.css?url";
 import { GOOGLE_ANALYTICS_ID, trackEvent, trackPageView } from "@/lib/analytics";
+import {
+  defaultPageDescription,
+  defaultPageTitle,
+  getAbsoluteImageUrl,
+  getCanonicalUrl,
+  getOrganizationSchema,
+  siteConfig,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -74,20 +84,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "OperantScale" },
-      {
-        name: "description",
-        content: "Operational Intelligence for Independent P&C Insurance Agencies.",
-      },
-      { property: "og:site_name", content: "OperantScale" },
+      { title: defaultPageTitle },
+      { name: "description", content: defaultPageDescription },
+      { property: "og:site_name", content: siteConfig.companyName },
+      { property: "og:title", content: defaultPageTitle },
+      { property: "og:description", content: defaultPageDescription },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://operantscale.com/og-image.svg" },
+      { property: "og:url", content: getCanonicalUrl("/") },
+      { property: "og:image", content: getAbsoluteImageUrl() },
+      { property: "og:image:alt", content: siteConfig.ogImageAlt },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://operantscale.com/og-image.svg" },
+      { name: "twitter:title", content: defaultPageTitle },
+      { name: "twitter:description", content: defaultPageDescription },
+      { name: "twitter:image", content: getAbsoluteImageUrl() },
+      { name: "twitter:image:alt", content: siteConfig.ogImageAlt },
     ],
     links: [
+      { rel: "canonical", href: getCanonicalUrl("/") },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -95,8 +110,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "apple-touch-icon", href: "/favicon.ico" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },
     ],
     scripts: [
       {
@@ -111,14 +127,7 @@ gtag('config', '${GOOGLE_ANALYTICS_ID}', { send_page_view: false });`,
       },
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "OperantScale",
-          url: "https://operantscale.com",
-          email: "sabeeh@operantscale.com",
-          description: "Operational Intelligence for Independent P&C Insurance Agencies.",
-        }),
+        children: JSON.stringify(getOrganizationSchema()),
       },
     ],
   }),
@@ -151,6 +160,8 @@ function RootComponent() {
       <AnalyticsTracker />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <Analytics />
+      <SpeedInsights />
     </QueryClientProvider>
   );
 }

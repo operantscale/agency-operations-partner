@@ -7,27 +7,41 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
 import { discoverySchema, submitDiscoveryRequest } from "@/lib/discovery.functions";
 import { trackEvent } from "@/lib/analytics";
+import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact OperantScale | Operational Discovery for P&C Agencies" },
+      { title: "Contact OperantScale | Insurance Agency Operations" },
       {
         name: "description",
         content:
-          "Start a conversation with OperantScale. Tell us about your agency and the operational challenge you're looking to understand.",
+          "Contact OperantScale to discuss workflow, automation, and operational improvement opportunities for independent P&C insurance agencies.",
       },
-      { property: "og:title", content: "Start With a Conversation — OperantScale" },
+      { property: "og:title", content: "Contact OperantScale | Insurance Agency Operations" },
       {
         property: "og:description",
         content:
-          "Request an operational discovery conversation with OperantScale, a specialist in operational systems for independent P&C insurance agencies.",
+          "Connect with OperantScale to discuss operational systems, workflow improvements, and practical automation for independent P&C insurance agencies.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://operantscale.com/contact" },
+      { property: "og:url", content: getCanonicalUrl("/contact") },
+      { property: "og:image", content: getAbsoluteImageUrl() },
+      {
+        property: "og:image:alt",
+        content:
+          "OperantScale brand mark for operational systems for independent P&C insurance agencies",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Contact OperantScale | Insurance Agency Operations" },
+      {
+        name: "twitter:description",
+        content:
+          "Contact OperantScale to discuss workflow improvements and operational systems for independent P&C insurance agencies.",
+      },
+      { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
-    links: [{ rel: "canonical", href: "https://operantscale.com/contact" }],
+    links: [{ rel: "canonical", href: getCanonicalUrl("/contact") }],
   }),
   component: ContactPage,
 });

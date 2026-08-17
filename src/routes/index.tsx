@@ -11,10 +11,17 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
 import { SystemVisual, HandoffVisual, StackVisual } from "@/components/site/system-visual";
 import { trackEvent } from "@/lib/analytics";
+import {
+  defaultPageDescription,
+  defaultPageTitle,
+  getAbsoluteImageUrl,
+  getCanonicalUrl,
+} from "@/lib/seo";
 
-const TITLE = "OperantScale | AI-Powered Operational Systems for P&C Insurance Agencies";
+const TITLE =
+  "OperantScale | AI-Powered Operational Systems for Independent P&C Insurance Agencies";
 const DESCRIPTION =
-  "OperantScale helps independent P&C insurance agencies reduce repetitive administrative work, improve workflows and create team capacity through practical AI-powered operational systems.";
+  "OperantScale helps independent P&C insurance agencies reduce repetitive administrative work, improve workflow visibility, and create practical operational capacity with AI-powered systems.";
 
 const FAQS = [
   {
@@ -67,10 +74,19 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://operantscale.com/" },
+      { property: "og:url", content: getCanonicalUrl("/") },
+      { property: "og:image", content: getAbsoluteImageUrl() },
+      {
+        property: "og:image:alt",
+        content:
+          "OperantScale brand mark for AI-powered operations systems for independent P&C insurance agencies",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
-    links: [{ rel: "canonical", href: "https://operantscale.com/" }],
+    links: [{ rel: "canonical", href: getCanonicalUrl("/") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -83,7 +99,7 @@ export const Route = createFileRoute("/")({
           email: "sabeeh@operantscale.com",
           areaServed: "US",
           serviceType:
-            "Insurance agency workflow automation, operational systems and AI-assisted process design",
+            "Operational systems and AI-assisted workflow design for independent P&C insurance agencies",
           audience: {
             "@type": "Audience",
             audienceType: "Independent Property & Casualty insurance agencies",
@@ -260,9 +276,9 @@ function HomePage() {
                         location: "hero",
                       })
                     }
-                    className="inline-flex h-16 items-center justify-center gap-3 whitespace-nowrap bg-primary px-10 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90"
+                    className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-normal bg-primary px-6 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90 sm:w-auto sm:whitespace-nowrap sm:px-10"
                   >
-                    Book an operational discovery <ArrowRight className="size-4" />
+                    Book an operational discovery <ArrowRight className="size-4 shrink-0" />
                   </Link>
                   <Link
                     to="/"
@@ -270,7 +286,7 @@ function HomePage() {
                     onClick={() =>
                       trackEvent("cta_click", { cta_name: "see_how_we_work", location: "hero" })
                     }
-                    className="inline-flex h-16 items-center justify-center whitespace-nowrap border border-foreground/25 px-9 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary"
+                    className="inline-flex h-16 w-full items-center justify-center whitespace-normal border border-foreground/25 px-6 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary sm:w-auto sm:whitespace-nowrap sm:px-9"
                   >
                     See how we work
                   </Link>
@@ -679,9 +695,9 @@ function HomePage() {
                         location: "final_cta",
                       })
                     }
-                    className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-nowrap bg-ink-foreground px-10 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto"
+                    className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-normal bg-ink-foreground px-6 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto sm:whitespace-nowrap sm:px-10"
                   >
-                    Book an operational discovery <ArrowRight className="size-4" />
+                    Book an operational discovery <ArrowRight className="size-4 shrink-0" />
                   </Link>
                   <p className="max-w-sm text-sm leading-relaxed text-ink-muted lg:text-right">
                     No obligation. No pre-built automation package. Just a conversation about how

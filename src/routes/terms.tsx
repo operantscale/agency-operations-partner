@@ -2,24 +2,36 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { trackEvent } from "@/lib/analytics";
+import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms | OperantScale" },
+      { title: "OperantScale Terms of Service" },
       {
         name: "description",
-        content: "Terms governing use of the OperantScale website and information published on it.",
+        content:
+          "Read the terms governing use of the OperantScale website, contact form, and shared information.",
       },
-      { property: "og:title", content: "Terms — OperantScale" },
+      { property: "og:title", content: "OperantScale Terms of Service" },
       {
         property: "og:description",
-        content: "Terms governing use of the OperantScale website.",
+        content: "Terms governing use of the OperantScale website and published information.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://operantscale.com/terms" },
+      { property: "og:url", content: getCanonicalUrl("/terms") },
+      { property: "og:image", content: getAbsoluteImageUrl() },
+      { property: "og:image:alt", content: "OperantScale brand mark for terms of service" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "OperantScale Terms of Service" },
+      {
+        name: "twitter:description",
+        content:
+          "Read the terms governing use of the OperantScale website and published information.",
+      },
+      { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
-    links: [{ rel: "canonical", href: "https://operantscale.com/terms" }],
+    links: [{ rel: "canonical", href: getCanonicalUrl("/terms") }],
   }),
   component: TermsPage,
 });

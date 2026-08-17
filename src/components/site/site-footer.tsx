@@ -1,6 +1,14 @@
 import { Link } from "@tanstack/react-router";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { Logo } from "./logo";
 import { trackEvent } from "@/lib/analytics";
+import { siteConfig } from "@/lib/seo";
+
+const socialLinks = [
+  { label: "LinkedIn", href: siteConfig.social.linkedin, icon: Linkedin },
+  { label: "Instagram", href: siteConfig.social.instagram, icon: Instagram },
+  { label: "Facebook", href: siteConfig.social.facebook, icon: Facebook },
+] as const;
 
 export function SiteFooter() {
   return (
@@ -49,7 +57,34 @@ export function SiteFooter() {
             >
               operantscale.com
             </a>
-            <span className="text-muted-foreground">United States</span>
+            <div aria-label="OperantScale social profiles" className="mt-2 flex items-center gap-3">
+              {socialLinks.map(({ label, href, icon: Icon }) => {
+                const isEnabled = Boolean(href);
+
+                return (
+                  <a
+                    key={label}
+                    href={isEnabled ? (href ?? undefined) : undefined}
+                    aria-label={label}
+                    aria-disabled={!isEnabled}
+                    target={isEnabled ? "_blank" : undefined}
+                    rel={isEnabled ? "noopener noreferrer" : undefined}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border transition-colors ${
+                      isEnabled
+                        ? "border-border text-muted-foreground hover:border-foreground hover:text-foreground"
+                        : "pointer-events-none border-border/60 text-muted-foreground/50"
+                    }`}
+                    onClick={(event) => {
+                      if (!isEnabled) {
+                        event.preventDefault();
+                      }
+                    }}
+                  >
+                    <Icon className="size-3.5" aria-hidden="true" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 

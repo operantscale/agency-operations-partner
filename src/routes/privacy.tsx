@@ -2,25 +2,37 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { trackEvent } from "@/lib/analytics";
+import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy | OperantScale" },
+      { title: "OperantScale Privacy Policy" },
       {
         name: "description",
         content:
-          "How OperantScale collects, uses and protects information submitted through operantscale.com.",
+          "Learn how OperantScale handles information submitted through the website and contact form, including collection, use, and retention practices.",
       },
-      { property: "og:title", content: "Privacy — OperantScale" },
+      { property: "og:title", content: "OperantScale Privacy Policy" },
       {
         property: "og:description",
-        content: "How OperantScale handles information submitted through its website.",
+        content:
+          "Learn how OperantScale handles information submitted through the website and discovery form.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://operantscale.com/privacy" },
+      { property: "og:url", content: getCanonicalUrl("/privacy") },
+      { property: "og:image", content: getAbsoluteImageUrl() },
+      { property: "og:image:alt", content: "OperantScale brand mark for privacy information" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "OperantScale Privacy Policy" },
+      {
+        name: "twitter:description",
+        content:
+          "Learn how OperantScale handles information submitted through the website and contact form.",
+      },
+      { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
-    links: [{ rel: "canonical", href: "https://operantscale.com/privacy" }],
+    links: [{ rel: "canonical", href: getCanonicalUrl("/privacy") }],
   }),
   component: PrivacyPage,
 });

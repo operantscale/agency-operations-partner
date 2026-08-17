@@ -103,7 +103,9 @@ function ContactPage() {
 
     try {
       const result = await submit({ data: parsed.data });
-      const ok = !!result && ((result as any).ok === true || (result as any).success === true);
+      const ok = Boolean(
+        result && typeof result === "object" && "ok" in result && result.ok === true,
+      );
 
       if (!ok) {
         throw new Error(SUBMISSION_ERROR_MESSAGE);
@@ -179,7 +181,11 @@ function ContactPage() {
                   </Link>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} noValidate className="border border-border bg-card p-6 sm:p-10">
+                <form
+                  onSubmit={onSubmit}
+                  noValidate
+                  className="border border-border bg-card p-6 sm:p-10"
+                >
                   <div className="grid gap-6 sm:grid-cols-2">
                     {FIELDS.map((field) => (
                       <div

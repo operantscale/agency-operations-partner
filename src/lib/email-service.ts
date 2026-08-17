@@ -12,6 +12,7 @@ export interface DiscoveryRequestData {
   agencyWebsite?: string | undefined;
   primaryChallenge: string;
   additionalContext?: string | undefined;
+  submittedAt?: Date;
 }
 
 export interface EmailResult {
@@ -36,26 +37,18 @@ function getResend(): Resend | null {
 }
 
 function getAdminEmail(): string {
-  return (
-    process.env.ADMIN_EMAIL?.trim() ||
-    "wajeeh@operantscale.com"
-  );
+  return process.env.ADMIN_EMAIL?.trim() || "wajeeh@operantscale.com";
 }
 
 function getFromEmail(): string {
-  return (
-    process.env.SMTP_FROM_EMAIL?.trim() ||
-    "noreply@operantscale.com"
-  );
+  return process.env.RESEND_FROM_EMAIL?.trim() || "noreply@operantscale.com";
 }
 
 /* -------------------------------------------------------------------------- */
 /* Admin notification                                                         */
 /* -------------------------------------------------------------------------- */
 
-export async function sendAdminNotification(
-  data: DiscoveryRequestData,
-): Promise<EmailResult> {
+export async function sendAdminNotification(data: DiscoveryRequestData): Promise<EmailResult> {
   const resend = getResend();
 
   if (!resend) {
@@ -226,6 +219,11 @@ export async function sendAdminNotification(
 
     <div class="divider"></div>
 
+    <div class="field">
+      <div class="label">Submission Date/Time</div>
+      <div class="value">${escapeHtml((data.submittedAt ?? new Date()).toISOString())}</div>
+    </div>
+
     <div class="footer">
       This inquiry was submitted via operantscale.com.
     </div>
@@ -236,20 +234,15 @@ export async function sendAdminNotification(
 `;
 
   try {
-    const { data: result, error } =
-      await resend.emails.send({
-        from: fromEmail,
-        to: adminEmail,
-        subject:
-          `New Operational Discovery Request - ${data.agencyName}`,
-        html: adminHtml,
-      });
+    const { data: result, error } = await resend.emails.send({
+      from: fromEmail,
+      to: adminEmail,
+      subject: `New Operational Discovery Request — ${data.agencyName}`,
+      html: adminHtml,
+    });
 
     if (error) {
-      console.error(
-        "Resend admin email error:",
-        error,
-      );
+      console.error("Resend admin email error:", error);
 
       return {
         success: false,
@@ -257,20 +250,14 @@ export async function sendAdminNotification(
       };
     }
 
-    console.log(
-      "Admin notification sent:",
-      result?.id,
-    );
+    console.log("Admin notification sent:", result?.id);
 
     return {
       success: true,
       messageId: result?.id,
     };
   } catch (error) {
-    console.error(
-      "Unexpected admin email error:",
-      error,
-    );
+    console.error("Unexpected admin email error:", error);
 
     return {
       success: false,
@@ -283,9 +270,7 @@ export async function sendAdminNotification(
 /* User confirmation                                                          */
 /* -------------------------------------------------------------------------- */
 
-export async function sendUserConfirmation(
-  data: DiscoveryRequestData,
-): Promise<EmailResult> {
+export async function sendUserConfirmation(data: DiscoveryRequestData): Promise<EmailResult> {
   const resend = getResend();
 
   if (!resend) {
@@ -350,13 +335,6 @@ export async function sendUserConfirmation(
       margin: 16px 0;
     }
 
-    .cta-section {
-      background: #f1f3f5;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 24px 0;
-    }
-
     .footer {
       font-size: 12px;
       color: #999999;
@@ -381,49 +359,26 @@ export async function sendUserConfirmation(
     <div class="content">
 
       <p>
-        Hi ${escapeHtml(data.fullName)},
+        Hello ${escapeHtml(data.fullName.split(/\s+/)[0] || data.fullName)},
       </p>
 
       <p>
-        We've received your discovery request for
-        <strong>${escapeHtml(data.agencyName)}</strong>.
+        Thank you for reaching out to OperantScale.
+        We've received your information and will review the operational
+        challenges you've shared.
       </p>
 
       <p>
-        We'll review what you shared about your operational
-        challenges and get back to you within two business days
-        to schedule your operational discovery conversation.
-      </p>
-
-      <div class="cta-section">
-        <p>
-          <strong>
-            That first call is a working session, not a sales call.
-          </strong>
-        </p>
-
-        <p>
-          We'll walk through how your team operates today and
-          identify where meaningful opportunities for improvement
-          may exist.
-        </p>
-      </div>
-
-      <p>
-        Questions in the meantime?
-        Feel free to reach out directly to
-        <a href="mailto:wajeeh@operantscale.com">
-          wajeeh@operantscale.com
-        </a>.
+        We'll be in touch regarding the next steps.
       </p>
 
       <p>
-        Looking forward to the conversation,
+        Regards,
       </p>
 
       <p>
         <strong>OperantScale</strong><br>
-        Operational Intelligence for Independent P&amp;C Insurance Agencies
+        AI-Powered Operational Systems for Independent P&amp;C Insurance Agencies
       </p>
 
     </div>
@@ -446,19 +401,15 @@ export async function sendUserConfirmation(
 `;
 
   try {
-    const { data: result, error } =
-      await resend.emails.send({
-        from: fromEmail,
-        to: data.workEmail,
-        subject: "Your OperantScale Discovery Request",
-        html: userHtml,
-      });
+    const { data: result, error } = await resend.emails.send({
+      from: fromEmail,
+      to: data.workEmail,
+      subject: "Your OperantScale Discovery Request",
+      html: userHtml,
+    });
 
     if (error) {
-      console.error(
-        "Resend user email error:",
-        error,
-      );
+      console.error("Resend user email error:", error);
 
       return {
         success: false,
@@ -466,20 +417,14 @@ export async function sendUserConfirmation(
       };
     }
 
-    console.log(
-      "User confirmation sent:",
-      result?.id,
-    );
+    console.log("User confirmation sent:", result?.id);
 
     return {
       success: true,
       messageId: result?.id,
     };
   } catch (error) {
-    console.error(
-      "Unexpected user email error:",
-      error,
-    );
+    console.error("Unexpected user email error:", error);
 
     return {
       success: false,
@@ -501,8 +446,5 @@ function escapeHtml(text: string): string {
     "'": "&#039;",
   };
 
-  return text.replace(
-    /[&<>"']/g,
-    (character) => map[character],
-  );
+  return text.replace(/[&<>"']/g, (character) => map[character]);
 }

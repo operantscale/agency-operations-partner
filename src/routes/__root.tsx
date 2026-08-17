@@ -11,6 +11,8 @@ import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 
+const GOOGLE_ANALYTICS_ID = "G-HLKG9LVVNN";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -97,6 +99,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: "/favicon.ico" },
     ],
     scripts: [
+      {
+        src: `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`,
+        async: true,
+      },
+      {
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ANALYTICS_ID}');`,
+      },
       {
         type: "application/ld+json",
         children: JSON.stringify({

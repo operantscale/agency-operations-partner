@@ -5,14 +5,20 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { loadEnv } from "vite";
 
-export default defineConfig({
-  nitro: {
-    preset: "vercel",
-  },
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
+export default defineConfig(({ mode }) => {
+  // Vite exposes only VITE_* variables to browser code. Load the complete
+  // local env file into the server process so server functions can access
+  // their private Supabase and Resend credentials.
+  Object.assign(process.env, loadEnv(mode, process.cwd(), ""));
+
+  return {
+    nitro: { preset: "vercel" },
+    tanstackStart: {
+      // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
+      // nitro/vite builds from this
+      server: { entry: "server" },
+    },
+  };
 });

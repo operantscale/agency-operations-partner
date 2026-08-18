@@ -110,9 +110,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon", sizes: "32x32" },
-      { rel: "apple-touch-icon", href: "/favicon.svg" },
+      { rel: "icon", href: "/favicon/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+      { rel: "icon", href: "/favicon/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/favicon/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "manifest", href: "/favicon/site.webmanifest" },
     ],
     scripts: [
       {

@@ -263,7 +263,7 @@ function HomePage() {
                 <p className="mt-6 max-w-xl text-[1.1875rem] leading-[1.62] text-muted-foreground">
                   We reduce the repetitive administrative work inside your agency, improve the
                   workflows between your existing systems, and create capacity for your team to
-                  serve clients better and grow sustainably. AI is the mechanism—operational
+                  serve clients better and grow sustainably. AI is the mechanism operational
                   improvement is the product.
                 </p>
 
@@ -327,7 +327,7 @@ function HomePage() {
                     that were never designed to talk to each other.
                   </p>
                   <p className="text-sm">
-                    Not every agency experiences this the same way—which is exactly what discovery
+                    Not every agency experiences this the same way which is exactly what discovery
                     is for.
                   </p>
                 </div>
@@ -351,7 +351,7 @@ function HomePage() {
                 </h2>
                 <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Potential opportunities may exist across the areas below. These are operational
-                  investigation areas—not assumptions about how your agency runs.
+                  investigation areas not assumptions about how your agency runs.
                 </p>
               </div>
             </Reveal>
@@ -383,7 +383,7 @@ function HomePage() {
                 </h2>
                 <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   Four operational capability groups. We don't start with a pre-built automation and
-                  force it into your agency—we first understand the workflow, identify where
+                  force it into your agency we first understand the workflow, identify where
                   capacity may be lost, and determine whether automation is actually the right
                   answer.
                 </p>
@@ -474,7 +474,7 @@ function HomePage() {
                     We aren't here to replace the systems your agency already relies on.
                   </p>
                   <p>
-                    We examine how your people, processes and existing systems interact—and identify
+                    We examine how your people, processes and existing systems interact and identify
                     opportunities to improve the work between them.
                   </p>
                   <p className="text-sm">
@@ -502,7 +502,7 @@ function HomePage() {
                 </h2>
                 <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   We don't start with a pre-built automation. We start by understanding how the work
-                  actually moves through your agency—then design only what earns its place.
+                  actually moves through your agency then design only what earns its place.
                 </p>
               </div>
             </Reveal>

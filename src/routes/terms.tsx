@@ -52,16 +52,16 @@ function TermsPage() {
             <section>
               <h2 className="text-base font-medium text-foreground">Use of this website</h2>
               <p className="mt-3">
-                This website describes OperantScale's approach to operational systems for
-                independent P&amp;C insurance agencies. Content is provided for general information
-                and does not constitute professional, legal, or insurance advice.
+                This website describes OperantScale's approach to operational systems and practical
+                automation for growing businesses. Content is provided for general information and
+                does not constitute professional, legal, or business advice.
               </p>
             </section>
             <section>
               <h2 className="text-base font-medium text-foreground">No guaranteed outcomes</h2>
               <p className="mt-3">
                 Descriptions of potential improvements are illustrative. Any outcome depends on the
-                specific agency, its systems, its processes, and the scope of work agreed in
+                specific company, its systems, its processes, and the scope of work agreed in
                 writing. Nothing on this website is a guarantee of results.
               </p>
             </section>

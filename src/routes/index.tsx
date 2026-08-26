@@ -9,60 +9,47 @@ import {
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Reveal } from "@/components/site/reveal";
-import { SystemVisual, HandoffVisual, StackVisual } from "@/components/site/system-visual";
-import { trackEvent } from "@/lib/analytics";
 import {
-  defaultPageDescription,
-  defaultPageTitle,
-  getAbsoluteImageUrl,
-  getCanonicalUrl,
-} from "@/lib/seo";
+  CapabilityFlowVisual,
+  SystemVisual,
+  HandoffVisual,
+  StackVisual,
+} from "@/components/site/system-visual";
+import { trackEvent } from "@/lib/analytics";
+import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
 
-const TITLE =
-  "OperantScale | AI-Powered Operational Systems for Independent P&C Insurance Agencies";
+const TITLE = "OperantScale | AI-Powered Operational Systems for Growing Businesses";
 const DESCRIPTION =
-  "OperantScale helps independent P&C insurance agencies reduce repetitive administrative work, improve workflow visibility, and create practical operational capacity with AI-powered systems.";
+  "OperantScale designs and implements practical automation for lead follow-up, customer workflows, scheduling, CRM, communication, and internal operations—built around the systems businesses already use.";
 
 const FAQS = [
   {
-    q: "Will you replace our AMS?",
-    a: "No. OperantScale is designed to work around existing systems where appropriate and improve the workflows between people, processes and technology.",
+    q: "Do you replace our existing software?",
+    a: "Usually not. We look for opportunities to improve the workflows around the systems your team already uses.",
   },
   {
-    q: "Do we need to change our existing software?",
-    a: "Not necessarily. The goal is to improve how your existing systems, people and workflows work together.",
+    q: "Can you work with our current CRM?",
+    a: "Yes. Existing systems are considered part of the workflow and are integrated where practical.",
   },
   {
-    q: "Do we need to know exactly what we want automated?",
-    a: "No. That's part of the discovery process. We first understand how your team works and identify where meaningful opportunities may exist.",
+    q: "What kinds of workflows can you automate?",
+    a: "Lead follow-up, booking, reminders, customer communication, CRM workflows, data movement, renewals, reactivation, task routing, and other repetitive processes.",
   },
   {
-    q: "What happens during the first conversation?",
-    a: "We learn how your agency operates, understand the workflows that create the most friction, and determine whether there is a worthwhile opportunity for improvement.",
+    q: "Do we need to change our current processes?",
+    a: "Not necessarily. We first understand what is working, then improve the parts creating unnecessary friction.",
   },
   {
-    q: "How do you handle sensitive information?",
-    a: "Information handling is considered as part of the workflow design. We aim to minimize unnecessary data movement, use appropriate access controls and design systems around the agency's existing technology and policies.",
+    q: "How much of the work is handled by AI?",
+    a: "AI is used where it is useful and appropriate. The focus is the reliable workflow, not AI for its own sake.",
   },
   {
-    q: "Will AI replace our staff?",
-    a: "The focus is reducing repetitive work and increasing team capacity—not replacing the people who create value through judgment, relationships and client service.",
+    q: "Can you build custom integrations?",
+    a: "Yes. When existing tools cannot reasonably support the workflow, we can build the necessary integration or internal tool.",
   },
   {
-    q: "Is every agency a good fit?",
-    a: "No. Automation should only be applied where it creates meaningful operational value.",
-  },
-  {
-    q: "What systems can you work with?",
-    a: "That depends on the agency's existing technology stack. Systems and workflows are evaluated before recommending an approach.",
-  },
-  {
-    q: "How much does an automation project cost?",
-    a: "Every agency's workflows and technology environment are different, so we scope projects around the operational opportunity rather than selling a fixed automation package. Pricing is discussed after understanding the workflow and requirements.",
-  },
-  {
-    q: "How do we get started?",
-    a: "Start with an operational discovery conversation. It's a working session, not a sales call.",
+    q: "What happens before implementation?",
+    a: "We understand the workflow, map the friction and repetition, then recommend the simplest practical system before anything is built.",
   },
 ];
 
@@ -79,7 +66,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:image:alt",
         content:
-          "OperantScale brand mark for AI-powered operations systems for independent P&C insurance agencies",
+          "OperantScale brand mark for AI-powered operational systems for growing businesses",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
@@ -92,18 +79,11 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ProfessionalService",
+          "@type": "WebSite",
           name: "OperantScale",
           description: DESCRIPTION,
           url: "https://operantscale.com",
-          email: "sabeeh@operantscale.com",
-          areaServed: "US",
-          serviceType:
-            "Operational systems and AI-assisted workflow design for independent P&C insurance agencies",
-          audience: {
-            "@type": "Audience",
-            audienceType: "Independent Property & Casualty insurance agencies",
-          },
+          publisher: { "@type": "Organization", name: "OperantScale" },
         }),
       },
       {
@@ -125,114 +105,139 @@ export const Route = createFileRoute("/")({
 
 const WORK_AREAS = [
   {
-    title: "Lead & Inquiry Handling",
-    body: "New inquiries arrive across phone, email, web forms and referrals, and each one has to be routed, recorded and answered.",
+    title: "Lead & inquiry",
+    body: "Capture, qualify, and follow up.",
   },
   {
-    title: "Quote Workflows",
-    body: "Gathering information, re-entering it across systems, and moving a quote through to a decision.",
+    title: "Scheduling",
+    body: "Reduce coordination and back-and-forth.",
   },
   {
-    title: "Client Service",
-    body: "Certificates, endorsements, questions and document requests that recur across the book.",
+    title: "Customer workflow",
+    body: "Automate routine communication and follow-up.",
   },
   {
-    title: "Renewals",
-    body: "Identifying upcoming renewals, preparing them, and coordinating client communication on time.",
+    title: "CRM & data",
+    body: "Keep information synchronized and current.",
   },
   {
-    title: "Internal Coordination",
-    body: "Handoffs between producers, account managers and service staff, and the follow-up they generate.",
+    title: "Internal coordination",
+    body: "Route tasks, alerts, and responsibilities.",
   },
   {
-    title: "Data & Documentation",
-    body: "Moving information between the AMS and other systems, and keeping records consistent.",
+    title: "Data movement",
+    body: "Move information between tools without manual work.",
   },
+];
+
+const CAPABILITY_FLOW = [
+  { label: "Process", body: "Understand the recurring work" },
+  { label: "Automation", body: "Design the right intervention" },
+  { label: "Outcome", body: "Return time and visibility" },
 ];
 
 const CAPABILITY_GROUPS = [
   {
     n: "01",
-    title: "Client Acquisition",
-    body: "Making sure nothing arriving at the agency is missed, delayed or handled twice.",
-    items: ["Lead intake", "Qualification", "Follow-up", "Inquiry routing"],
+    title: "Revenue operations",
+    body: "Help opportunities move from first contact to next step quickly and consistently.",
+    items: [
+      "Lead capture",
+      "Lead qualification",
+      "Lead follow-up",
+      "Appointment workflows",
+      "Lead reactivation",
+    ],
   },
   {
     n: "02",
-    title: "Client Service",
-    body: "Keeping recurring service work moving without constant manual coordination.",
+    title: "Customer operations",
+    body: "Keep communication and recurring customer work moving with fewer manual handoffs.",
     items: [
-      "Client communication workflows",
-      "Request routing",
-      "Task coordination",
-      "Follow-up systems",
+      "Customer communication",
+      "Reminders",
+      "Renewals and rebooking",
+      "Review requests",
+      "Status updates",
     ],
   },
   {
     n: "03",
-    title: "Agency Operations",
-    body: "Reducing the administrative work that sits between your existing systems.",
+    title: "Internal operations",
+    body: "Reduce the administrative work between people, systems, and the decisions that keep work moving.",
     items: [
-      "Administrative workflow automation",
+      "CRM workflows",
       "Data movement",
-      "Internal coordination",
-      "Documentation workflows",
+      "System integrations",
+      "Task routing",
+      "Notifications",
+      "Reporting workflows",
     ],
   },
   {
     n: "04",
-    title: "Growth Capacity",
-    body: "Creating room to handle more volume with the team and systems you already have.",
+    title: "AI & workflow automation",
+    body: "Connect the right systems and automate repetitive work where it creates meaningful operational value.",
     items: [
-      "Renewal workflow support",
-      "Operational visibility",
+      "Workflow automation",
       "AI-assisted processes",
-      "Custom integrations",
+      "System integrations",
+      "Automated notifications",
+      "Custom business logic",
+      "Human-in-the-loop workflows",
     ],
   },
 ];
 
 const STAGES = [
-  { n: "01", title: "Understand", body: "Learn how the agency actually operates, day to day." },
-  { n: "02", title: "Map", body: "Identify workflows, bottlenecks, handoffs and repetitive work." },
+  { n: "01", title: "Understand", body: "Learn how the work actually happens." },
+  { n: "02", title: "Map", body: "Find friction, repetition, handoffs, and bottlenecks." },
   {
     n: "03",
     title: "Design",
-    body: "Determine where AI and automation can create practical value.",
+    body: "Define the simplest system that solves the problem.",
   },
   {
     n: "04",
     title: "Implement",
-    body: "Build and integrate the system into the existing workflow.",
+    body: "Build, integrate, test, and deploy with minimal disruption.",
   },
-  { n: "05", title: "Optimize", body: "Monitor, refine and improve the system over time." },
+  { n: "05", title: "Optimize", body: "Measure, refine, and improve over time." },
 ];
 
 const OUTCOMES = [
   {
     title: "Less repetitive work",
-    body: "Designed to reduce the manual steps that recur every day.",
+    body: "Reduce manual administrative tasks.",
   },
-  { title: "Faster workflows", body: "Intended to shorten the path from inquiry to resolution." },
-  { title: "Better visibility", body: "Clearer sight of where work sits and what is waiting." },
-  { title: "More team capacity", body: "Time returned to producers and service staff." },
-  { title: "Better client experience", body: "Helps responses stay timely and consistent." },
-  { title: "Capacity to grow", body: "Supporting more volume without proportional headcount." },
+  { title: "Faster follow-up", body: "Respond to opportunities quickly and consistently." },
+  { title: "Better coordination", body: "Keep people, tasks, and systems aligned." },
+  { title: "More operational visibility", body: "See where work moves and where it gets stuck." },
+  { title: "More capacity", body: "Give teams more time for higher-value work." },
 ];
 
 const PRINCIPLES = [
-  "Minimize unnecessary data movement",
-  "Work with existing systems where appropriate",
-  "Use controlled access",
-  "Apply least-privilege principles where applicable",
-  "Avoid unnecessary exposure of sensitive information",
-  "Evaluate workflow and security requirements before implementation",
-  "Design around the agency's existing technology and policies",
+  {
+    title: "Start with the workflow",
+    body: "Understand the process before choosing the technology.",
+  },
+  {
+    title: "Build around what already works",
+    body: "Improve existing systems instead of replacing them without a reason.",
+  },
+  {
+    title: "Automate with purpose",
+    body: "Prioritize repetitive processes where automation creates meaningful value.",
+  },
+  {
+    title: "Keep people in control",
+    body: "Automate predictable work while keeping human judgment where it matters.",
+  },
 ];
 
 const NEXT_STEPS = [
-  { n: "01", t: "Conversation", b: "Understand the agency." },
-  { n: "02", t: "Workflow review", b: "Identify friction and repetitive work." },
+  { n: "01", t: "Conversation", b: "Understand the work." },
+  { n: "02", t: "Workflow review", b: "Identify friction, handoffs, and repetition." },
   { n: "03", t: "Opportunity assessment", b: "Determine whether automation makes sense." },
   {
     n: "04",
@@ -256,15 +261,14 @@ function HomePage() {
           <div className="relative mx-auto max-w-[84rem] px-6 lg:px-10">
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
               <Reveal>
-                <p className="eyebrow">Operational intelligence · Independent P&amp;C agencies</p>
+                <p className="eyebrow">Operational automation</p>
                 <h1 className="mt-6 max-w-2xl text-[2.6rem] leading-[1.04] font-medium tracking-[-0.028em] sm:text-[3.4rem] lg:text-[4rem]">
-                  AI-Powered Operational Systems for Independent P&amp;C Insurance Agencies
+                  Turn repetitive business work into reliable systems.
                 </h1>
                 <p className="mt-6 max-w-xl text-[1.1875rem] leading-[1.62] text-muted-foreground">
-                  We reduce the repetitive administrative work inside your agency, improve the
-                  workflows between your existing systems, and create capacity for your team to
-                  serve clients better and grow sustainably. AI is the mechanism operational
-                  improvement is the product.
+                  OperantScale identifies where repetitive work, manual handoffs, and disconnected
+                  systems slow your team down then designs and implements practical automation
+                  around the tools you already use.
                 </p>
 
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -278,7 +282,7 @@ function HomePage() {
                     }
                     className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-normal bg-primary px-6 text-[0.82rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_18px_40px_-20px_var(--color-primary)] transition-colors hover:bg-primary/90 sm:w-auto sm:whitespace-nowrap sm:px-10"
                   >
-                    Book an operational discovery <ArrowRight className="size-4 shrink-0" />
+                    Start a conversation <ArrowRight className="size-4 shrink-0" />
                   </Link>
                   <Link
                     to="/"
@@ -288,13 +292,12 @@ function HomePage() {
                     }
                     className="inline-flex h-16 w-full items-center justify-center whitespace-normal border border-foreground/25 px-6 text-[0.82rem] font-medium tracking-[0.11em] text-foreground uppercase transition-colors hover:bg-secondary sm:w-auto sm:whitespace-nowrap sm:px-9"
                   >
-                    See how we work
+                    Explore capabilities
                   </Link>
                 </div>
 
                 <p className="mt-8 max-w-md border-l-2 border-accent pl-4 text-[0.9375rem] leading-relaxed text-muted-foreground">
-                  Built for established independent P&amp;C agencies with growing operational
-                  complexity.
+                  Better workflows. Less repetitive work. More capacity.
                 </p>
               </Reveal>
 
@@ -310,25 +313,23 @@ function HomePage() {
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
-                <p className="eyebrow">Operational reality</p>
+                <p className="eyebrow">Operational friction</p>
                 <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  Your Agency May Already Have the Right Tools.
+                  Good businesses don't always need more tools. They need better workflows.
                 </h2>
                 <div className="mt-6 max-w-lg space-y-5 text-[1.125rem] leading-[1.7] text-muted-foreground">
                   <p>
-                    Most established agencies already run an AMS, a CRM, email, communication
-                    platforms, quoting tools and client portals. The technology is usually not the
-                    missing piece.
+                    Repetitive tasks, manual handoffs, missed follow-ups, disconnected systems, and
+                    scattered information quietly consume team capacity.
                   </p>
                   <p>
-                    The work that accumulates is often the work{" "}
-                    <span className="text-foreground">between</span> those systems: information
-                    moved by hand, follow-ups chased, data re-entered, and coordination across tools
-                    that were never designed to talk to each other.
+                    The friction often sits <span className="text-foreground">between</span> those
+                    systems: information moved by hand, follow-ups chased, data re-entered, and
+                    coordination across tools that were never designed to work together.
                   </p>
                   <p className="text-sm">
-                    Not every agency experiences this the same way which is exactly what discovery
-                    is for.
+                    Every business experiences this differently. That is exactly what discovery is
+                    for.
                   </p>
                 </div>
               </Reveal>
@@ -340,18 +341,18 @@ function HomePage() {
           </div>
         </section>
 
-        {/* THE WORK BEHIND THE WORK */}
+        {/* WHERE WE INTERVENE */}
         <section className="border-t border-border bg-surface">
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-2xl">
-                <p className="eyebrow">Where the workload accumulates</p>
+                <p className="eyebrow">Where we intervene</p>
                 <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  The Work Behind the Work
+                  Workflows worth improving.
                 </h2>
                 <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
-                  Potential opportunities may exist across the areas below. These are operational
-                  investigation areas not assumptions about how your agency runs.
+                  We look for practical opportunities across the workflows that keep your business
+                  moving.
                 </p>
               </div>
             </Reveal>
@@ -379,13 +380,12 @@ function HomePage() {
               <div className="max-w-2xl">
                 <p className="eyebrow">What OperantScale does</p>
                 <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  We Design Systems Around How Your Agency Actually Works.
+                  Practical automation across the work that keeps your business moving.
                 </h2>
                 <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
-                  Four operational capability groups. We don't start with a pre-built automation and
-                  force it into your agency we first understand the workflow, identify where
-                  capacity may be lost, and determine whether automation is actually the right
-                  answer.
+                  We don't start with a pre-built automation and force it into your business. We
+                  understand the workflow, identify where capacity is lost, and determine whether
+                  automation is actually the right answer.
                 </p>
               </div>
             </Reveal>
@@ -417,39 +417,55 @@ function HomePage() {
                 </Reveal>
               ))}
             </div>
+
+            <Reveal delay={0.08} className="mt-12">
+              <CapabilityFlowVisual className="w-full" />
+            </Reveal>
+
+            <div className="mt-12 grid gap-px border border-border bg-border md:grid-cols-3">
+              {CAPABILITY_FLOW.map((step, i) => (
+                <Reveal key={step.label} delay={i * 0.07} className="bg-surface">
+                  <div className="p-7 lg:p-8">
+                    <span className="font-mono text-[0.68rem] tracking-[0.18em] text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-5 text-lg font-medium">{step.label}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {step.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* WHO WE WORK WITH */}
+        {/* START WITH THE WORKFLOW */}
         <section className="border-t border-border bg-surface">
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-24">
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
               <Reveal>
-                <p className="eyebrow">Who OperantScale is built for</p>
+                <p className="eyebrow">Start with the workflow</p>
                 <h2 className="mt-4 max-w-lg text-[2.25rem] leading-[1.08] font-medium sm:text-[2.75rem]">
-                  Built for Established Independent P&amp;C Agencies.
+                  Start with the workflow. Not the software.
                 </h2>
                 <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
-                  Built for established independent P&amp;C agencies with growing operational
-                  complexity — established teams, existing technology and multiple workflows running
-                  at once. There is no employee-count requirement; fit is about operational
-                  complexity, not size.
+                  We don't begin by choosing a tool. We begin by understanding how work moves
+                  through your business, where friction appears, and where automation can create
+                  meaningful value.
                 </p>
               </Reveal>
 
               <Reveal delay={0.1}>
-                <ul className="grid gap-x-10 sm:grid-cols-2">
+                <ul className="border-t border-border">
                   {[
-                    "Independent P&C agencies",
-                    "Established teams",
-                    "Existing AMS and business systems",
-                    "Multiple concurrent workflows",
-                    "Growing administrative complexity",
-                    "Service standards worth protecting",
+                    "Repetitive work worth reducing",
+                    "Existing systems worth connecting",
+                    "A bottleneck worth resolving",
                   ].map((item) => (
                     <li
                       key={item}
-                      className="border-t border-border py-4 text-[1rem] text-foreground"
+                      className="border-b border-border py-5 text-[1rem] text-foreground"
                     >
                       {item}
                     </li>
@@ -465,21 +481,21 @@ function HomePage() {
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-20">
               <Reveal>
-                <p className="eyebrow text-ink-muted">Existing technology</p>
+                <p className="eyebrow text-ink-muted">Existing systems</p>
                 <h2 className="mt-4 max-w-lg text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  Built Around Your Existing Technology
+                  Built around the systems you already use.
                 </h2>
                 <div className="mt-6 max-w-lg space-y-5 text-[1.125rem] leading-[1.7] text-ink-muted">
                   <p className="text-ink-foreground">
-                    We aren't here to replace the systems your agency already relies on.
+                    Your business probably doesn't need another disconnected platform.
                   </p>
                   <p>
-                    We examine how your people, processes and existing systems interact and identify
-                    opportunities to improve the work between them.
+                    We connect the systems your team already relies on and improve the workflows
+                    between them.
                   </p>
                   <p className="text-sm">
-                    The layers shown are conceptual. Actual systems and integration options are
-                    evaluated against your stack during discovery.
+                    OPERATIONS is the layer connecting technology to the way your team works. Actual
+                    systems and integration options are evaluated during discovery.
                   </p>
                 </div>
               </Reveal>
@@ -496,13 +512,13 @@ function HomePage() {
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
               <div className="max-w-3xl">
-                <p className="eyebrow">Approach</p>
+                <p className="eyebrow">How it works</p>
                 <h2 className="mt-4 text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  Understand the Workflow. Then Build the System.
+                  Understand the work before automating it.
                 </h2>
                 <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
-                  We don't start with a pre-built automation. We start by understanding how the work
-                  actually moves through your agency then design only what earns its place.
+                  We learn how work actually moves through your business, then design only what
+                  earns its place.
                 </p>
               </div>
             </Reveal>
@@ -534,11 +550,11 @@ function HomePage() {
               <Reveal>
                 <p className="eyebrow">Outcomes</p>
                 <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  Create More Capacity From the Team and Systems You Already Have.
+                  More capacity for higher-value work.
                 </h2>
                 <p className="mt-4 max-w-sm text-[1rem] leading-[1.7] text-muted-foreground">
-                  Results depend on the agency, its systems and the scope of work. The following are
-                  the kinds of improvement a well-designed operational system is intended to create.
+                  Results depend on your systems, processes, and scope of work. These are the kinds
+                  of improvement a well-designed operational system is intended to create.
                 </p>
               </Reveal>
 
@@ -558,18 +574,18 @@ function HomePage() {
           </div>
         </section>
 
-        {/* RESPONSIBLE AUTOMATION */}
+        {/* WHY OPERANTSCALE */}
         <section className="border-t border-border">
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
               <Reveal>
-                <p className="eyebrow">Responsible automation</p>
+                <p className="eyebrow">Why OperantScale</p>
                 <h2 className="mt-4 max-w-md text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                  Built With Operational Responsibility.
+                  Practical automation. Not automation for its own sake.
                 </h2>
                 <p className="mt-4 max-w-lg text-[1.125rem] leading-[1.7] text-muted-foreground">
-                  Insurance agencies work with sensitive client and business information. Automation
-                  should improve operations without compromising control.
+                  Automation should improve operations while keeping people, judgment, and control
+                  at the center.
                 </p>
               </Reveal>
 
@@ -577,67 +593,70 @@ function HomePage() {
                 <ul className="border-t border-border">
                   {PRINCIPLES.map((p, i) => (
                     <li
-                      key={p}
-                      className="flex items-baseline gap-6 border-b border-border py-4 text-[1rem] text-foreground"
+                      key={p.title}
+                      className="flex items-start gap-6 border-b border-border py-5 text-[1rem] text-foreground"
                     >
                       <span className="font-mono text-[0.68rem] tracking-[0.18em] text-accent">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      {p}
+                      <span>
+                        <strong className="font-medium">{p.title}</strong>
+                        <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">
+                          {p.body}
+                        </span>
+                      </span>
                     </li>
                   ))}
                 </ul>
                 <p className="mt-6 max-w-lg text-sm leading-relaxed text-muted-foreground">
-                  These are working principles, not certifications. Specific security and
-                  information-handling requirements are evaluated with your agency before anything
-                  is implemented.
+                  These are operating principles, not certifications. Specific requirements are
+                  evaluated with your team before anything is implemented.
                 </p>
               </Reveal>
             </div>
           </div>
         </section>
 
-        {/* WHY OPERANTSCALE */}
+        {/* FIRST ENGAGEMENT */}
         <section className="border-t border-border bg-surface">
           <div className="mx-auto max-w-[84rem] px-6 py-20 lg:px-10 lg:py-26">
             <Reveal>
-              <p className="eyebrow">Why OperantScale</p>
+              <p className="eyebrow">First engagement</p>
               <h2 className="mt-4 max-w-xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                Built for Operations. Not Just Automation.
+                What a first engagement looks like.
               </h2>
             </Reveal>
 
-            <div className="mt-12 grid gap-10 md:grid-cols-3">
+            <div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
               {[
                 {
-                  t: "Industry focused",
-                  b: "We work specifically with independent P&C insurance agencies, not with everyone.",
+                  t: "Discovery",
+                  b: "Understand one process that is creating friction.",
                 },
                 {
-                  t: "Workflow first",
-                  b: "We understand the process before recommending any technology.",
+                  t: "Opportunity",
+                  b: "Identify where automation can create meaningful value.",
                 },
                 {
-                  t: "Outcome oriented",
-                  b: "Automation is only useful when it improves the way the business operates.",
+                  t: "Prototype",
+                  b: "Demonstrate the proposed workflow before a larger implementation.",
+                },
+                {
+                  t: "Implementation",
+                  b: "Build, integrate, test, and deploy the agreed system.",
                 },
               ].map((p, i) => (
-                <Reveal key={p.t} delay={i * 0.08}>
-                  <div className="border-t-2 border-foreground pt-6">
-                    <h3 className="eyebrow text-foreground">{p.t}</h3>
-                    <p className="mt-4 text-[1.125rem] leading-[1.7] text-muted-foreground">
-                      {p.b}
-                    </p>
+                <Reveal key={p.t} delay={i * 0.08} className="bg-background">
+                  <div className="h-full p-7 lg:p-8">
+                    <span className="font-mono text-[0.72rem] tracking-[0.18em] text-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="mt-5 text-lg font-medium">{p.t}</h3>
+                    <p className="mt-4 text-[1rem] leading-[1.7] text-muted-foreground">{p.b}</p>
                   </div>
                 </Reveal>
               ))}
             </div>
-
-            <Reveal delay={0.1}>
-              <p className="mt-16 max-w-3xl border-l-2 border-accent pl-6 text-[1.75rem] leading-[1.2] font-medium tracking-[-0.02em] sm:text-[2.75rem]">
-                Don't automate for the sake of automation.
-              </p>
-            </Reveal>
           </div>
         </section>
 
@@ -678,11 +697,12 @@ function HomePage() {
                 <div>
                   <p className="eyebrow text-ink-muted">Next step</p>
                   <h2 className="mt-4 max-w-2xl text-[2.25rem] leading-[1.08] font-medium sm:text-[3rem]">
-                    Let's Find Where Your Agency Is Losing Capacity.
+                    Let's find where the work is getting stuck.
                   </h2>
                   <p className="mt-6 max-w-xl text-[1.125rem] leading-[1.7] text-ink-muted">
-                    We'll review how your team, systems and workflows currently operate and identify
-                    areas where unnecessary manual work may be limiting capacity.
+                    Tell us about a repetitive process, bottleneck, follow-up gap, or workflow your
+                    team spends too much time managing. We'll use the conversation to understand the
+                    process and determine whether there is a practical opportunity for automation.
                   </p>
                 </div>
 
@@ -697,11 +717,10 @@ function HomePage() {
                     }
                     className="inline-flex h-16 w-full items-center justify-center gap-3 whitespace-normal bg-ink-foreground px-6 text-[0.82rem] font-medium tracking-[0.11em] text-ink uppercase shadow-[0_18px_44px_-22px_var(--color-ink-accent)] transition-opacity hover:opacity-90 sm:w-auto sm:whitespace-nowrap sm:px-10"
                   >
-                    Book an operational discovery <ArrowRight className="size-4 shrink-0" />
+                    Start a conversation <ArrowRight className="size-4 shrink-0" />
                   </Link>
                   <p className="max-w-sm text-sm leading-relaxed text-ink-muted lg:text-right">
-                    No obligation. No pre-built automation package. Just a conversation about how
-                    your agency operates.
+                    No obligation. Just a conversation about how your business operates.
                   </p>
                 </div>
               </div>

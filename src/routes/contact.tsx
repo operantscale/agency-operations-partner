@@ -12,32 +12,30 @@ import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact OperantScale | Insurance Agency Operations" },
+      { title: "Contact OperantScale | Operational Automation" },
       {
         name: "description",
         content:
-          "Contact OperantScale to discuss workflow, automation, and operational improvement opportunities for independent P&C insurance agencies.",
+          "Tell OperantScale about repetitive work, manual handoffs, and operational bottlenecks your team wants to improve.",
       },
-      { property: "og:title", content: "Contact OperantScale | Insurance Agency Operations" },
+      { property: "og:title", content: "Contact OperantScale | Operational Automation" },
       {
         property: "og:description",
         content:
-          "Connect with OperantScale to discuss operational systems, workflow improvements, and practical automation for independent P&C insurance agencies.",
+          "Discuss practical automation for lead follow-up, customer workflows, scheduling, CRM, communication, and internal operations.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: getCanonicalUrl("/contact") },
       { property: "og:image", content: getAbsoluteImageUrl() },
       {
         property: "og:image:alt",
-        content:
-          "OperantScale brand mark for operational systems for independent P&C insurance agencies",
+        content: "OperantScale brand mark for operational systems for growing businesses",
       },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Contact OperantScale | Insurance Agency Operations" },
+      { name: "twitter:title", content: "Contact OperantScale | Operational Automation" },
       {
         name: "twitter:description",
-        content:
-          "Contact OperantScale to discuss workflow improvements and operational systems for independent P&C insurance agencies.",
+        content: "Discuss workflow improvements and practical automation with OperantScale.",
       },
       { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
@@ -51,7 +49,7 @@ const FIELDS = [
   { name: "workEmail", label: "Work email", type: "email", required: true, autoComplete: "email" },
   {
     name: "agencyName",
-    label: "Agency name",
+    label: "Company",
     type: "text",
     required: true,
     autoComplete: "organization",
@@ -65,7 +63,7 @@ const FIELDS = [
   },
   {
     name: "agencyWebsite",
-    label: "Agency website",
+    label: "Website",
     type: "text",
     required: false,
     autoComplete: "url",
@@ -156,12 +154,13 @@ function ContactPage() {
             <Reveal>
               <p className="eyebrow">Operational discovery</p>
               <h1 className="mt-6 text-4xl leading-[1.05] font-medium sm:text-5xl">
-                Start With a Conversation.
+                Tell us where the work is getting stuck.
               </h1>
               <p className="mt-6 max-w-md text-[1.0625rem] leading-[1.7] text-muted-foreground">
-                Tell us a little about your agency and the operational challenge you're looking to
-                understand. We'll use the conversation to learn how your team works and determine
-                whether there is a meaningful opportunity for improvement.
+                We're interested in repetitive processes, manual handoffs, follow-up gaps, and
+                operational bottlenecks that slow teams down. We'll use the conversation to
+                understand the workflow and determine whether there is a practical opportunity for
+                automation.
               </p>
 
               <dl className="mt-12 space-y-6 border-t border-border pt-8 text-sm">
@@ -180,7 +179,7 @@ function ContactPage() {
                 <div>
                   <dt className="eyebrow">Focus</dt>
                   <dd className="mt-2 text-muted-foreground">
-                    Independent P&amp;C insurance agencies, United States.
+                    Revenue workflows, customer operations, and internal processes.
                   </dd>
                 </div>
               </dl>
@@ -228,7 +227,7 @@ function ContactPage() {
                         <label htmlFor={field.name} className="block text-sm text-foreground">
                           {field.label}
                           {!field.required && (
-                            <span className="ml-2 text-xs text-muted-foreground">Optional</span>
+                            <span className="ml-2 text-xs text-muted-foreground">(optional)</span>
                           )}
                         </label>
                         <input
@@ -256,7 +255,7 @@ function ContactPage() {
 
                     <div className="sm:col-span-2">
                       <label htmlFor="primaryChallenge" className="block text-sm text-foreground">
-                        Primary operational challenge
+                        What process are you trying to improve?
                       </label>
                       <textarea
                         id="primaryChallenge"
@@ -270,6 +269,10 @@ function ContactPage() {
                         }
                         className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2"
                       />
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                        Examples: lead follow-up, scheduling, CRM, customer communication, internal
+                        workflow.
+                      </p>
                       {errors["primaryChallenge"] && (
                         <p
                           id="primaryChallenge-error"
@@ -284,7 +287,7 @@ function ContactPage() {
                     <div className="sm:col-span-2">
                       <label htmlFor="additionalContext" className="block text-sm text-foreground">
                         Additional context
-                        <span className="ml-2 text-xs text-muted-foreground">Optional</span>
+                        <span className="ml-2 text-xs text-muted-foreground">(optional)</span>
                       </label>
                       <textarea
                         id="additionalContext"
@@ -311,7 +314,7 @@ function ContactPage() {
                     disabled={status === "loading"}
                     className="mt-8 inline-flex h-14 w-full items-center justify-center gap-3 bg-primary px-8 text-[0.78rem] font-medium tracking-[0.11em] text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60 sm:w-auto"
                   >
-                    {status === "loading" ? "Sending…" : "Request an operational discovery"}
+                    {status === "loading" ? "Sending…" : "Start a conversation"}
                     {status !== "loading" && <ArrowRight className="size-4" />}
                   </button>
 

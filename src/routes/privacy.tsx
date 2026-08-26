@@ -54,8 +54,8 @@ function PrivacyPage() {
               <h2 className="text-base font-medium text-foreground">Information we collect</h2>
               <p className="mt-3">
                 We collect only the information you submit through the discovery request form: your
-                name, work email, agency name, role, agency website, and the operational context you
-                choose to share. We do not sell information and we do not use it for advertising.
+                name, work email, company, role, website, and the operational context you choose to
+                share. We do not sell information and we do not use it for advertising.
               </p>
             </section>
             <section>

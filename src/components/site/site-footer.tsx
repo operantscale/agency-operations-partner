@@ -18,7 +18,7 @@ export function SiteFooter() {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              AI-Powered Operational Systems for Independent P&amp;C Insurance Agencies
+              AI-Powered Operational Systems for Growing Businesses
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export function SiteFooter() {
               Capabilities
             </Link>
             <Link to="/" hash="approach" className="text-muted-foreground hover:text-foreground">
-              Approach
+              How It Works
             </Link>
             <Link to="/" hash="faq" className="text-muted-foreground hover:text-foreground">
               FAQ

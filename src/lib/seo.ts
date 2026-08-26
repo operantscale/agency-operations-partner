@@ -3,8 +3,7 @@ export const siteConfig = {
   domain: "https://operantscale.com",
   email: "sabeeh@operantscale.com",
   ogImage: "/og-image.svg",
-  ogImageAlt:
-    "OperantScale brand mark for AI-powered operational systems for independent P&C insurance agencies",
+  ogImageAlt: "OperantScale brand mark for AI-powered operational systems for growing businesses",
   social: {
     linkedin: "https://www.linkedin.com/company/operantscale",
     instagram: null as string | null,
@@ -12,9 +11,9 @@ export const siteConfig = {
   },
 } as const;
 
-export const defaultPageTitle = `${siteConfig.companyName} | AI-Powered Operational Systems for Independent P&C Insurance Agencies`;
+export const defaultPageTitle = `${siteConfig.companyName} | AI-Powered Operational Systems for Growing Businesses`;
 export const defaultPageDescription =
-  "OperantScale helps independent P&C insurance agencies reduce repetitive administrative work, improve workflow visibility, and create practical operational capacity with AI-powered systems.";
+  "OperantScale designs and implements practical automation for lead follow-up, customer workflows, scheduling, CRM, communication, and internal operations, built around the systems businesses already use.";
 
 export function getCanonicalUrl(path = "/") {
   return new URL(path, siteConfig.domain).toString();
@@ -33,8 +32,7 @@ export function getOrganizationSchema() {
     name: siteConfig.companyName,
     url: siteConfig.domain,
     email: siteConfig.email,
-    description:
-      "AI-powered operational systems for independent P&C insurance agencies focused on workflow improvement, internal coordination, and practical automation.",
+    description: defaultPageDescription,
     sameAs,
   };
 }

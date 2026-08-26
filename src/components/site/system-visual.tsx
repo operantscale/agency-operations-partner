@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ClipboardList, GitBranch, ListTodo, MessagesSquare, Repeat2 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 /**
@@ -7,7 +8,7 @@ import { motion, useReducedMotion } from "motion/react";
  * left-to-right or top-down progression. No decoration for its own sake.
  */
 
-/** Hero: existing systems -> workflow layer -> AI + automation -> team capacity. */
+/** Hero: work -> friction -> system -> automation -> outcome. */
 export function SystemVisual({ className }: { className?: string }) {
   const reduced = useReducedMotion();
   const [mounted, setMounted] = useState(false);
@@ -23,10 +24,11 @@ export function SystemVisual({ className }: { className?: string }) {
   const CAP_X = 566;
 
   const stages = [
-    { x: 40, label: "Systems" },
-    { x: FLOW_X, label: "Workflow layer" },
-    { x: AI_X, label: "AI + automation" },
-    { x: 632, label: "Capacity" },
+    { x: 40, label: "Work" },
+    { x: 190, label: "Friction" },
+    { x: 320, label: "System" },
+    { x: 470, label: "Automation" },
+    { x: 632, label: "Outcome" },
   ];
 
   const feed = sysY.map(
@@ -47,7 +49,7 @@ export function SystemVisual({ className }: { className?: string }) {
       viewBox="0 0 640 280"
       className={className}
       role="img"
-      aria-label="Diagram: existing agency systems feed a workflow layer, where AI and automation are applied selectively, returning capacity to the team."
+      aria-label="Diagram: work moves through friction, a system, and selective automation toward a better operational outcome."
     >
       <g stroke="var(--color-line)" strokeWidth="1">
         <line x1="0" y1="20" x2="640" y2="20" />
@@ -177,55 +179,106 @@ export function SystemVisual({ className }: { className?: string }) {
   );
 }
 
-/** Operational reality: systems -> people and manual handoffs -> friction -> opportunity. */
-export function HandoffVisual({ className }: { className?: string }) {
-  const systems = ["AMS", "CRM", "Email", "Communication", "Quoting", "Internal workflows"];
-
-  const flow = [
-    { label: "People + manual handoffs", note: "Re-entry, chasing, coordination" },
-    { label: "Operational friction", note: "Time absorbed between systems" },
-    { label: "Opportunity for improvement", note: "Where a system may help", accent: true },
-  ];
+export function CapabilityFlowVisual({ className }: { className?: string }) {
+  const systems = ["CRM", "Email", "Calendar", "Forms", "Messaging", "Payments"];
 
   return (
-    <div className={className}>
-      <div className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3">
-        {systems.map((s) => (
-          <div key={s} className="bg-background px-4 py-5 text-sm text-foreground">
-            {s}
+    <div
+      className={className}
+      role="img"
+      aria-label="Existing systems connect through an operations layer to better workflows."
+    >
+      <p className="font-mono text-[0.65rem] tracking-[0.18em] text-muted-foreground uppercase">
+        Existing systems
+      </p>
+      <div className="mt-4 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3">
+        {systems.map((system) => (
+          <div key={system} className="bg-background px-4 py-3 text-sm text-foreground">
+            {system}
           </div>
         ))}
       </div>
-
-      {flow.map((f) => (
-        <div key={f.label}>
-          <div className="mx-auto h-8 w-px bg-border" aria-hidden="true" />
-          <div
-            className={`flex flex-col gap-1 border px-5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6 ${
-              f.accent ? "border-accent bg-accent/5" : "border-border bg-surface"
-            }`}
-          >
-            <span className={`text-sm font-medium ${f.accent ? "text-accent" : "text-foreground"}`}>
-              {f.label}
-            </span>
-            <span className="font-mono text-[0.68rem] tracking-[0.14em] text-muted-foreground uppercase">
-              {f.note}
-            </span>
-          </div>
+      <div className="mx-auto h-7 w-px bg-border" aria-hidden="true" />
+      <div className="border border-accent bg-accent/5 px-5 py-5">
+        <div className="flex items-baseline justify-between gap-4">
+          <span className="text-sm font-medium text-accent">Operations layer</span>
+          <span className="font-mono text-[0.68rem] tracking-[0.12em] text-muted-foreground uppercase">
+            Connecting technology to the way your team works
+          </span>
         </div>
-      ))}
+      </div>
+      <div className="mx-auto h-7 w-px bg-border" aria-hidden="true" />
+      <div className="border border-border bg-surface px-5 py-5">
+        <div className="flex items-baseline justify-between gap-4">
+          <span className="text-sm font-medium text-foreground">Better workflows</span>
+          <span className="font-mono text-[0.68rem] tracking-[0.12em] text-muted-foreground uppercase">
+            Less repetitive work. More capacity.
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
 
-/** Existing-technology architecture: systems -> workflow layer -> AI + automation -> capacity. */
+/** Operational friction: familiar recurring problems between people and systems. */
+export function HandoffVisual({ className }: { className?: string }) {
+  const friction = [
+    { label: "Manual follow-up", note: "Opportunities wait for a response", icon: Repeat2 },
+    {
+      label: "Repeated data entry",
+      note: "The same information moves by hand",
+      icon: ClipboardList,
+    },
+    { label: "Missed handoffs", note: "Work stalls between people", icon: GitBranch },
+    {
+      label: "Scattered communication",
+      note: "Context lives across channels",
+      icon: MessagesSquare,
+    },
+    {
+      label: "Tasks dependent on memory",
+      note: "Important work has no reliable prompt",
+      icon: ListTodo,
+    },
+  ];
+
+  return (
+    <div className={className}>
+      <div className="border-t border-border">
+        {friction.map(({ label, note, icon: Icon }) => (
+          <div key={label} className="flex items-center gap-4 border-b border-border py-4 sm:gap-5">
+            <span className="flex size-9 shrink-0 items-center justify-center border border-accent/50 text-accent">
+              <Icon className="size-4" strokeWidth={1.5} aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1 text-sm font-medium text-foreground">{label}</span>
+            <span className="max-w-[15rem] text-right font-mono text-[0.68rem] leading-relaxed tracking-[0.12em] text-muted-foreground uppercase">
+              {note}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Existing-technology architecture: existing stack -> operations layer -> better workflows. */
 export function StackVisual({ className }: { className?: string }) {
-  const systems = ["AMS", "CRM", "Email", "Communication", "Quoting", "Internal systems"];
+  const systems = [
+  "CRM",
+  "Email",
+  "Calendar",
+  "Forms",
+  "Messaging",
+  "Payments",
+  "Documents",
+  "Internal tools",
+  "Scheduling",
+];
 
   return (
     <div className={className}>
       <p className="font-mono text-[0.65rem] tracking-[0.18em] text-ink-muted uppercase">
-        Existing systems
+        Your existing stack
       </p>
       <div className="mt-4 grid grid-cols-2 gap-px border border-ink-border bg-ink-border sm:grid-cols-3">
         {systems.map((s) => (
@@ -236,9 +289,8 @@ export function StackVisual({ className }: { className?: string }) {
       </div>
 
       {[
-        { label: "Workflow layer", note: "How the work actually moves" },
-        { label: "AI + automation", note: "Applied only where it helps", accent: true },
-        { label: "Team capacity", note: "Returned to client-facing work" },
+        { label: "Operations layer", note: "OperantScale connects the stack", accent: true },
+        { label: "Better workflows", note: "Reliable work around your stack" },
       ].map((row) => (
         <div key={row.label}>
           <div className="mx-auto h-7 w-px bg-ink-border" aria-hidden="true" />

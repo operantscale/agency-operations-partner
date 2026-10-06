@@ -12,30 +12,31 @@ import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact OperantScale | Operational Automation" },
+      { title: "Book a Workflow Review | OperantScale" },
       {
         name: "description",
         content:
-          "Tell OperantScale about repetitive work, manual handoffs, and operational bottlenecks your team wants to improve.",
+          "Book a workflow review with OperantScale to identify where your detailing business is losing inquiries, appointments, and repeat revenue.",
       },
-      { property: "og:title", content: "Contact OperantScale | Operational Automation" },
+      { property: "og:title", content: "Book a Workflow Review | OperantScale" },
       {
         property: "og:description",
         content:
-          "Discuss practical automation for lead follow-up, customer workflows, scheduling, CRM, communication, and internal operations.",
+          "Review how your detailing business handles inquiries, bookings, reminders, and follow-up — and find where the process is leaking revenue.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: getCanonicalUrl("/contact") },
       { property: "og:image", content: getAbsoluteImageUrl() },
       {
         property: "og:image:alt",
-        content: "OperantScale brand mark for operational systems for growing businesses",
+        content:
+          "OperantScale brand mark for lead recovery and booking systems for detailing businesses",
       },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Contact OperantScale | Operational Automation" },
+      { name: "twitter:title", content: "Book a Workflow Review | OperantScale" },
       {
         name: "twitter:description",
-        content: "Discuss workflow improvements and practical automation with OperantScale.",
+        content: "Find where your detailing business is losing bookings and customer follow-up.",
       },
       { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
@@ -48,8 +49,8 @@ const FIELDS = [
   { name: "fullName", label: "Full name", type: "text", required: true, autoComplete: "name" },
   { name: "workEmail", label: "Work email", type: "email", required: true, autoComplete: "email" },
   {
-    name: "agencyName",
-    label: "Company",
+    name: "shopName",
+    label: "Shop / business name",
     type: "text",
     required: true,
     autoComplete: "organization",
@@ -62,7 +63,7 @@ const FIELDS = [
     autoComplete: "organization-title",
   },
   {
-    name: "agencyWebsite",
+    name: "shopWebsite",
     label: "Website",
     type: "text",
     required: false,
@@ -101,9 +102,9 @@ function ContactPage() {
     const parsed = discoverySchema.safeParse({
       fullName: values["fullName"] ?? "",
       workEmail: values["workEmail"] ?? "",
-      agencyName: values["agencyName"] ?? "",
+      shopName: values["shopName"] ?? "",
       role: values["role"] ?? "",
-      agencyWebsite: values["agencyWebsite"] ?? "",
+      shopWebsite: values["shopWebsite"] ?? "",
       primaryChallenge: values["primaryChallenge"] ?? "",
       additionalContext: values["additionalContext"] ?? "",
     });
@@ -152,16 +153,29 @@ function ContactPage() {
         <section className="mx-auto max-w-[84rem] px-6 pt-20 pb-24 lg:px-10 lg:pt-28">
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
             <Reveal>
-              <p className="eyebrow">Operational discovery</p>
-              <h1 className="mt-6 text-4xl leading-[1.05] font-medium sm:text-5xl">
-                Tell us where the work is getting stuck.
+              <p className="eyebrow">Workflow review</p>
+              <h1 className="mt-6 text-4xl leading-[1.04] font-medium tracking-[-0.03em] sm:text-5xl lg:text-[4rem]">
+                Find where your booking process is leaking revenue.
               </h1>
-              <p className="mt-6 max-w-md text-[1.0625rem] leading-[1.7] text-muted-foreground">
-                We're interested in repetitive processes, manual handoffs, follow-up gaps, and
-                operational bottlenecks that slow teams down. We'll use the conversation to
-                understand the workflow and determine whether there is a practical opportunity for
-                automation.
+              <p className="mt-6 max-w-md text-[1.125rem] leading-[1.7] text-muted-foreground">
+                We review how your detailing business handles inquiries, bookings, reminders, and
+                follow-up so we can identify the gaps in the customer journey and the operational
+                leak behind them.
               </p>
+
+              <div className="mt-10 space-y-4 border-t border-border pt-8">
+                {[
+                  "Missed calls and unanswered DMs",
+                  "Slow quote follow-up",
+                  "Unconfirmed appointments",
+                  "Lost repeat business",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-sm text-foreground">
+                    <span className="mt-1 inline-block h-2 w-2 rounded-full bg-accent" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
 
               <dl className="mt-12 space-y-6 border-t border-border pt-8 text-sm">
                 <div>
@@ -179,7 +193,7 @@ function ContactPage() {
                 <div>
                   <dt className="eyebrow">Focus</dt>
                   <dd className="mt-2 text-muted-foreground">
-                    Revenue workflows, customer operations, and internal processes.
+                    Detailing lead recovery, booking flow, reminders, and repeat customer follow-up.
                   </dd>
                 </div>
               </dl>
@@ -200,9 +214,9 @@ function ContactPage() {
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                     We'll review what you shared and reply from sabeeh@operantscale.com within two
-                    business days to schedule a short operational discovery conversation. That first
-                    call is a working session, not a sales call: we'll walk through how your team
-                    operates today and where repetitive work may be accumulating.
+                    business days to schedule a short workflow review. The conversation will focus
+                    on how your business currently handles inquiries, bookings, and follow-up — and
+                    where the process may be losing revenue.
                   </p>
                   <Link
                     to="/"
@@ -222,7 +236,7 @@ function ContactPage() {
                     {FIELDS.map((field) => (
                       <div
                         key={field.name}
-                        className={field.name === "agencyWebsite" ? "sm:col-span-2" : ""}
+                        className={field.name === "shopWebsite" ? "sm:col-span-2" : ""}
                       >
                         <label htmlFor={field.name} className="block text-sm text-foreground">
                           {field.label}
@@ -270,8 +284,8 @@ function ContactPage() {
                         className="mt-2 w-full resize-y border border-input bg-background px-3 py-2.5 text-sm text-foreground transition-colors outline-none focus:border-ring focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2"
                       />
                       <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                        Examples: lead follow-up, scheduling, CRM, customer communication, internal
-                        workflow.
+                        Examples: missed-call recovery, quote follow-up, booking confirmations,
+                        retention reminders, scheduling bottlenecks.
                       </p>
                       {errors["primaryChallenge"] && (
                         <p
@@ -314,7 +328,7 @@ function ContactPage() {
                     disabled={status === "loading"}
                     className="mt-8 inline-flex h-14 w-full items-center justify-center gap-3 bg-primary px-8 text-[0.78rem] font-medium tracking-[0.11em] text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60 sm:w-auto"
                   >
-                    {status === "loading" ? "Sending…" : "Start a conversation"}
+                    {status === "loading" ? "Sending…" : "Book a Workflow Review"}
                     {status !== "loading" && <ArrowRight className="size-4" />}
                   </button>
 

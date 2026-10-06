@@ -10,13 +10,13 @@ export const discoverySchema = z.object({
     .trim()
     .email("Please enter a valid work email")
     .max(255, "Email is too long"),
-  agencyName: z
+  shopName: z
     .string()
     .trim()
-    .min(2, "Please enter your agency name")
-    .max(150, "Agency name is too long"),
+    .min(2, "Please enter your shop name")
+    .max(150, "Shop name is too long"),
   role: z.string().trim().max(100, "Role is too long").optional().or(z.literal("")),
-  agencyWebsite: z.string().trim().max(200, "Website URL is too long").optional().or(z.literal("")),
+  shopWebsite: z.string().trim().max(200, "Website URL is too long").optional().or(z.literal("")),
   primaryChallenge: z
     .string()
     .trim()
@@ -70,9 +70,9 @@ async function insertDiscoveryRequest(data: DiscoveryInput): Promise<void> {
       body: JSON.stringify({
         full_name: data.fullName,
         work_email: data.workEmail,
-        agency_name: data.agencyName,
+        agency_name: data.shopName,
         role: data.role || null,
-        agency_website: data.agencyWebsite || null,
+        agency_website: data.shopWebsite || null,
         primary_challenge: data.primaryChallenge,
         additional_context: data.additionalContext || null,
       }),
@@ -106,9 +106,9 @@ export const submitDiscoveryRequest = createServerFn({ method: "POST" })
       const emailData = {
         fullName: data.fullName,
         workEmail: data.workEmail,
-        agencyName: data.agencyName,
+        shopName: data.shopName,
         role: data.role || undefined,
-        agencyWebsite: data.agencyWebsite || undefined,
+        shopWebsite: data.shopWebsite || undefined,
         primaryChallenge: data.primaryChallenge,
         additionalContext: data.additionalContext || undefined,
         submittedAt: new Date(),

@@ -5,20 +5,46 @@ import { Logo } from "./logo";
 import { trackEvent } from "@/lib/analytics";
 
 const NAV = [
-  { label: "Capabilities", hash: "capabilities" },
-  { label: "How It Works", hash: "approach" },
+  { label: "Platform", hash: "platform" },
+  { label: "Solutions", hash: "solutions" },
+  { label: "Case Study", hash: "case-study" },
+  { label: "Approach", hash: "approach" },
   { label: "FAQ", hash: "faq" },
 ];
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState("platform");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = NAV.map(({ hash }) => document.getElementById(hash)).filter(
+      Boolean,
+    ) as HTMLElement[];
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target?.id) {
+          setActiveHash(visible.target.id);
+        }
+      },
+      { rootMargin: "-35% 0px -45% 0px", threshold: [0.2, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -42,30 +68,35 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-9 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.hash}
-              to="/"
-              hash={item.hash}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            to="/contact"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Contact
-          </Link>
+          {NAV.map((item) => {
+            const active = activeHash === item.hash;
+            return (
+              <Link
+                key={item.hash}
+                to="/"
+                hash={item.hash}
+                className={`relative text-sm transition-colors hover:text-foreground ${
+                  active ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                <span>{item.label}</span>
+                {active && (
+                  <span
+                    className="absolute -bottom-3 left-0 h-px w-full bg-foreground"
+                    aria-hidden="true"
+                  />
+                )}
+              </Link>
+            );
+          })}
           <Link
             to="/contact"
             onClick={() =>
-              trackEvent("cta_click", { cta_name: "start_conversation", location: "header" })
+              trackEvent("cta_click", { cta_name: "book_workflow_review", location: "header" })
             }
             className="border border-primary bg-primary px-5 py-2.5 text-[0.74rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_10px_24px_-16px_var(--color-primary)] transition-colors hover:bg-primary/90"
           >
-            Start a conversation
+            Book a Workflow Review
           </Link>
         </nav>
 
@@ -89,7 +120,9 @@ export function SiteHeader() {
                 to="/"
                 hash={item.hash}
                 onClick={() => setOpen(false)}
-                className="border-b border-border py-4 text-lg text-foreground"
+                className={`border-b border-border py-4 text-lg ${
+                  activeHash === item.hash ? "text-foreground" : "text-muted-foreground"
+                }`}
               >
                 {item.label}
               </Link>
@@ -99,20 +132,13 @@ export function SiteHeader() {
               onClick={() => {
                 setOpen(false);
                 trackEvent("cta_click", {
-                  cta_name: "start_conversation",
+                  cta_name: "book_workflow_review",
                   location: "mobile_menu",
                 });
               }}
-              className="border-b border-border py-4 text-lg text-foreground"
-            >
-              Contact
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
               className="mt-8 bg-primary px-5 py-4 text-center text-[0.72rem] font-medium tracking-[0.11em] text-primary-foreground uppercase"
             >
-              Start a conversation
+              Book a Workflow Review
             </Link>
           </nav>
         </div>

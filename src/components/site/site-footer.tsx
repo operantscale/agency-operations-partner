@@ -18,21 +18,23 @@ export function SiteFooter() {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              AI-Powered Operational Systems for Growing Businesses
+              Connected systems for auto-detailing businesses.
             </p>
           </div>
 
           <nav aria-label="Footer" className="flex flex-col gap-3 text-sm">
             <span className="eyebrow">Site</span>
-            <Link
-              to="/"
-              hash="capabilities"
-              className="text-muted-foreground hover:text-foreground"
-            >
-              Capabilities
+            <Link to="/" hash="platform" className="text-muted-foreground hover:text-foreground">
+              Platform
+            </Link>
+            <Link to="/" hash="solutions" className="text-muted-foreground hover:text-foreground">
+              Solutions
+            </Link>
+            <Link to="/" hash="case-study" className="text-muted-foreground hover:text-foreground">
+              Case Study
             </Link>
             <Link to="/" hash="approach" className="text-muted-foreground hover:text-foreground">
-              How It Works
+              Approach
             </Link>
             <Link to="/" hash="faq" className="text-muted-foreground hover:text-foreground">
               FAQ

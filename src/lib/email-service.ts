@@ -7,9 +7,9 @@ import { Resend } from "resend";
 export interface DiscoveryRequestData {
   fullName: string;
   workEmail: string;
-  agencyName: string;
+  shopName: string;
   role?: string | undefined;
-  agencyWebsite?: string | undefined;
+  shopWebsite?: string | undefined;
   primaryChallenge: string;
   additionalContext?: string | undefined;
   submittedAt?: Date;
@@ -159,9 +159,9 @@ export async function sendAdminNotification(data: DiscoveryRequestData): Promise
     </div>
 
     <div class="field">
-      <div class="label">Agency Name</div>
+      <div class="label">Shop / Business Name</div>
       <div class="value">
-        ${escapeHtml(data.agencyName)}
+        ${escapeHtml(data.shopName)}
       </div>
     </div>
 
@@ -179,17 +179,17 @@ export async function sendAdminNotification(data: DiscoveryRequestData): Promise
     }
 
     ${
-      data.agencyWebsite
+      data.shopWebsite
         ? `
     <div class="field">
-      <div class="label">Agency Website</div>
+      <div class="label">Business Website</div>
       <div class="value">
         <a
-          href="${escapeHtml(data.agencyWebsite)}"
+          href="${escapeHtml(data.shopWebsite)}"
           target="_blank"
           rel="noopener noreferrer"
         >
-          ${escapeHtml(data.agencyWebsite)}
+          ${escapeHtml(data.shopWebsite)}
         </a>
       </div>
     </div>
@@ -237,7 +237,7 @@ export async function sendAdminNotification(data: DiscoveryRequestData): Promise
     const { data: result, error } = await resend.emails.send({
       from: fromEmail,
       to: adminEmail,
-      subject: `New Operational Discovery Request — ${data.agencyName}`,
+      subject: `New Detailing Lead Recovery Inquiry — ${data.shopName}`,
       html: adminHtml,
     });
 
@@ -378,7 +378,7 @@ export async function sendUserConfirmation(data: DiscoveryRequestData): Promise<
 
       <p>
         <strong>OperantScale</strong><br>
-        AI-Powered Operational Systems for Independent P&amp;C Insurance Agencies
+        Detailing Lead Recovery &amp; Booking Systems
       </p>
 
     </div>

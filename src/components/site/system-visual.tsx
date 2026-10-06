@@ -264,16 +264,16 @@ export function HandoffVisual({ className }: { className?: string }) {
 /** Existing-technology architecture: existing stack -> operations layer -> better workflows. */
 export function StackVisual({ className }: { className?: string }) {
   const systems = [
-  "CRM",
-  "Email",
-  "Calendar",
-  "Forms",
-  "Messaging",
-  "Payments",
-  "Documents",
-  "Internal tools",
-  "Scheduling",
-];
+    "CRM",
+    "Email",
+    "Calendar",
+    "Forms",
+    "Messaging",
+    "Payments",
+    "Documents",
+    "Internal tools",
+    "Scheduling",
+  ];
 
   return (
     <div className={className}>

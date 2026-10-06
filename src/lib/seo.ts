@@ -3,7 +3,7 @@ export const siteConfig = {
   domain: "https://operantscale.com",
   email: "sabeeh@operantscale.com",
   ogImage: "/og-image.svg",
-  ogImageAlt: "OperantScale brand mark for AI-powered operational systems for growing businesses",
+  ogImageAlt: "OperantScale lead recovery and booking systems for auto-detailing businesses",
   social: {
     linkedin: "https://www.linkedin.com/company/operantscale",
     instagram: null as string | null,
@@ -11,9 +11,9 @@ export const siteConfig = {
   },
 } as const;
 
-export const defaultPageTitle = `${siteConfig.companyName} | AI-Powered Operational Systems for Growing Businesses`;
+export const defaultPageTitle = `${siteConfig.companyName} | Detailing Lead Recovery & Booking Systems`;
 export const defaultPageDescription =
-  "OperantScale designs and implements practical automation for lead follow-up, customer workflows, scheduling, CRM, communication, and internal operations, built around the systems businesses already use.";
+  "OperantScale helps auto-detailing businesses recover missed leads, improve response time, and turn more inquiries into booked appointments with better follow-up and booking workflows.";
 
 export function getCanonicalUrl(path = "/") {
   return new URL(path, siteConfig.domain).toString();

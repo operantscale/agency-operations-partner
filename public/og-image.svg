@@ -1,29 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">OperantScale</title>
-  <desc id="desc">AI-Powered Operational Systems for Growing Businesses</desc>
-  <rect width="1200" height="630" fill="#111a2c"/>
-  <path d="M0 112H1200M0 518H1200M720 0V630M960 0V630" stroke="#617da7" stroke-opacity=".34"/>
+  <desc id="desc">Detailing lead recovery and booking systems for premium auto-detailing businesses</desc>
+  <rect width="1200" height="630" fill="#0b2545"/>
+  <path d="M0 112H1200M0 518H1200M720 0V630M960 0V630" stroke="#8ba7d7" stroke-opacity=".24"/>
   <rect x="96" y="76" width="378" height="126" rx="2" fill="#f7f6f2" fill-opacity=".05"/>
-  <image x="112" y="89" width="346" height="100" preserveAspectRatio="xMinYMid meet" href="/Website%20logo.png" xlink:href="/Website%20logo.png"/>
-  <g transform="translate(1012 76)" fill="none" stroke="#8eb3f7" stroke-width="3">
+  <image x="112" y="89" width="346" height="100" preserveAspectRatio="xMinYMid meet" href="/Website%20logo.png" xlink:href="/Website%20logo.png" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+  <g transform="translate(1012 76)" fill="none" stroke="#6b9df5" stroke-width="3">
     <rect width="112" height="112" rx="2"/>
     <path d="M25 78L52 34H88"/>
-    <circle cx="52" cy="34" r="8" fill="#8eb3f7"/>
+    <circle cx="52" cy="34" r="8" fill="#6b9df5"/>
   </g>
-  <text x="96" y="296" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="600" letter-spacing="-2.2">AI-Powered Operational Systems</text>
-  <text x="96" y="372" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="600" letter-spacing="-2.2">for Growing Businesses</text>
-  <path d="M96 438H308" stroke="#8eb3f7" stroke-width="4"/>
-  <text x="96" y="497" fill="#b9c1cf" font-family="Arial, Helvetica, sans-serif" font-size="25" letter-spacing=".2">Better workflows. Less repetitive work. More capacity.</text>
-</svg>
-  </g>
-  <g transform="translate(96 84)" fill="none" stroke="#8eb3f7" stroke-width="3">
-    <rect width="44" height="44"/>
-    <path d="M10 31L21 14H35"/>
-    <circle cx="21" cy="14" r="4" fill="#8eb3f7"/>
-  </g>
-  <text x="154" y="117" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600" letter-spacing="-1">Operant<tspan font-weight="400" opacity=".72">Scale</tspan></text>
-  <text x="96" y="284" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="600" letter-spacing="-2.4">AI-Powered Operational Systems</text>
-  <text x="96" y="364" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="66" font-weight="600" letter-spacing="-2.4">for Growing Businesses</text>
-  <path d="M96 433H308" stroke="#8eb3f7" stroke-width="4"/>
-  <text x="96" y="492" fill="#b9c1cf" font-family="Arial, Helvetica, sans-serif" font-size="25" letter-spacing=".2">Better workflows. Less repetitive work. More capacity.</text>
+  <text x="96" y="290" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="600" letter-spacing="-2.2">Detailing lead recovery</text>
+  <text x="96" y="367" fill="#f7f6f2" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="600" letter-spacing="-2.2">&amp; booking systems</text>
+  <path d="M96 438H322" stroke="#6b9df5" stroke-width="4"/>
+  <text x="96" y="497" fill="#dfe8f5" font-family="Arial, Helvetica, sans-serif" font-size="25" letter-spacing=".2">More inquiries. Faster responses. More booked appointments.</text>
 </svg>

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import { Logo } from "./logo";
 import { trackEvent } from "@/lib/analytics";
 import { siteConfig } from "@/lib/seo";
@@ -7,7 +7,6 @@ import { siteConfig } from "@/lib/seo";
 const socialLinks = [
   { label: "LinkedIn", href: siteConfig.social.linkedin, icon: Linkedin },
   { label: "Instagram", href: siteConfig.social.instagram, icon: Instagram },
-  { label: "Facebook", href: siteConfig.social.facebook, icon: Facebook },
 ] as const;
 
 export function SiteFooter() {

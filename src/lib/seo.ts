@@ -6,8 +6,7 @@ export const siteConfig = {
   ogImageAlt: "OperantScale lead recovery and booking systems for auto-detailing businesses",
   social: {
     linkedin: "https://www.linkedin.com/company/operantscale",
-    instagram: null as string | null,
-    facebook: null as string | null,
+    instagram: "https://www.instagram.com/operantscale/",
   },
 } as const;
 
@@ -24,7 +23,7 @@ export function getAbsoluteImageUrl(path = siteConfig.ogImage) {
 }
 
 export function getOrganizationSchema() {
-  const sameAs = [siteConfig.social.linkedin].filter(Boolean) as string[];
+  const sameAs = [siteConfig.social.linkedin, siteConfig.social.instagram];
 
   return {
     "@context": "https://schema.org",

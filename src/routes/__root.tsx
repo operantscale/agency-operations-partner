@@ -45,7 +45,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   return (
@@ -86,6 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: defaultPageTitle },
       { name: "description", content: defaultPageDescription },
+      { name: "robots", content: "index,follow,max-image-preview:large" },
       { property: "og:site_name", content: siteConfig.companyName },
       { property: "og:title", content: defaultPageTitle },
       { property: "og:description", content: defaultPageDescription },
@@ -102,13 +103,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image:alt", content: siteConfig.ogImageAlt },
     ],
     links: [
-      { rel: "canonical", href: getCanonicalUrl("/") },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&family=Geist:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap",
       },
       { rel: "icon", href: "/favicon/favicon.svg", type: "image/svg+xml" },
       { rel: "icon", href: "/favicon/favicon-96x96.png", type: "image/png", sizes: "96x96" },

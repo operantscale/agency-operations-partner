@@ -1,21 +1,27 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "./logo";
 import { trackEvent } from "@/lib/analytics";
+import { SOLUTIONS } from "@/lib/offers";
 
 const NAV = [
-  { label: "Platform", hash: "platform" },
-  { label: "Solutions", hash: "solutions" },
-  { label: "Case Study", hash: "case-study" },
-  { label: "Approach", hash: "approach" },
+  { label: "How It Works", hash: "how-it-works" },
+  { label: "Demo", hash: "demo" },
+  { label: "Pricing", hash: "solutions" },
+  { label: "Our Work", hash: "our-work" },
   { label: "FAQ", hash: "faq" },
 ];
+
+function trackReview(location: string) {
+  trackEvent("cta_click", { cta_name: "book_workflow_review", location });
+}
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState("platform");
+  const [activeHash, setActiveHash] = useState("");
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -25,104 +31,170 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const sections = NAV.map(({ hash }) => document.getElementById(hash)).filter(
-      Boolean,
-    ) as HTMLElement[];
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target?.id) {
-          setActiveHash(visible.target.id);
-        }
-      },
-      { rootMargin: "-35% 0px -45% 0px", threshold: [0.2, 0.5] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveHash("");
+      return;
+    }
+    const ids = [
+      "platform",
+      "solutions",
+      "professional-website",
+      "website-dashboard",
+      "complete-system",
+      "how-it-works",
+      "demo",
+      "our-work",
+      "faq",
+    ];
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target instanceof HTMLElement) setActiveHash(visible.target.id);
+      },
+      { rootMargin: "-25% 0px -62% 0px", threshold: [0, 0.15, 0.4] },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ${
-        scrolled
-          ? "border-b border-border bg-background/80 shadow-[0_1px_20px_-12px_oklch(0.2_0.03_260/0.35)] backdrop-blur-md"
-          : "border-b border-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${scrolled || open ? "border-border bg-background/95 shadow-[0_8px_30px_-24px_rgba(11,37,69,0.5)] backdrop-blur-md" : "border-transparent bg-background/80 backdrop-blur-sm"}`}
     >
-      <div className="mx-auto flex h-16 max-w-[84rem] items-center justify-between px-6 lg:px-10">
+      <div className="mx-auto flex h-[4.5rem] max-w-[82rem] items-center justify-between px-5 sm:px-8 lg:px-10">
         <Link to="/" aria-label="OperantScale home" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
-
-        <nav aria-label="Primary" className="hidden items-center gap-9 md:flex">
-          {NAV.map((item) => {
-            const active = activeHash === item.hash;
-            return (
-              <Link
-                key={item.hash}
-                to="/"
-                hash={item.hash}
-                className={`relative text-sm transition-colors hover:text-foreground ${
-                  active ? "text-foreground" : "text-muted-foreground"
-                }`}
-              >
-                <span>{item.label}</span>
-                {active && (
-                  <span
-                    className="absolute -bottom-3 left-0 h-px w-full bg-foreground"
-                    aria-hidden="true"
-                  />
-                )}
-              </Link>
-            );
-          })}
+        <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex xl:gap-7">
+          <details className="group relative">
+            <summary
+              className={`relative flex cursor-pointer list-none items-center gap-1.5 py-3 text-[0.82rem] transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring [&::-webkit-details-marker]:hidden ${["solutions", "professional-website", "website-dashboard", "complete-system"].includes(activeHash) ? "text-foreground" : "text-muted-foreground"}`}
+            >
+              Solutions{" "}
+              <ChevronDown className="size-3.5 transition-transform group-open:rotate-180" />
+              {[
+                "solutions",
+                "professional-website",
+                "website-dashboard",
+                "complete-system",
+              ].includes(activeHash) && (
+                <span
+                  className="absolute inset-x-0 -bottom-[0.05rem] h-px bg-foreground"
+                  aria-hidden="true"
+                />
+              )}
+            </summary>
+            <div className="absolute left-0 top-full w-[21rem] border border-border bg-background p-2 shadow-[0_20px_45px_-22px_rgba(11,37,69,0.3)]">
+              {SOLUTIONS.map((solution) => (
+                <Link
+                  key={solution.id}
+                  to="/"
+                  hash={solution.id}
+                  onClick={(event) => {
+                    const details = event.currentTarget.closest("details");
+                    if (details) details.open = false;
+                  }}
+                  className="block px-3 py-3 transition-colors hover:bg-surface focus-visible:outline-2 focus-visible:outline-ring"
+                >
+                  <span className="block text-sm font-medium text-foreground">{solution.name}</span>
+                  <span className="mt-1 block text-xs leading-5 text-muted-foreground">
+                    {solution.navDescription}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </details>
+          {NAV.map((item) => (
+            <Link
+              key={item.hash}
+              to="/"
+              hash={item.hash}
+              aria-current={activeHash === item.hash ? "location" : undefined}
+              className={`relative whitespace-nowrap py-3 text-[0.82rem] transition-colors hover:text-foreground ${activeHash === item.hash ? "text-foreground" : "text-muted-foreground"}`}
+            >
+              {item.label}
+              {activeHash === item.hash && (
+                <span
+                  className="absolute inset-x-0 -bottom-[0.05rem] h-px bg-foreground"
+                  aria-hidden="true"
+                />
+              )}
+            </Link>
+          ))}
           <Link
             to="/contact"
-            onClick={() =>
-              trackEvent("cta_click", { cta_name: "book_workflow_review", location: "header" })
-            }
-            className="border border-primary bg-primary px-5 py-2.5 text-[0.74rem] font-medium tracking-[0.11em] text-primary-foreground uppercase shadow-[0_10px_24px_-16px_var(--color-primary)] transition-colors hover:bg-primary/90"
+            onClick={() => trackReview("header")}
+            className="inline-flex h-10 items-center justify-center whitespace-nowrap bg-primary px-4 text-[0.72rem] font-medium text-primary-foreground transition-colors hover:bg-accent xl:px-5"
           >
             Book a Workflow Review
           </Link>
         </nav>
-
         <button
           type="button"
-          className="-mr-2 p-2 text-foreground md:hidden"
+          className="-mr-2 inline-flex size-11 items-center justify-center text-foreground lg:hidden"
           aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
-
       {open && (
-        <div className="border-t border-border bg-background px-6 pt-6 pb-10 md:hidden">
-          <nav aria-label="Mobile" className="flex flex-col">
+        <div
+          id="mobile-navigation"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-background px-5 pt-3 pb-7 sm:px-8 lg:hidden"
+        >
+          <nav aria-label="Mobile" className="mx-auto flex max-w-[82rem] flex-col">
+            <details className="group border-b border-border">
+              <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between text-base font-medium [&::-webkit-details-marker]:hidden">
+                Solutions{" "}
+                <ChevronDown className="size-4 transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="pb-2 pl-3">
+                {SOLUTIONS.map((solution) => (
+                  <Link
+                    key={solution.id}
+                    to="/"
+                    hash={solution.id}
+                    onClick={() => setOpen(false)}
+                    className="block border-l border-border px-4 py-3"
+                  >
+                    <span className="block text-sm font-medium">{solution.name}</span>
+                    <span className="mt-1 block text-xs leading-5 text-muted-foreground">
+                      {solution.navDescription}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </details>
             {NAV.map((item) => (
               <Link
                 key={item.hash}
                 to="/"
                 hash={item.hash}
                 onClick={() => setOpen(false)}
-                className={`border-b border-border py-4 text-lg ${
-                  activeHash === item.hash ? "text-foreground" : "text-muted-foreground"
-                }`}
+                aria-current={activeHash === item.hash ? "location" : undefined}
+                className="flex min-h-12 items-center border-b border-border text-base text-foreground"
               >
                 {item.label}
               </Link>
@@ -131,12 +203,9 @@ export function SiteHeader() {
               to="/contact"
               onClick={() => {
                 setOpen(false);
-                trackEvent("cta_click", {
-                  cta_name: "book_workflow_review",
-                  location: "mobile_menu",
-                });
+                trackReview("mobile_menu");
               }}
-              className="mt-8 bg-primary px-5 py-4 text-center text-[0.72rem] font-medium tracking-[0.11em] text-primary-foreground uppercase"
+              className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 bg-primary px-5 text-sm font-medium text-primary-foreground"
             >
               Book a Workflow Review
             </Link>

@@ -9,15 +9,15 @@ export const siteConfig = {
   },
 } as const;
 
-export const defaultPageTitle = `${siteConfig.companyName} | Detailing Lead Recovery & Booking Systems`;
+export const defaultPageTitle = `${siteConfig.companyName} | Websites & Booking Systems for Auto Detailers`;
 export const defaultPageDescription =
-  "OperantScale helps auto-detailing businesses recover missed leads, improve response time, and turn more inquiries into booked appointments with better follow-up and booking workflows.";
+  "Professional detailing websites, lead dashboards, and tailored booking and lead recovery systems for auto-detailing businesses.";
 
 export function getCanonicalUrl(path = "/") {
   return new URL(path, siteConfig.domain).toString();
 }
 
-export function getAbsoluteImageUrl(path = siteConfig.ogImage) {
+export function getAbsoluteImageUrl(path: string = siteConfig.ogImage) {
   return new URL(path, siteConfig.domain).toString();
 }
 
@@ -27,10 +27,12 @@ export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteConfig.domain}/#organization`,
     name: siteConfig.companyName,
     url: siteConfig.domain,
     email: siteConfig.email,
     description: defaultPageDescription,
+    logo: getAbsoluteImageUrl("/operantscale-logo.png"),
     sameAs,
   };
 }

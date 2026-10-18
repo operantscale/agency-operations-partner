@@ -10,6 +10,9 @@ export interface DiscoveryRequestData {
   shopName: string;
   role?: string | undefined;
   shopWebsite?: string | undefined;
+  packageInterest?: string | undefined;
+  monthlyInquiries?: string | undefined;
+  currentSoftware?: string | undefined;
   primaryChallenge: string;
   additionalContext?: string | undefined;
   submittedAt?: Date;
@@ -191,6 +194,45 @@ export async function sendAdminNotification(data: DiscoveryRequestData): Promise
         >
           ${escapeHtml(data.shopWebsite)}
         </a>
+      </div>
+    </div>
+    `
+        : ""
+    }
+
+    ${
+      data.packageInterest
+        ? `
+    <div class="field">
+      <div class="label">Project Interest</div>
+      <div class="value">
+        ${escapeHtml(data.packageInterest)}
+      </div>
+    </div>
+    `
+        : ""
+    }
+
+    ${
+      data.monthlyInquiries
+        ? `
+    <div class="field">
+      <div class="label">Approx. Monthly Inquiries</div>
+      <div class="value">
+        ${escapeHtml(data.monthlyInquiries)}
+      </div>
+    </div>
+    `
+        : ""
+    }
+
+    ${
+      data.currentSoftware
+        ? `
+    <div class="field">
+      <div class="label">Current Booking / CRM Software</div>
+      <div class="value">
+        ${escapeHtml(data.currentSoftware)}
       </div>
     </div>
     `

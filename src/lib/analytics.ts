@@ -7,7 +7,8 @@ type AnalyticsEventName =
   | "form_submit"
   | "form_success"
   | "email_click"
-  | "linkedin_click";
+  | "linkedin_click"
+  | "demo_interaction";
 
 type AnalyticsParameters = Record<string, string>;
 

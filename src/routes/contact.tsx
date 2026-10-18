@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check } from "lucide-react";
 import { SiteHeader } from "@/components/site/site-header";
@@ -8,21 +8,25 @@ import { Reveal } from "@/components/site/reveal";
 import { discoverySchema, submitDiscoveryRequest } from "@/lib/discovery.functions";
 import { trackEvent } from "@/lib/analytics";
 import { getAbsoluteImageUrl, getCanonicalUrl } from "@/lib/seo";
+import {
+  CONTACT_INTEREST_OPTIONS,
+  getContactInterest,
+  NOT_SURE_CONTACT_OPTION,
+} from "@/lib/offers";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Book a Workflow Review | OperantScale" },
+      { title: "Contact OperantScale | Workflow Review" },
       {
         name: "description",
         content:
-          "Book a workflow review with OperantScale to identify where your detailing business is losing inquiries, appointments, and repeat revenue.",
+          "Discuss a professional detailing website, a website and lead dashboard, or a custom booking and lead recovery system for your business.",
       },
-      { property: "og:title", content: "Book a Workflow Review | OperantScale" },
+      { property: "og:title", content: "Contact OperantScale | Workflow Review" },
       {
         property: "og:description",
-        content:
-          "Review how your detailing business handles inquiries, bookings, reminders, and follow-up — and find where the process is leaking revenue.",
+        content: "Tell us how your detailing business handles inquiries, bookings, and follow-up.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: getCanonicalUrl("/contact") },
@@ -33,10 +37,10 @@ export const Route = createFileRoute("/contact")({
           "OperantScale brand mark for lead recovery and booking systems for detailing businesses",
       },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Book a Workflow Review | OperantScale" },
+      { name: "twitter:title", content: "Contact OperantScale | Workflow Review" },
       {
         name: "twitter:description",
-        content: "Find where your detailing business is losing bookings and customer follow-up.",
+        content: "Tell us what you would like to improve in your detailing business.",
       },
       { name: "twitter:image", content: getAbsoluteImageUrl() },
     ],
@@ -56,13 +60,6 @@ const FIELDS = [
     autoComplete: "organization",
   },
   {
-    name: "role",
-    label: "Role",
-    type: "text",
-    required: false,
-    autoComplete: "organization-title",
-  },
-  {
     name: "shopWebsite",
     label: "Website",
     type: "text",
@@ -73,14 +70,27 @@ const FIELDS = [
 
 type FormState = Record<string, string>;
 const SUBMISSION_ERROR_MESSAGE = "We couldn't submit your request right now. Please try again.";
-
 function ContactPage() {
   const submit = useServerFn(submitDiscoveryRequest);
+  const location = useLocation();
   const [values, setValues] = useState<FormState>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
   const [formError, setFormError] = useState("");
   const formStarted = useRef(false);
+  const selectedPackageInterest = values["packageInterest"];
+
+  useEffect(() => {
+    const selectedPackage = new URLSearchParams(location.search).get("package");
+    if (selectedPackage && !selectedPackageInterest) {
+      const packageInterest = getContactInterest(selectedPackage);
+      if (!packageInterest) return;
+      setValues((current) => ({
+        ...current,
+        packageInterest,
+      }));
+    }
+  }, [location.search, selectedPackageInterest]);
 
   const trackFormStart = () => {
     if (formStarted.current) return;
@@ -105,6 +115,9 @@ function ContactPage() {
       shopName: values["shopName"] ?? "",
       role: values["role"] ?? "",
       shopWebsite: values["shopWebsite"] ?? "",
+      packageInterest: values["packageInterest"] ?? "",
+      monthlyInquiries: values["monthlyInquiries"] ?? "",
+      currentSoftware: values["currentSoftware"] ?? "",
       primaryChallenge: values["primaryChallenge"] ?? "",
       additionalContext: values["additionalContext"] ?? "",
     });
@@ -154,13 +167,12 @@ function ContactPage() {
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
             <Reveal>
               <p className="eyebrow">Workflow review</p>
-              <h1 className="mt-6 text-4xl leading-[1.04] font-medium tracking-[-0.03em] sm:text-5xl lg:text-[4rem]">
-                Find where your booking process is leaking revenue.
+              <h1 className="mt-6 max-w-2xl text-4xl leading-[1.04] font-medium tracking-[-0.04em] sm:text-5xl lg:text-[3.8rem]">
+                Let's improve the way your detailing business handles inquiries.
               </h1>
               <p className="mt-6 max-w-md text-[1.125rem] leading-[1.7] text-muted-foreground">
-                We review how your detailing business handles inquiries, bookings, reminders, and
-                follow-up so we can identify the gaps in the customer journey and the operational
-                leak behind them.
+                Tell us a little about your business and what you'd like to improve. We'll help
+                identify the most useful starting point.
               </p>
 
               <div className="mt-10 space-y-4 border-t border-border pt-8">
@@ -210,19 +222,18 @@ function ContactPage() {
                     <Check className="size-4" />
                   </span>
                   <h2 className="mt-6 text-2xl font-medium">
-                    Thank you. Your request has been received.
+                    Thanks for contacting OperantScale. Your request has been received.
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    We'll review what you shared and reply from sabeeh@operantscale.com within two
-                    business days to schedule a short workflow review. The conversation will focus
-                    on how your business currently handles inquiries, bookings, and follow-up — and
-                    where the process may be losing revenue.
+                    We'll review your information and respond using the contact details you
+                    provided.
                   </p>
                   <Link
                     to="/"
                     className="mt-8 inline-flex items-center gap-2 text-sm text-foreground underline-offset-4 hover:underline"
                   >
-                    Return to homepage <ArrowRight className="size-4" />
+                    Return to homepage
+                    <ArrowRight className="size-4" />
                   </Link>
                 </div>
               ) : (
@@ -230,7 +241,7 @@ function ContactPage() {
                   onSubmit={onSubmit}
                   onFocusCapture={trackFormStart}
                   noValidate
-                  className="border border-border bg-card p-6 sm:p-10"
+                  className="border border-border bg-card p-6 sm:p-9"
                 >
                   <div className="grid gap-6 sm:grid-cols-2">
                     {FIELDS.map((field) => (
@@ -268,6 +279,30 @@ function ContactPage() {
                     ))}
 
                     <div className="sm:col-span-2">
+                      <label htmlFor="packageInterest" className="block text-sm text-foreground">
+                        Which solution are you interested in?
+                        <span className="ml-2 text-xs text-muted-foreground">(optional)</span>
+                      </label>
+                      <select
+                        id="packageInterest"
+                        name="packageInterest"
+                        value={values["packageInterest"] ?? ""}
+                        onChange={(e) => set("packageInterest", e.target.value)}
+                        className="mt-2 h-11 w-full border border-input bg-background px-3 text-sm text-foreground transition-colors outline-none focus:border-ring focus-visible:outline-2 focus-visible:outline-ring focus-visible:outline-offset-2"
+                      >
+                        <option value="">Select an option</option>
+                        {CONTACT_INTEREST_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                        <option value={NOT_SURE_CONTACT_OPTION.label}>
+                          {NOT_SURE_CONTACT_OPTION.label}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div className="sm:col-span-2">
                       <label htmlFor="primaryChallenge" className="block text-sm text-foreground">
                         What process are you trying to improve?
                       </label>
@@ -300,7 +335,7 @@ function ContactPage() {
 
                     <div className="sm:col-span-2">
                       <label htmlFor="additionalContext" className="block text-sm text-foreground">
-                        Additional context
+                        Description of the primary issue
                         <span className="ml-2 text-xs text-muted-foreground">(optional)</span>
                       </label>
                       <textarea
@@ -328,7 +363,7 @@ function ContactPage() {
                     disabled={status === "loading"}
                     className="mt-8 inline-flex h-14 w-full items-center justify-center gap-3 bg-primary px-8 text-[0.78rem] font-medium tracking-[0.11em] text-primary-foreground uppercase transition-colors hover:bg-primary/90 disabled:opacity-60 sm:w-auto"
                   >
-                    {status === "loading" ? "Sending…" : "Book a Workflow Review"}
+                    {status === "loading" ? "Sending…" : "Request My Workflow Review"}
                     {status !== "loading" && <ArrowRight className="size-4" />}
                   </button>
 

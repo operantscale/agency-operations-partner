@@ -1,38 +1,63 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram } from "lucide-react";
+import { ArrowUpRight, Instagram } from "lucide-react";
 import { Logo } from "./logo";
 import { trackEvent } from "@/lib/analytics";
 import { siteConfig } from "@/lib/seo";
 
-const socialLinks = [
-  { label: "Instagram", href: siteConfig.social.instagram, icon: Instagram },
-] as const;
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-[84rem] px-6 py-14 lg:px-10">
-        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
+      <div className="mx-auto max-w-[82rem] px-5 py-12 sm:px-8 sm:py-14 lg:px-10">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr_1fr]">
           <div>
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Connected systems for auto-detailing businesses.
+            <Link to="/" aria-label="OperantScale home">
+              <Logo />
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-6 text-muted-foreground">
+              Websites and practical lead systems for auto-detailing businesses.
             </p>
           </div>
-
-          <nav aria-label="Footer" className="flex flex-col gap-3 text-sm">
-            <span className="eyebrow">Site</span>
-            <Link to="/" hash="platform" className="text-muted-foreground hover:text-foreground">
-              Platform
+          <nav aria-label="Solutions" className="flex flex-col items-start gap-3 text-sm">
+            <span className="eyebrow mb-1">Solutions</span>
+            <Link
+              to="/"
+              hash="professional-website"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Professional Detailing Website
+            </Link>
+            <Link
+              to="/"
+              hash="website-dashboard"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Website + Dashboard
+            </Link>
+            <Link
+              to="/"
+              hash="complete-system"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Complete Booking & Lead Recovery System
             </Link>
             <Link to="/" hash="solutions" className="text-muted-foreground hover:text-foreground">
-              Solutions
+              Pricing
             </Link>
-            <Link to="/" hash="case-study" className="text-muted-foreground hover:text-foreground">
-              Case Study
+          </nav>
+          <nav aria-label="Explore" className="flex flex-col items-start gap-3 text-sm">
+            <span className="eyebrow mb-1">Explore</span>
+            <Link
+              to="/"
+              hash="how-it-works"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              How It Works
             </Link>
-            <Link to="/" hash="approach" className="text-muted-foreground hover:text-foreground">
-              Approach
+            <Link to="/" hash="demo" className="text-muted-foreground hover:text-foreground">
+              Product Demo
+            </Link>
+            <Link to="/" hash="our-work" className="text-muted-foreground hover:text-foreground">
+              Our Work
             </Link>
             <Link to="/" hash="faq" className="text-muted-foreground hover:text-foreground">
               FAQ
@@ -41,61 +66,42 @@ export function SiteFooter() {
               Contact
             </Link>
           </nav>
-
-          <div className="flex flex-col gap-3 text-sm">
-            <span className="eyebrow">Contact</span>
+          <div className="flex flex-col items-start gap-3 text-sm">
+            <span className="eyebrow mb-1">Connect</span>
             <a
-              href="mailto:sabeeh@operantscale.com"
+              href={`mailto:${siteConfig.email}`}
               onClick={() => trackEvent("email_click", { location: "footer" })}
               className="text-muted-foreground hover:text-foreground"
             >
-              sabeeh@operantscale.com
+              {siteConfig.email}
             </a>
             <a
-              href="https://operantscale.com"
-              className="text-muted-foreground hover:text-foreground"
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground"
             >
-              operantscale.com
+              <Instagram className="size-4" /> Instagram <ArrowUpRight className="size-3" />
             </a>
-            <div aria-label="OperantScale social profiles" className="mt-2 flex items-center gap-3">
-              {socialLinks.map(({ label, href, icon: Icon }) => {
-                const isEnabled = Boolean(href);
-
-                return (
-                  <a
-                    key={label}
-                    href={isEnabled ? (href ?? undefined) : undefined}
-                    aria-label={label}
-                    aria-disabled={!isEnabled}
-                    target={isEnabled ? "_blank" : undefined}
-                    rel={isEnabled ? "noopener noreferrer" : undefined}
-                    className={`flex h-8 w-8 items-center justify-center rounded-full border transition-colors ${
-                      isEnabled
-                        ? "border-border text-muted-foreground hover:border-foreground hover:text-foreground"
-                        : "pointer-events-none border-border/60 text-muted-foreground/50"
-                    }`}
-                    onClick={(event) => {
-                      if (!isEnabled) {
-                        event.preventDefault();
-                      }
-                    }}
-                  >
-                    <Icon className="size-3.5" aria-hidden="true" />
-                  </a>
-                );
-              })}
-            </div>
+            <Link
+              to="/contact"
+              onClick={() =>
+                trackEvent("cta_click", { cta_name: "book_workflow_review", location: "footer" })
+              }
+              className="mt-2 inline-flex items-center gap-2 font-medium text-primary hover:text-accent"
+            >
+              Book a Workflow Review <ArrowUpRight className="size-4" />
+            </Link>
           </div>
         </div>
-
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} OperantScale. All rights reserved.</span>
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-foreground">
-              Privacy
+              Privacy Policy
             </Link>
             <Link to="/terms" className="hover:text-foreground">
-              Terms
+              Terms of Service
             </Link>
           </div>
         </div>

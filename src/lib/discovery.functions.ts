@@ -17,6 +17,24 @@ export const discoverySchema = z.object({
     .max(150, "Shop name is too long"),
   role: z.string().trim().max(100, "Role is too long").optional().or(z.literal("")),
   shopWebsite: z.string().trim().max(200, "Website URL is too long").optional().or(z.literal("")),
+  packageInterest: z
+    .string()
+    .trim()
+    .max(120, "Project interest is too long")
+    .optional()
+    .or(z.literal("")),
+  monthlyInquiries: z
+    .string()
+    .trim()
+    .max(80, "Please keep this under 80 characters")
+    .optional()
+    .or(z.literal("")),
+  currentSoftware: z
+    .string()
+    .trim()
+    .max(200, "Please keep this under 200 characters")
+    .optional()
+    .or(z.literal("")),
   primaryChallenge: z
     .string()
     .trim()
@@ -32,6 +50,17 @@ export const discoverySchema = z.object({
 
 export type DiscoveryInput = z.infer<typeof discoverySchema>;
 export type DiscoverySubmissionResult = { ok: true; emailDeliverySucceeded: boolean };
+
+function buildAdditionalContext(data: DiscoveryInput): string {
+  const entries = [
+    data.packageInterest ? `Package interest: ${data.packageInterest}` : undefined,
+    data.monthlyInquiries ? `Approx. monthly inquiries: ${data.monthlyInquiries}` : undefined,
+    data.currentSoftware ? `Current booking / CRM software: ${data.currentSoftware}` : undefined,
+    data.additionalContext ? `Additional context: ${data.additionalContext}` : undefined,
+  ].filter(Boolean) as string[];
+
+  return entries.join("\n\n");
+}
 
 function getRequiredEnv(name: string): string {
   const value = process.env[name]?.trim();
@@ -74,7 +103,7 @@ async function insertDiscoveryRequest(data: DiscoveryInput): Promise<void> {
         role: data.role || null,
         agency_website: data.shopWebsite || null,
         primary_challenge: data.primaryChallenge,
-        additional_context: data.additionalContext || null,
+        additional_context: buildAdditionalContext(data) || null,
       }),
     });
   } catch (error) {
@@ -109,8 +138,11 @@ export const submitDiscoveryRequest = createServerFn({ method: "POST" })
         shopName: data.shopName,
         role: data.role || undefined,
         shopWebsite: data.shopWebsite || undefined,
+        packageInterest: data.packageInterest || undefined,
+        monthlyInquiries: data.monthlyInquiries || undefined,
+        currentSoftware: data.currentSoftware || undefined,
         primaryChallenge: data.primaryChallenge,
-        additionalContext: data.additionalContext || undefined,
+        additionalContext: buildAdditionalContext(data) || undefined,
         submittedAt: new Date(),
       };
 

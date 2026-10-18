@@ -4,7 +4,7 @@
   <rect width="1200" height="630" fill="#0b2545"/>
   <path d="M0 112H1200M0 518H1200M720 0V630M960 0V630" stroke="#8ba7d7" stroke-opacity=".24"/>
   <rect x="96" y="76" width="378" height="126" rx="2" fill="#f7f6f2" fill-opacity=".05"/>
-  <image x="112" y="89" width="346" height="100" preserveAspectRatio="xMinYMid meet" href="/Website%20logo.png" xlink:href="/Website%20logo.png" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+  <image x="112" y="89" width="346" height="100" preserveAspectRatio="xMinYMid meet" href="/operantscale-logo.png" xlink:href="/operantscale-logo.png" xmlns:xlink="http://www.w3.org/1999/xlink"/>
   <g transform="translate(1012 76)" fill="none" stroke="#6b9df5" stroke-width="3">
     <rect width="112" height="112" rx="2"/>
     <path d="M25 78L52 34H88"/>

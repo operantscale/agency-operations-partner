@@ -9,12 +9,12 @@ export const SOLUTIONS = [
     price: "$250",
     billing: "One-time development",
     description:
-      "Give your detailing business a premium online presence that showcases your services, builds credibility, and makes it easier for customers to request a quote.",
+      "A premium website that showcases your detailing services, builds credibility, and makes requesting a quote simple.",
     features: [
       "Premium, mobile-responsive design",
       "Up to five agreed pages or sections",
-      "Services and detailing packages presentation",
-      "Before-and-after gallery using supplied assets",
+      "Services and detailing packages",
+      "Before-and-after gallery with supplied assets",
       "Contact and quote-request forms",
       "Basic on-page SEO and launch setup",
     ],
@@ -22,11 +22,11 @@ export const SOLUTIONS = [
       name: "Website Care",
       price: "$80/month",
       description:
-        "Ongoing technical maintenance, issue resolution, routine checks, and minor website content updates within the agreed support scope.",
+        "Technical maintenance, issue resolution, routine checks, and minor content updates.",
     },
-    contactLabel: "Professional Website — $250 one-time development",
-    contactWithCareLabel: "Website — $250 one-time + optional Website Care at $80/month",
-    cta: "Get Your Professional Website",
+    contactLabel: "Professional Detailing Website — $250 one-time development",
+    contactWithCareLabel: "Professional Website + optional Website Care — $250 one-time, $80/month",
+    cta: "Get Your Website",
     featured: false,
   },
   {
@@ -39,9 +39,9 @@ export const SOLUTIONS = [
     price: "$500",
     billing: "One-time development",
     description:
-      "A professional detailing website connected to your own lead dashboard, helping you capture inquiries, organize customer information, and manage potential bookings in one place.",
+      "A premium detailing website with a connected dashboard to capture inquiries, organize leads, and track potential bookings.",
     features: [
-      "Everything in the Professional Website package",
+      "All Professional Website development features",
       "Secure business dashboard",
       "Integrated website inquiry forms",
       "Centralized customer and lead records",
@@ -51,14 +51,11 @@ export const SOLUTIONS = [
     care: {
       name: "Website & Dashboard Care",
       price: "$150/month",
-      description:
-        "Ongoing website and dashboard maintenance, technical support, bug fixes, and minor improvements within an agreed monthly allowance.",
-      scope:
-        "Small approved changes fit the allowance; major modules, integrations, redesigns, or larger requests are scoped and quoted separately.",
+      description: "Maintenance, technical support, bug fixes, and minor approved improvements.",
     },
     contactLabel: "Website + Lead Dashboard — $500 one-time development",
     contactWithCareLabel:
-      "Website + Dashboard — $500 one-time + optional Website & Dashboard Care at $150/month",
+      "Website + Dashboard + optional Website & Dashboard Care — $500 one-time, $150/month",
     cta: "Get Website + Dashboard",
     featured: true,
   },
@@ -69,29 +66,26 @@ export const SOLUTIONS = [
     category: "COMPLETE BUSINESS SYSTEM",
     name: "Complete Booking & Lead Recovery System",
     navDescription: "A custom system for bookings, follow-up, and lead recovery.",
-    price: "Custom Solution",
-    billing: "Implementation and support scoped to your business",
+    price: "Tailored to Your Business",
+    billing: "Custom implementation & ongoing support",
     description:
-      "A connected system built around your detailing operation—from capturing new inquiries and recovering missed opportunities to managing bookings, customer communication, and follow-up.",
-    featureIntro: "Potential capabilities, scoped to your project",
+      "A connected system that helps manage inquiries, recover missed opportunities, automate follow-up, and streamline bookings.",
+    featureIntro: "Potential capabilities, based on project scope.",
     features: [
-      "Professional customer-facing website",
-      "Connected lead management dashboard",
+      "Professional website and lead dashboard",
       "Automated inquiry and missed-lead follow-up",
       "Quote and booking workflows",
       "Appointment reminders and confirmations",
-      "Customer rebooking and retention workflows",
-      "Custom integrations and reporting",
+      "Customer rebooking and retention",
+      "Tailored integrations and reporting",
     ],
     care: {
       name: "Tailored Implementation & Support",
       description:
-        "Features, integrations, development scope, and ongoing support are agreed during your workflow review, subject to technical feasibility and provider availability.",
-      scope:
-        "Automation, phone, SMS, email, payment, and third-party connections depend on feasibility and the approved project scope.",
+        "Features, integrations, implementation, and ongoing support are defined during your workflow review.",
     },
     contactLabel: "Complete Booking & Lead Recovery System — Custom",
-    cta: "Discuss a Custom System",
+    cta: "Discuss Your System",
     featured: false,
   },
 ] as const;

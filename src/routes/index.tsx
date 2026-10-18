@@ -21,44 +21,44 @@ const DESCRIPTION =
 
 const FAQS = [
   {
-    q: "What does the $250 professional website include?",
-    a: "A premium mobile-responsive website with up to five agreed pages or sections, service and package details, a gallery using supplied assets, contact and quote-request forms, basic on-page SEO, and launch setup.",
+    q: "What does the one-time development fee include?",
+    a: "The $250 package includes a responsive website with up to five agreed pages or sections, services and packages, a supplied-asset gallery, contact and quote-request forms, basic on-page SEO, and launch setup. The $500 package adds the lead dashboard and its listed workflow features.",
   },
   {
-    q: "What is included in the $80 monthly Website Care plan?",
-    a: "Optional technical maintenance, issue resolution, routine checks, and minor content updates within the agreed support scope. Hosting and the plan transition at cancellation are defined in the project agreement.",
+    q: "What is included in Website Care?",
+    a: "The optional $80/month plan covers technical maintenance, issue resolution, routine checks, and minor content updates within the agreed monthly scope.",
   },
   {
-    q: "What is the difference between the $250 and $500 packages?",
-    a: "The $250 package is a customer-facing detailing website. The $500 package adds a secure dashboard with inquiry forms, customer and lead records, status and follow-up tracking, and basic reporting setup.",
+    q: "What does Website & Dashboard Care cover?",
+    a: "The optional $150/month plan covers maintenance for the website and dashboard, technical support, bug fixes, and minor approved improvements within an agreed scope.",
   },
   {
-    q: "What does the $150 monthly Website & Dashboard Care plan cover?",
-    a: "Optional maintenance, technical support, bug fixes, and a limited allowance for minor approved improvements. Larger modules, integrations, redesigns, and extensive requests are scoped and quoted separately.",
+    q: "Are monthly care plans optional?",
+    a: "Yes. The development fees are one-time project fees. Monthly care is a separate optional service.",
   },
   {
     q: "Can I request additional features later?",
-    a: "Yes. Small changes may fit an agreed dashboard care allowance. Major features, integrations, redesigns, and larger development requests need separate scoping and a quote.",
+    a: "Yes. Minor approved improvements may fit the agreed dashboard care scope. Larger features and integrations can be scoped and quoted separately.",
   },
   {
-    q: "Are the monthly care plans optional?",
-    a: "Yes. Development is a one-time project fee. Website Care and Website & Dashboard Care are separate, optional services.",
+    q: "What is not included in monthly support?",
+    a: "Care plans do not include unlimited development. Major modules, advanced integrations, redesigns, and extensive changes require separate scoping and a quote.",
   },
   {
     q: "Are domain and hosting costs included?",
-    a: "Domain, hosting, messaging, and other third-party charges are confirmed before work begins. The project agreement defines account access, ownership, and handoff arrangements.",
+    a: "Domain, hosting, and third-party service costs are confirmed before implementation; they are not assumed to be included in the project fee.",
   },
   {
-    q: "Does the $500 package include automated lead recovery?",
-    a: "No. It provides a lightweight dashboard for capturing and organizing inquiries. Automated missed-lead recovery and advanced booking workflows are scoped as part of a custom system.",
+    q: "Can I upgrade from a website to a dashboard?",
+    a: "Yes. We can discuss the dashboard package and agree on the additional work and scope before starting it.",
   },
   {
-    q: "How is the complete system priced?",
-    a: "The Complete Booking & Lead Recovery System is custom scoped. Implementation, integrations, and ongoing support are discussed after a workflow review and technical feasibility check.",
+    q: "Is automation included in the $500 package?",
+    a: "No. The $500 package organizes website inquiries in a dashboard; automated follow-up and missed-lead recovery are custom-system capabilities, subject to project scope and feasibility.",
   },
   {
-    q: "What happens after launch?",
-    a: "We review the agreed deliverables and handoff. The project agreement documents ownership, account access, and transition arrangements; ongoing care continues only if you choose a plan.",
+    q: "How is the Complete System scoped and priced?",
+    a: "We review your workflow, requirements, and technical feasibility, then agree on implementation, integrations, and ongoing support individually. Pricing is custom.",
   },
 ];
 
@@ -294,18 +294,18 @@ function HomePage() {
                     The right starting point for your detailing business.
                   </h2>
                 </div>
-                <p className="max-w-sm text-sm leading-6 text-muted-foreground">
-                  From a professional website to a fully connected booking and lead recovery system,
-                  choose the solution that fits your business today.
+                <p className="max-w-lg text-sm leading-6 text-muted-foreground sm:text-base">
+                  Start with a professional online presence, organize incoming leads, or connect
+                  your entire booking workflow.
                 </p>
               </div>
             </Reveal>
-            <div className="mt-11 grid gap-4 lg:grid-cols-3">
+            <div className="mt-9 grid gap-4 sm:mt-11 lg:grid-cols-3">
               {SOLUTIONS.map((item, index) => (
                 <Reveal key={item.id} delay={index * 0.07} className="h-full">
                   <article
                     id={item.id}
-                    className={`flex h-full scroll-mt-28 flex-col border p-6 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_-38px_rgba(11,37,69,0.45)] sm:p-7 ${item.featured ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-accent"}`}
+                    className={`flex h-full scroll-mt-28 flex-col border p-6 transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_-38px_rgba(11,37,69,0.45)] sm:p-7 ${item.featured ? "border-t-2 border-t-accent border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-accent"}`}
                   >
                     <div className="flex items-center justify-between">
                       <span
@@ -314,32 +314,36 @@ function HomePage() {
                         {item.number} / {item.category}
                       </span>
                     </div>
-                    <h3 className="mt-6 min-h-16 text-2xl leading-tight font-medium sm:text-[1.7rem]">
+                    <h3 className="mt-5 text-[1.6rem] leading-tight font-medium sm:text-[1.7rem]">
                       {item.name}
                     </h3>
-                    <div className="mt-4 border-b border-current/15 pb-5">
-                      <p className="text-4xl font-medium tracking-tight">{item.price}</p>
+                    <p
+                      className={`mt-3 text-[0.9375rem] leading-6 ${item.featured ? "text-primary-foreground/80" : "text-muted-foreground"}`}
+                    >
+                      {item.description}
+                    </p>
+                    <div className="mt-5 border-b border-current/15 pb-5">
+                      <p
+                        className={`font-medium tracking-tight ${item.price === "Tailored to Your Business" ? "text-3xl leading-tight" : "text-5xl"}`}
+                      >
+                        {item.price}
+                      </p>
                       <span
-                        className={`mt-1 block text-xs ${item.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}
+                        className={`mt-1 block text-[0.8125rem] ${item.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}
                       >
                         {item.billing}
                       </span>
                     </div>
-                    <p
-                      className={`mt-5 text-sm leading-6 ${item.featured ? "text-primary-foreground/80" : "text-muted-foreground"}`}
-                    >
-                      {item.description}
-                    </p>
                     {"featureIntro" in item && (
                       <p
-                        className={`mt-6 text-xs font-medium ${item.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}
+                        className={`mt-5 text-xs font-medium ${item.featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}
                       >
                         {item.featureIntro}
                       </p>
                     )}
-                    <ul className="mt-4 space-y-3">
+                    <ul className="mt-5 space-y-2.5">
                       {item.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-3 text-sm">
+                        <li key={feature} className="flex items-start gap-2.5 text-sm leading-5">
                           <Check
                             className={`mt-0.5 size-4 shrink-0 ${item.featured ? "text-blue-200" : "text-accent"}`}
                           />
@@ -348,31 +352,24 @@ function HomePage() {
                       ))}
                     </ul>
                     <div
-                      className={`mt-7 border p-4 ${item.featured ? "border-white/20 bg-white/[0.06]" : "border-border bg-surface/50"}`}
+                      className={`mt-6 border p-3 ${item.featured ? "border-white/20 border-t-accent/70 bg-white/[0.04]" : "border-border bg-surface/40"}`}
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                        <h4 className="text-sm font-semibold">{item.care.name}</h4>
+                        <h4 className="text-sm font-medium">{item.care.name}</h4>
                         {"price" in item.care && (
-                          <span className="text-sm font-medium">{item.care.price}</span>
+                          <span className="text-sm font-semibold">{item.care.price}</span>
                         )}
                       </div>
                       <p
-                        className={`mt-2 text-xs leading-5 ${item.featured ? "text-primary-foreground/75" : "text-muted-foreground"}`}
+                        className={`mt-1.5 text-xs leading-5 ${item.featured ? "text-primary-foreground/75" : "text-muted-foreground"}`}
                       >
                         {item.care.description}
                       </p>
-                      {"scope" in item.care && (
-                        <p
-                          className={`mt-2 border-t pt-2 text-[0.68rem] leading-5 ${item.featured ? "border-white/15 text-primary-foreground/65" : "border-border text-muted-foreground"}`}
-                        >
-                          {item.care.scope}
-                        </p>
-                      )}
                       {"price" in item.care && (
                         <p
-                          className={`mt-2 text-[0.68rem] ${item.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}
+                          className={`mt-1.5 text-xs ${item.featured ? "text-primary-foreground/60" : "text-muted-foreground"}`}
                         >
-                          Optional monthly service
+                          Optional · Agreed monthly scope
                         </p>
                       )}
                     </div>
@@ -385,7 +382,7 @@ function HomePage() {
                           location: "pricing_card",
                         })
                       }
-                      className={`mt-auto inline-flex min-h-12 w-full items-center justify-center gap-2 px-4 text-center text-sm font-medium transition-colors ${item.featured ? "bg-white text-primary hover:bg-blue-50" : "border border-primary bg-primary text-primary-foreground hover:bg-accent"}`}
+                      className={`mt-auto inline-flex min-h-12 w-full items-center justify-center gap-2 text-center text-sm font-medium transition-colors ${item.featured ? "bg-white text-primary hover:bg-blue-50" : "border border-primary bg-primary text-primary-foreground hover:bg-accent"}`}
                     >
                       {item.cta}
                       <ArrowRight className="size-4" />
@@ -394,13 +391,18 @@ function HomePage() {
                 </Reveal>
               ))}
             </div>
-            <p className="mt-6 max-w-4xl text-xs leading-5 text-muted-foreground">
-              Development is billed as a one-time project fee. Monthly care plans provide ongoing
-              support within an agreed scope and are optional. Domain, hosting, third-party
-              subscriptions, messaging, and other external service costs are confirmed before work
-              begins. Ownership, account access, handoff, and cancellation transitions are defined
-              in the project agreement.
+            <p className="mt-6 max-w-4xl text-sm leading-6 text-muted-foreground">
+              Development is a one-time project fee. Monthly care is optional and covers ongoing
+              support within an agreed scope. Third-party services and external costs are confirmed
+              before implementation.
             </p>
+            <Link
+              to="/"
+              hash="demo"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-accent"
+            >
+              Want to see how it works? Explore the demo <ArrowRight className="size-4" />
+            </Link>
           </div>
         </section>
 

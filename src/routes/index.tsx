@@ -291,32 +291,51 @@ function HomePage() {
         </section>
 
         <section className="border-y border-border bg-surface">
-          <div className="page-container grid gap-8 section-space lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-16">
+          <div className="page-container section-space">
             <Reveal>
-              <p className="eyebrow">The gap between inquiry and appointment</p>
-              <h2 className="mt-5 max-w-lg text-3xl leading-tight font-medium tracking-tight sm:text-4xl">
-                Good work deserves a customer journey that keeps up.
-              </h2>
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-16">
+                <div>
+                  <p className="eyebrow">The gap between inquiry and appointment</p>
+                  <h2 className="mt-5 max-w-xl text-3xl leading-tight font-medium tracking-tight sm:text-4xl lg:text-5xl">
+                    Good work deserves a customer journey that keeps up.
+                  </h2>
+                </div>
+                <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+                  Calls, texts, and messages often arrive while you're working on a vehicle. It can
+                  be hard to answer every question and keep each quote moving. A clear online
+                  presence and a simple inquiry process give customers a better next step and help
+                  you keep track of conversations.
+                </p>
+              </div>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-                Calls, texts, and messages often arrive while you're working on a vehicle. It can be
-                hard to answer every question and keep each quote moving. A clear online presence
-                and a simple inquiry process give customers a better next step and help you keep
-                track of conversations.
-              </p>
-              <div className="mt-8 grid gap-5 border-t border-border pt-6 md:grid-cols-3">
+              <ol className="relative mt-10 grid gap-3 sm:mt-12 md:grid-cols-3 md:gap-4">
+                <div
+                  aria-hidden="true"
+                  className="absolute left-[16.7%] right-[16.7%] top-10 hidden border-t border-dashed border-border md:block"
+                />
                 {[
-                  ["Capture", "Make services and the next step easy to find."],
-                  ["Organize", "Keep inquiry details and status together."],
-                  ["Follow through", "Give each lead a clear path toward booking."],
-                ].map(([title, body]) => (
-                  <div key={title}>
-                    <h3 className="text-sm font-semibold">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
-                  </div>
+                  ["01", "Capture", "Make services and the next step easy to find."],
+                  ["02", "Organize", "Keep inquiry details and status together."],
+                  ["03", "Follow through", "Give each lead a clear path toward booking."],
+                ].map(([number, title, body]) => (
+                  <li
+                    key={title}
+                    className="relative rounded-xl border border-border bg-card p-5 shadow-[0_16px_34px_-30px_rgba(19,30,49,0.42)] sm:p-6"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="relative z-10 inline-flex size-8 items-center justify-center rounded-full border border-border bg-card font-mono text-[0.65rem] tracking-[0.08em] text-accent">
+                        {number}
+                      </span>
+                      <span className="eyebrow !text-[0.62rem] !tracking-[0.14em]">
+                        Step {number}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 text-lg font-semibold tracking-tight">{title}</h3>
+                    <p className="mt-2 max-w-xs text-sm leading-6 text-muted-foreground">{body}</p>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </Reveal>
           </div>
         </section>

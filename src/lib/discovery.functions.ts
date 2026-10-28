@@ -8,7 +8,7 @@ export const discoverySchema = z.object({
   workEmail: z
     .string()
     .trim()
-    .email("Please enter a valid work email")
+    .email("Please enter a valid email address")
     .max(255, "Email is too long"),
   shopName: z
     .string()
@@ -16,30 +16,33 @@ export const discoverySchema = z.object({
     .min(2, "Please enter your shop name")
     .max(150, "Shop name is too long"),
   role: z.string().trim().max(100, "Role is too long").optional().or(z.literal("")),
-  shopWebsite: z.string().trim().max(200, "Website URL is too long").optional().or(z.literal("")),
+  shopWebsite: z
+    .string()
+    .trim()
+    .max(200, "Website or social profile URL is too long")
+    .refine((value) => {
+      if (!value) return true;
+      try {
+        return ["http:", "https:"].includes(new URL(value).protocol);
+      } catch {
+        return false;
+      }
+    }, "Enter a valid website or social profile URL")
+    .optional()
+    .or(z.literal("")),
   packageInterest: z
     .string()
     .trim()
     .max(120, "Project interest is too long")
     .optional()
     .or(z.literal("")),
-  monthlyInquiries: z
+  currentContactMethod: z.string().min(1, "Choose how customers contact you"),
+  servicesAndArea: z
     .string()
     .trim()
-    .max(80, "Please keep this under 80 characters")
+    .max(1000, "Please keep this under 1000 characters")
     .optional()
     .or(z.literal("")),
-  currentSoftware: z
-    .string()
-    .trim()
-    .max(200, "Please keep this under 200 characters")
-    .optional()
-    .or(z.literal("")),
-  primaryChallenge: z
-    .string()
-    .trim()
-    .min(10, "A sentence or two is enough")
-    .max(1000, "Please keep this under 1000 characters"),
   additionalContext: z
     .string()
     .trim()
@@ -54,8 +57,7 @@ export type DiscoverySubmissionResult = { ok: true; emailDeliverySucceeded: bool
 function buildAdditionalContext(data: DiscoveryInput): string {
   const entries = [
     data.packageInterest ? `Package interest: ${data.packageInterest}` : undefined,
-    data.monthlyInquiries ? `Approx. monthly inquiries: ${data.monthlyInquiries}` : undefined,
-    data.currentSoftware ? `Current booking / CRM software: ${data.currentSoftware}` : undefined,
+    data.servicesAndArea ? `Services and service area: ${data.servicesAndArea}` : undefined,
     data.additionalContext ? `Additional context: ${data.additionalContext}` : undefined,
   ].filter(Boolean) as string[];
 
@@ -102,7 +104,7 @@ async function insertDiscoveryRequest(data: DiscoveryInput): Promise<void> {
         agency_name: data.shopName,
         role: data.role || null,
         agency_website: data.shopWebsite || null,
-        primary_challenge: data.primaryChallenge,
+        primary_challenge: data.currentContactMethod,
         additional_context: buildAdditionalContext(data) || null,
       }),
     });
@@ -139,9 +141,7 @@ export const submitDiscoveryRequest = createServerFn({ method: "POST" })
         role: data.role || undefined,
         shopWebsite: data.shopWebsite || undefined,
         packageInterest: data.packageInterest || undefined,
-        monthlyInquiries: data.monthlyInquiries || undefined,
-        currentSoftware: data.currentSoftware || undefined,
-        primaryChallenge: data.primaryChallenge,
+        primaryChallenge: data.currentContactMethod,
         additionalContext: buildAdditionalContext(data) || undefined,
         submittedAt: new Date(),
       };

@@ -40,8 +40,9 @@ function TermsPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="pt-16">
-        <article className="mx-auto max-w-2xl px-6 pt-20 pb-24 lg:pt-28">
+      <main className="pt-[4.5rem]">
+        <article className="page-container py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-2xl">
           <p className="eyebrow">Legal</p>
           <h1 className="mt-6 text-4xl font-medium">Terms</h1>
           <p className="mt-4 text-sm text-muted-foreground">
@@ -52,9 +53,9 @@ function TermsPage() {
             <section>
               <h2 className="text-base font-medium text-foreground">Use of this website</h2>
               <p className="mt-3">
-                This website describes OperantScale's approach to operational systems and practical
-                automation for growing businesses. Content is provided for general information and
-                does not constitute professional, legal, or business advice.
+                This website describes OperantScale's detailing websites and inquiry workflows.
+                Content is provided for general information and does not constitute professional,
+                legal, or business advice.
               </p>
             </section>
             <section>
@@ -87,6 +88,7 @@ function TermsPage() {
                 .
               </p>
             </section>
+          </div>
           </div>
         </article>
       </main>

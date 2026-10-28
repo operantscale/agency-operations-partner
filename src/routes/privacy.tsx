@@ -41,8 +41,9 @@ function PrivacyPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="pt-16">
-        <article className="mx-auto max-w-2xl px-6 pt-20 pb-24 lg:pt-28">
+      <main className="pt-[4.5rem]">
+        <article className="page-container py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-2xl">
           <p className="eyebrow">Legal</p>
           <h1 className="mt-6 text-4xl font-medium">Privacy</h1>
           <p className="mt-4 text-sm text-muted-foreground">
@@ -53,18 +54,19 @@ function PrivacyPage() {
             <section>
               <h2 className="text-base font-medium text-foreground">Information we collect</h2>
               <p className="mt-3">
-                We collect only the information you submit through the discovery request form: your
-                name, work email, company, role, website, and the operational context you choose to
-                share. We do not sell information and we do not use it for advertising.
+                We collect the information you submit through the website preview request form: your
+                name, email address, business name, optional website or social profile, how
+                customers contact you, and any optional services and service-area details. We do not
+                sell information and we do not use it for advertising.
               </p>
             </section>
             <section>
               <h2 className="text-base font-medium text-foreground">How we use it</h2>
               <p className="mt-3">
-                Submitted information is used to respond to your request, prepare for an operational
-                discovery conversation, and maintain a record of the inquiry. If a working
-                relationship follows, information is used to understand and improve the workflows
-                under discussion.
+                Submitted information is used to review your preview request, respond to you,
+                prepare a business-specific website concept where appropriate, and maintain a record
+                of the inquiry. If a working relationship follows, information may help us scope the
+                agreed website or workflow project.
               </p>
             </section>
             <section>
@@ -90,6 +92,7 @@ function PrivacyPage() {
                 .
               </p>
             </section>
+          </div>
           </div>
         </article>
       </main>

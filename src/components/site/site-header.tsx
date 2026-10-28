@@ -8,13 +8,13 @@ import { SOLUTIONS } from "@/lib/offers";
 const NAV = [
   { label: "How It Works", hash: "how-it-works" },
   { label: "Demo", hash: "demo" },
-  { label: "Pricing", hash: "solutions" },
+  { label: "Engagement", hash: "solutions" },
   { label: "Our Work", hash: "our-work" },
   { label: "FAQ", hash: "faq" },
 ];
 
 function trackReview(location: string) {
-  trackEvent("cta_click", { cta_name: "book_workflow_review", location });
+  trackEvent("cta_click", { cta_name: "free_website_preview", location });
 }
 
 export function SiteHeader() {
@@ -80,11 +80,11 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${scrolled || open ? "border-border bg-background/95 shadow-[0_8px_30px_-24px_rgba(11,37,69,0.5)] backdrop-blur-md" : "border-transparent bg-background/80 backdrop-blur-sm"}`}
     >
-      <div className="mx-auto flex h-[4.5rem] max-w-[82rem] items-center justify-between px-5 sm:px-8 lg:px-10">
+      <div className="page-container flex h-[4.5rem] items-center justify-between">
         <Link to="/" aria-label="OperantScale home" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
-        <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex xl:gap-7">
+        <nav aria-label="Primary" className="hidden items-center gap-4 xl:flex xl:gap-6">
           <details className="group relative">
             <summary
               className={`relative flex cursor-pointer list-none items-center gap-1.5 py-3 text-[0.82rem] transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring [&::-webkit-details-marker]:hidden ${["solutions", "professional-website", "website-dashboard", "complete-system"].includes(activeHash) ? "text-foreground" : "text-muted-foreground"}`}
@@ -143,14 +143,14 @@ export function SiteHeader() {
           <Link
             to="/contact"
             onClick={() => trackReview("header")}
-            className="inline-flex h-10 items-center justify-center whitespace-nowrap bg-primary px-4 text-[0.72rem] font-medium text-primary-foreground transition-colors hover:bg-accent xl:px-5"
+            className="inline-flex h-10 items-center justify-center whitespace-nowrap bg-primary px-3 text-[0.64rem] font-medium text-primary-foreground transition-colors hover:bg-accent xl:px-4 xl:text-[0.72rem]"
           >
-            Book a Workflow Review
+            Request a Free Website Preview
           </Link>
         </nav>
         <button
           type="button"
-          className="-mr-2 inline-flex size-11 items-center justify-center text-foreground lg:hidden"
+          className="-mr-2 inline-flex size-11 items-center justify-center text-foreground xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-navigation"
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
@@ -162,9 +162,9 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-navigation"
-          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-background px-5 pt-3 pb-7 sm:px-8 lg:hidden"
+          className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-background pt-3 pb-7 xl:hidden"
         >
-          <nav aria-label="Mobile" className="mx-auto flex max-w-[82rem] flex-col">
+          <nav aria-label="Mobile" className="page-container flex flex-col">
             <details className="group border-b border-border">
               <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between text-base font-medium [&::-webkit-details-marker]:hidden">
                 Solutions{" "}
@@ -207,7 +207,7 @@ export function SiteHeader() {
               }}
               className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 bg-primary px-5 text-sm font-medium text-primary-foreground"
             >
-              Book a Workflow Review
+              Request a Free Website Preview
             </Link>
           </nav>
         </div>

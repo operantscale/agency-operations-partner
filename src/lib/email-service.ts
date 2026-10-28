@@ -240,7 +240,7 @@ export async function sendAdminNotification(data: DiscoveryRequestData): Promise
     }
 
     <div class="field">
-      <div class="label">Primary Operational Challenge</div>
+      <div class="label">How Customers Currently Contact You</div>
       <div class="value">
         ${escapeHtml(data.primaryChallenge).replace(/\n/g, "<br>")}
       </div>

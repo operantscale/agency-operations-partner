@@ -3,15 +3,15 @@ export const siteConfig = {
   domain: "https://operantscale.com",
   email: "sabeeh@operantscale.com",
   ogImage: "/og-image.svg",
-  ogImageAlt: "OperantScale lead recovery and booking systems for auto-detailing businesses",
+  ogImageAlt: "OperantScale websites and inquiry workflows for auto-detailing businesses",
   social: {
     instagram: "https://www.instagram.com/operantscale/",
   },
 } as const;
 
-export const defaultPageTitle = `${siteConfig.companyName} | Websites & Booking Systems for Auto Detailers`;
+export const defaultPageTitle = `${siteConfig.companyName} | Detailing Websites & Inquiry Workflows`;
 export const defaultPageDescription =
-  "Professional detailing websites, lead dashboards, and tailored booking and lead recovery systems for auto-detailing businesses.";
+  "Professional websites and practical inquiry workflows for independent auto detailing businesses.";
 
 export function getCanonicalUrl(path = "/") {
   return new URL(path, siteConfig.domain).toString();

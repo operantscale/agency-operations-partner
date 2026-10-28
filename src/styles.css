@@ -45,6 +45,9 @@
 
 :root {
   --radius: 0.25rem;
+  --page-width: 82rem;
+  --page-gutter: clamp(1.25rem, 3.5vw, 2.5rem);
+  --section-space: clamp(3.5rem, 7.2vw, 6rem);
 
   /* warm off-white canvas */
   --background: oklch(0.985 0.004 85);
@@ -137,6 +140,20 @@
   border-top: 1px solid var(--color-line);
 }
 
+@utility page-container {
+  width: calc(100% - var(--page-gutter) - var(--page-gutter));
+  max-width: calc(var(--page-width) - var(--page-gutter) - var(--page-gutter));
+  margin-inline: auto;
+}
+
+.page-container.grid > * {
+  min-width: 0;
+}
+
+@utility section-space {
+  padding-block: var(--section-space);
+}
+
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -184,6 +201,14 @@
 
 .accordion-content[data-state="closed"] {
   animation: accordion-up 0.2s ease-out;
+}
+
+.arrow-link svg {
+  transition: transform 0.22s ease;
+}
+
+.arrow-link:hover svg {
+  transform: translateX(3px);
 }
 
 @media (prefers-reduced-motion: reduce) {

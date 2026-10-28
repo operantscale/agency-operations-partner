@@ -7,14 +7,14 @@ import { siteConfig } from "@/lib/seo";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-[82rem] px-5 py-12 sm:px-8 sm:py-14 lg:px-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr_1fr]">
+      <div className="page-container py-14 sm:py-16">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.25fr_0.9fr_0.8fr_1fr] lg:gap-12">
           <div>
             <Link to="/" aria-label="OperantScale home">
               <Logo />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-6 text-muted-foreground">
-              Websites and practical lead systems for auto-detailing businesses.
+              Websites and practical inquiry workflows for independent detailing businesses.
             </p>
           </div>
           <nav aria-label="Solutions" className="flex flex-col items-start gap-3 text-sm">
@@ -31,17 +31,17 @@ export function SiteFooter() {
               hash="website-dashboard"
               className="text-muted-foreground hover:text-foreground"
             >
-              Website + Dashboard
+              Website & Inquiry Management
             </Link>
             <Link
               to="/"
               hash="complete-system"
               className="text-muted-foreground hover:text-foreground"
             >
-              Complete Booking & Lead Recovery System
+              Booking & Customer Retention
             </Link>
             <Link to="/" hash="solutions" className="text-muted-foreground hover:text-foreground">
-              Pricing
+              Engagement
             </Link>
           </nav>
           <nav aria-label="Explore" className="flex flex-col items-start gap-3 text-sm">
@@ -86,11 +86,11 @@ export function SiteFooter() {
             <Link
               to="/contact"
               onClick={() =>
-                trackEvent("cta_click", { cta_name: "book_workflow_review", location: "footer" })
+                trackEvent("cta_click", { cta_name: "free_website_preview", location: "footer" })
               }
               className="mt-2 inline-flex items-center gap-2 font-medium text-primary hover:text-accent"
             >
-              Book a Workflow Review <ArrowUpRight className="size-4" />
+              Request a Free Website Preview <ArrowUpRight className="size-4" />
             </Link>
           </div>
         </div>
